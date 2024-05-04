@@ -2,39 +2,48 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page Brutta</title>
+    <title>GourmetSpices - Home</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Benvenuto al mio sito web!</h1>
+        <img src="logo-gourmetspices.png" alt="Logo di GourmetSpices" class="logo">
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
+                <li><a href="#products">Prodotti</a></li>
                 <li><a href="#about">Chi Siamo</a></li>
-                <li><a href="#services">Servizi</a></li>
                 <li><a href="#contact">Contatti</a></li>
             </ul>
         </nav>
+        <form action="#" method="get" class="search-bar">
+            <input type="text" name="search" placeholder="Search for...">
+            <button type="submit">Go!</button>
+        </form>
     </header>
 
-    <section id="about">
-        <h2>Chi Siamo</h2>
-        <p>Descrizione breve dell'azienda o del progetto.</p>
-    </section>
+    <div class="promo-banner">
+        <img src="store-open.jpg" alt="Our stores are now open!">
+    </div>
 
-    <section id="services">
-        <h2>Servizi Offerti</h2>
-        <p>Descrizione dei servizi che offri.</p>
-    </section>
-
-    <section id="contact">
-        <h2>Contatti</h2>
-        <p>Informazioni su come contattarci.</p>
+    <section id="featured-products">
+        <h2>Prodotti in Evidenza</h2>
+        <div class="product-gallery">
+            <article>
+                <img src="product1.jpg" alt="Spezia 1">
+                <h3>Spezia 1</h3>
+                <p>Descrizione breve del prodotto.</p>
+            </article>
+            <article>
+                <img src="product2.jpg" alt="Spezia 2">
+                <h3>Spezia 2</h3>
+                <p>Descrizione breve del prodotto.</p>
+            </article>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Nome Azienda. Tutti i diritti riservati.</p>
+        <p>&copy; 2024 GourmetSpices. Tutti i diritti riservati.</p>
     </footer>
 </body>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Benvenuto al mio sito web!</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">Chi Siamo</a></li>
+                <li><a href="#services">Servizi</a></li>
+                <li><a href="#contact">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>Chi Siamo</h2>
+        <p>Descrizione breve dell'azienda o del progetto.</p>
+    </section>
+
+    <section id="services">
+        <h2>Servizi Offerti</h2>
+        <p>Descrizione dei servizi che offri.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contatti</h2>
+        <p>Informazioni su come contattarci.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Nome Azienda. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>

@@ -1,3 +1,3 @@
-# Main branch of GourmetSpices repository
+# Test branch of GourmetSpices repository
 
-Progetto di Tecnologie Software per il Web di: Bruno Nesticò (0512117268) e Francesco Rao(0512116836)
+Caricare qui i file sui quali si sta ancora lavorando prima di committarli nel min branch

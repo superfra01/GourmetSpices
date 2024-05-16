@@ -5,7 +5,13 @@ body {
     box-sizing: border-box;
 }
 
-
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #E09777;
+}
 
 .logo {
     max-height: 50px;
@@ -31,8 +37,9 @@ body {
 #hero {
     text-align: center;
     padding: 100px 20px;
-    background-color: #E0BA77;
+    background: url('.src/images/hero.jpg') no-repeat center center/cover;
     color: white;
+    position: relative;
 }
 
 #hero button {
@@ -83,11 +90,4 @@ footer {
     color: white;
     padding: 20px;
     text-align: center;
-}
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #E09777;
 }

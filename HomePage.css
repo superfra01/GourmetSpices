@@ -5,13 +5,7 @@ body {
     box-sizing: border-box;
 }
 
-#header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #E09777;
-}
+
 
 .logo {
     max-height: 50px;
@@ -89,4 +83,11 @@ footer {
     color: white;
     padding: 20px;
     text-align: center;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #E09777;
 }

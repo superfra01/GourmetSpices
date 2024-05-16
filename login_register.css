@@ -17,8 +17,11 @@ a:hover {
 }
 
 header {
+    display: flex;
     background-color: #E09777;
-    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 .logo {

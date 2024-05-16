@@ -5,7 +5,7 @@ body {
     box-sizing: border-box;
 }
 
-#header {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,8 +37,9 @@ body {
 #hero {
     text-align: center;
     padding: 100px 20px;
-    background-color: #E0BA77;
+    background: url('.src/images/hero.jpg') no-repeat center center/cover;
     color: white;
+    position: relative;
 }
 
 #hero button {

@@ -1,0 +1,104 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #E0D0C1;
+    color: #333; /* Testo principale */
+}
+
+a {
+    text-decoration: none;
+    color: #333; /* Colore dei link */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+header {
+    background-color: #E09777;
+    padding: 20px;
+}
+
+.logo {
+    width: 100px;
+}
+
+#navbar {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#navbar li {
+    display: inline;
+    margin-right: 20px;
+}
+
+#navbar li a {
+    color: #fff; /* Colore dei link nel navbar */
+}
+
+#navbar li a.selected {
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+.login-container {
+    background-color: #E0BA77;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login-container h3 {
+    color: #E07363; /* Colore del titolo */
+}
+
+.login-container form {
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #E0AA77;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #E0C677;
+}
+
+footer {
+    background-color: #E09777;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Social icons */
+.fa-brands {
+    margin-right: 10px;
+    font-size: 1.5em;
+}
+
+.fa-brands:hover {
+    color: #E0C677; /* Colore al passaggio del mouse */
+}

@@ -1,49 +1,51 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GourmetSpices - Home</title>
-    <link rel="stylesheet" href="HomePage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GourmetSpices</title>
+    <link rel="shortcut icon" href="logo.png">
+    <link rel="stylesheet" href="HomeStyle.css">
 </head>
 <body>
-    <header>
-        <img src="logo-gourmetspices.webp" alt="Logo di GourmetSpices" class="logo">
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#products">Prodotti</a></li>
-                <li><a href="#about">Chi Siamo</a></li>
-                <li><a href="#contact">Contatti</a></li>
-            </ul>
-        </nav>
-        <form action="#" method="get" class="search-bar">
-            <input type="text" name="search" placeholder="Search for...">
-            <button type="submit">Go!</button>
-        </form>
-    </header>
-
-    <div class="promo-banner">
-        <img src="store-open.jpg" alt="Our stores are now open!">
-    </div>
-
-    <section id="featured-products">
-        <h2>Prodotti in Evidenza</h2>
-        <div class="product-gallery">
-            <article>
-                <img src="product1.jpg" alt="Spezia 1">
-                <h3>Spezia 1</h3>
-                <p>Descrizione breve del prodotto.</p>
-            </article>
-            <article>
-                <img src="product2.jpg" alt="Spezia 2">
-                <h3>Spezia 2</h3>
-                <p>Descrizione breve del prodotto.</p>
-            </article>
+    <section id="header">
+        <a href="#"><img src="./assets/logo.png" alt="logo" class="logo"></a>
+        <ul id="navbar">
+            <li><a class="active" href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#"><i class="fa-solid fa-bag-shopping"></i></a></li>
+        </ul>
+    </section>
+    <section id="hero">
+        <h4>Trade-In-Offer</h4>
+        <h2>Super Value Deals</h2>
+        <h1>On all products</h1>
+        <p>Save more with coupons & up to 70% off!</p>
+        <button>Shop Now</button>
+    </section>
+    <section id="product1" class="section-p1">
+        <h2>Featured Products</h2>
+        <div class="pro-container">
+            <div class="pro">
+                <img src="./assets/products/f1.jpg" alt="Product 1">
+                <div class="des">
+                    <span>Gourmet Spices</span>
+                    <h5>Exotic Spice Blend</h5>
+                </div>
+            </div>
         </div>
     </section>
-
     <footer>
-        <p>&copy; 2024 GourmetSpices. Tutti i diritti riservati.</p>
+        <p>Contact us at: info@gourmetspices.com | +01 2345 6789</p>
+        <p>Follow us: 
+            <i class="fa-brands fa-facebook"></i> 
+            <i class="fa-brands fa-instagram"></i> 
+            <i class="fa-brands fa-linkedin"></i> 
+            <i class="fa-brands fa-twitter"></i>
+        </p>
     </footer>
 </body>
 </html>

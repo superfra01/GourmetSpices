@@ -23,29 +23,43 @@ header {
     align-items: center;
     padding: 10px 20px;
 }
+nav{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
 
 .logo {
-    width: 100px;
+    max-height: 50px;/*provvisorio*/
 }
 
-#navbar {
-    list-style-type: none;
+nav ul{
+    display: flex;
+    list-style: none;
+    
+    margin-left: auto;
     padding: 0;
-    margin: 0;
 }
 
-#navbar li {
-    display: inline;
-    margin-right: 20px;
+nav li {
+    margin: 0 10px;
 }
 
-#navbar li a {
-    color: #fff; /* Colore dei link nel navbar */
+nav li a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+nav a i {
+    margin-left: 5px;
 }
 
-#navbar li a.selected {
+nav li a.selected {
     font-weight: bold;
 }
+
 
 main {
     padding: 20px;

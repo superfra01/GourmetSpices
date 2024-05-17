@@ -14,29 +14,37 @@ header {
 }
 
 .logo {
-    max-height: 50px;
+    max-height: 50px;/*provvsorio*/
 }
 
-#navbar {
+nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
 }
 
-#navbar li {
+nav ul{
+    display: flex;
+    list-style: none;
+    
+    margin-left: auto;
+    padding: 0;
+}
+
+nav li {
     margin: 0 10px;
 }
 
-#navbar a {
+nav a {
     text-decoration: none;
     color: white;
-    font-weight: bold;
+    font-weight: bold;/*da togliere*/
     display: flex;
     align-items: center;
 }
 
-#navbar a i {
+nav a i {
     margin-left: 5px;
 }
 

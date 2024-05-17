@@ -32,6 +32,12 @@ header {
     text-decoration: none;
     color: white;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+#navbar a i {
+    margin-left: 5px;
 }
 
 #hero {

@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>GourmetSpices</title>
     <link rel="shortcut icon" href="logo.png">
-    <link rel="stylesheet" href="login_register.css">
+    <link rel="stylesheet" href="./css/HomePage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
-        
-        <a href="#"><img src="./src/images/logo.webp" alt="logo" class="logo"></a>
+        <a href="#"><img src="./images/logo.webp" alt="logo" class="logo"></a>
         <nav>
             <ul>
                 <li><a class="selected" href="#">Home</a></li>
@@ -23,19 +22,24 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <div class="login-container">
-            <h3>Un mondo ricco di spezie e di sapori travolgenti ti aspetta</h3>
-            <h4>Register</h4>
-            <form>
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-                <button type="submit">Register</button>
-            </form>
-            <p>Already have an account? <a href="login.html">Login</a></p>
+    <section id="hero">
+        <h4>Quality Guaranteed</h4>
+        <h2>Super Value Deals</h2>
+        <h1>On all products</h1>
+        <button>Shop Now</button>
+    </section>
+    <section id="product1" class="section-p1"><!--da sistemare-->
+        <h2>Featured Products</h2>
+        <div class="pro-container">
+            <div class="pro">
+                <img src="" alt="Product 1">
+                <div class="des">
+                    <span>Gourmet Spices</span>
+                    <h5>Exotic Spice Blend</h5>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
     <footer>
         <p>Contact us at: info@gourmetspices.com | +01 2345 6789</p>
         <p>Follow us: 
@@ -45,6 +49,5 @@
             <a href=""><i class="fa fa-twitter fa-lg"></i></a>
         </p>
     </footer>
-    
 </body>
 </html>

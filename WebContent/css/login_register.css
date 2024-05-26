@@ -81,6 +81,13 @@ main {
     padding: 20px;
 }
 
+.login-container a{
+    color:white;
+}
+.login-container a:hover{
+    color: #E07363;
+}
+
 
 input[type="text"],
 input[type="password"] {
@@ -101,7 +108,7 @@ button {
 }
 
 button:hover {
-    background-color: #E0C677;
+    background-color: #E07363;
 }
 
 footer {
@@ -110,13 +117,9 @@ footer {
     padding: 20px;
     text-align: center;
 }
-
-/* Social icons */
-.fa-brands {
-    margin-right: 10px;
-    font-size: 1.5em;
+footer a i {
+    color:white;
 }
-
-.fa-brands:hover {
-    color: #E0C677; /* Colore al passaggio del mouse */
+footer a:hover i{
+    color: #E07363;
 }

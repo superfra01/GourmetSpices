@@ -1,74 +1,70 @@
-DROP database IF EXISTS GourmetSpice;
-CREATE database GourmetSpices;
+DROP DATABASE IF EXISTS GourmetSpicesDB;
+CREATE DATABASE GourmetSpicesDB;
 
-USE GODB;
+USE GourmetSpicesDB;
 
 DROP TABLE IF EXISTS Utente;
-CREATE TABLE Utente
-(	
-	email varchar(50) NOT NULL,
-	username varchar(50) PRIMARY KEY NOT NULL,
-    password varchar(5000) NOT NULL,
-	nome varchar(50) NOT NULL,
-    cognome varchar(50) NOT NULL,
-    Tipo-utente varchar(16) NOT NULL DEFAULT 'registeredUser'
+CREATE TABLE Utente (
+    ID_utente INT PRIMARY KEY NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(5000) NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    cognome VARCHAR(50) NOT NULL,
+    Tipo_utente VARCHAR(16) NOT NULL DEFAULT 'USER'
 );
 
+DROP TABLE IF EXISTS Carrello;
+CREATE TABLE Carrello (
+    ID_utente INT PRIMARY KEY NOT NULL,
+    FOREIGN KEY (ID_utente) REFERENCES Utente(ID_utente)
+);
+
+DROP TABLE IF EXISTS Metodo_Di_Pagamento;
+CREATE TABLE Metodo_Di_Pagamento (
+    ID_utente INT NOT NULL,
+    N_carta_iban VARCHAR(50) PRIMARY KEY NOT NULL,
+    metodo VARCHAR(50) NOT NULL,
+    FOREIGN KEY (ID_utente) REFERENCES Utente(ID_utente)
+);
 
 DROP TABLE IF EXISTS Prodotto;
-CREATE TABLE Prodotto
-(
-	codice int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nome varchar(50) NOT NULL,
-    descrizione text NOT NULL,
-    deleted BOOL NOT NULL DEFAULT false,
-    prezzo double(10,2) NOT NULL,
-    model varchar(200) NOT NULL,
-    speseSpedizione double(5,2) DEFAULT 0,
-    emailVenditore varchar(50) NOT NULL,
-    tag ENUM('Manga/Anime', 'Film/Serie TV', 'Videogiochi', 'Originali') NOT NULL,
-    nomeTipologia ENUM('Arredamento Casa','Action Figures','Gadget') NOT NULL,
-    dataAnnuncio date NOT NULL,
-    FOREIGN KEY(emailVenditore) REFERENCES Venditore(email) ON UPDATE cascade ON DELETE cascade,
-    FOREIGN KEY(nomeTipologia) REFERENCES Tipologia(nome) ON UPDATE cascade ON DELETE cascade
-)ENGINE=InnoDB AUTO_INCREMENT=1000;
+CREATE TABLE Prodotto (
+    ID_prodotto INT PRIMARY KEY NOT NULL,
+    prezzo INT NOT NULL,
+    quantità_magazzino INT NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    descrizione VARCHAR(50) NOT NULL
+);
 
 DROP TABLE IF EXISTS Ordine;
-CREATE TABLE Ordine
-(
-	codiceOrdine int NOT NULL AUTO_INCREMENT,
-    codiceProdotto int NOT NULL,
-    emailCliente varchar(50) NOT NULL,
-    prezzoTotale double(10,2) NOT NULL,
-    quantity int NOT NULL,
-    dataAcquisto date NOT NULL,
-    PRIMARY KEY(codiceOrdine,codiceProdotto),
-    FOREIGN KEY(codiceProdotto) REFERENCES Prodotto(codice) ON UPDATE cascade ON DELETE cascade,
-    FOREIGN KEY(emailCliente) REFERENCES Cliente(email) ON UPDATE cascade ON DELETE cascade
-)ENGINE=InnoDB AUTO_INCREMENT=100;
-
-DROP TABLE IF EXISTS Recensione;
-CREATE TABLE Recensione
-(
-	codiceRecensione int NOT NULL AUTO_INCREMENT,
-    codiceProdotto int NOT NULL,
-    emailCliente varchar(50) NOT NULL,
-    votazione tinyint unsigned NOT NULL,
-    testo text,
-    dataRecensione date NOT NULL,
-    PRIMARY KEY(codiceRecensione,codiceProdotto),
-    FOREIGN KEY(codiceProdotto) REFERENCES Prodotto(codice) ON UPDATE cascade ON DELETE cascade,
-    FOREIGN KEY(emailCliente) REFERENCES Cliente(email) ON UPDATE cascade ON DELETE cascade
+CREATE TABLE Ordine (
+    N_carta_iban VARCHAR(50) NOT NULL,
+    ID_utente INT NOT NULL,
+    ID_ordine INT PRIMARY KEY NOT NULL,
+    data DATE NOT NULL,
+    spesa FLOAT NOT NULL,
+    FOREIGN KEY (ID_utente) REFERENCES Utente(ID_utente),
+    FOREIGN KEY (N_carta_iban) REFERENCES Metodo_Di_Pagamento(N_carta_iban)
 );
 
-DROP TABLE IF EXISTS Preferiti;
-CREATE TABLE Preferiti
-(
-	codiceProdotto int NOT NULL,
-    emailCliente varchar(50) NOT NULL,
-    PRIMARY KEY(codiceProdotto,emailCliente),
-    FOREIGN KEY(codiceProdotto) REFERENCES Prodotto(codice) ON UPDATE cascade ON DELETE cascade,
-    FOREIGN KEY(emailCliente) REFERENCES Cliente(email) ON UPDATE cascade ON DELETE cascade
+DROP TABLE IF EXISTS Spedizione;
+CREATE TABLE Spedizione (
+    ID_ordine INT NOT NULL,
+    N_spedizione INT PRIMARY KEY NOT NULL,
+    G_di_arrivo DATE,
+    indirizzo VARCHAR(50) NOT NULL,
+    corriere VARCHAR(50),
+    FOREIGN KEY (ID_ordine) REFERENCES Ordine(ID_ordine)
 );
 
-USE GeekFactoryDB;
+DROP TABLE IF EXISTS Contenente;
+CREATE TABLE Contenente (
+    ID_prodotto INT NOT NULL,
+    ID_ordine INT NOT NULL,
+    prezzo_all_acquisto FLOAT NOT NULL,
+    quantità INT NOT NULL,
+    PRIMARY KEY (ID_prodotto, ID_ordine),
+    FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto),
+    FOREIGN KEY (ID_ordine) REFERENCES Ordine(ID_ordine)
+);

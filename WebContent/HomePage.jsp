@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <jsp:include page="../fragments/header.jsp" />
+    <jsp:include page="header.jsp" />
     
     <section id="hero">
         <h4>Quality Guaranteed</h4>
@@ -32,7 +32,7 @@
         </div>
     </section>
     
-    <jsp:include page="../fragments/footer.jsp" />
+    <jsp:include page="footer.jsp" />
     
     <script src="<%= request.getContextPath() %>/scripts/script.js"></script>
 </body>

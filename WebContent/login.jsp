@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <jsp:include page="../fragments/header.jsp" />
+    <jsp:include page="header.jsp" />
     
     <main>
         <div class="login-container">
@@ -25,6 +25,6 @@
         </div>
     </main>
 
-    <jsp:include page="../fragments/footer.jsp" />
+    <jsp:include page="footer.jsp" />
 </body>
 </html>

@@ -12,7 +12,7 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + UtenteDAO.NOME_TABELLA
+		String insertSQL = "INSERT INTO " + UserDAO.TABLE_NAME
 				+ " (email, username, password, nome, cognome, Tipo_utente) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -23,7 +23,7 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 			preparedStatement.setString(3, data.getPassword());
 			preparedStatement.setString(4, data.getNome());
 			preparedStatement.setString(5, data.getCognome());
-			preparedStatement.setBoolean(6, data.getTipoUtente());
+			preparedStatement.setString(6, data.getTipoUtente());
 
 			preparedStatement.executeUpdate();
 
@@ -42,11 +42,11 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 	@Override
 	public synchronized boolean doDelete(String code) throws SQLException {
 		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+		3 preparedStatement = null;
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + UtenteDAO.NOME_TABELLA + " WHERE email = ?";
+		String deleteSQL = "DELETE FROM " + UserDAO.TABLE_NAME + " WHERE email = ?";
 
 		try {
 			connection = dataSource.getConnection();
@@ -74,7 +74,7 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 
 		UserBean bean = new UserBean();
 
-		String selectSQL = "SELECT * FROM " + UtenteDAO.NOME_TABELLA + " WHERE email = ?";
+		String selectSQL = "SELECT * FROM " + UserDAO.TABLE_NAME + " WHERE email = ?";
 
 		try {
 		
@@ -91,7 +91,16 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 				bean.setNazionalità(rs.getString("nazionalità"));
 				bean.setDataNascita(rs.getDate("dataDiNascita"));
 				bean.setPassword(rs.getString("password"));
-				bean.setAdmin(rs.getBoolean("isAdmin"));
+				bean.setAdmin(rs.getString("Tipo_utente"));
+				
+				
+				preparedStatement.setString(1, data.getEmail());
+				preparedStatement.setString(2, data.getUsername());
+				preparedStatement.setString(3, data.getPassword());
+				preparedStatement.setString(4, data.getNome());
+				preparedStatement.setString(5, data.getCognome());
+				preparedStatement.setBoolean(6, data.getTipoUtente());
+
 			}
 
 		}finally {
@@ -116,7 +125,7 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 		Connection connection=null;
 		PreparedStatement preparedStatement = null;
 		Collection<UserBean> utenti = new ArrayList<UserBean>();
-		String selectSQL = "SELECT * FROM " + UtenteDAO.NOME_TABELLA;
+		String selectSQL = "SELECT * FROM " + UserDAO.TABLE_NAME;
 		if(order != null && !order.equals("")){
 			selectSQL += " ORDER BY "+order;
 		}

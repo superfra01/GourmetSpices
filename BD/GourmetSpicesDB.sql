@@ -17,7 +17,7 @@ CREATE TABLE Utente (
     ID_utente INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     email VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
-    password VARCHAR(5000) NOT NULL,
+    password VARCHAR(50) NOT NULL,
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
     Tipo_utente VARCHAR(16) NOT NULL DEFAULT 'USER'

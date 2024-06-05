@@ -3,7 +3,7 @@ CREATE DATABASE GourmetSpicesDB;
 
 USE GourmetSpicesDB;
 
--- Elimina le tabelle se esistono già nell'ordine corretto per rispettare le chiavi esterne
+-- Elimina le tabelle se esistono giï¿½ nell'ordine corretto per rispettare le chiavi esterne
 DROP TABLE IF EXISTS Spedizione;
 DROP TABLE IF EXISTS Contenente;
 DROP TABLE IF EXISTS Carrello;
@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS Utente;
 -- Creazione della tabella Utente
 CREATE TABLE Utente (
     ID_utente INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    email VARCHAR(50) NOT NULL,
+    email VARCHAR(50) PRIMARY KEY NOT NULL,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
     nome VARCHAR(50) NOT NULL,
@@ -25,40 +25,40 @@ CREATE TABLE Utente (
 
 -- Creazione della tabella Metodo_Di_Pagamento
 CREATE TABLE Metodo_Di_Pagamento (
-    ID_utente INT NOT NULL,
+    email VARCHAR(50) NOT NULL,
     N_carta_iban VARCHAR(50) PRIMARY KEY NOT NULL,
     metodo VARCHAR(50) NOT NULL,
-    FOREIGN KEY (ID_utente) REFERENCES Utente(ID_utente)
+    FOREIGN KEY (email) REFERENCES Utente(email)
 );
 
 -- Creazione della tabella Prodotto
 CREATE TABLE Prodotto (
     ID_prodotto INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     prezzo INT NOT NULL,
-    quantità_magazzino INT NOT NULL,
+    quantitï¿½_magazzino INT NOT NULL,
     nome VARCHAR(50) NOT NULL,
     descrizione VARCHAR(50) NOT NULL
 );
 
 -- Creazione della tabella Carrello
 CREATE TABLE Carrello (
-    ID_utente INT NOT NULL,
+    email VARCHAR(50) NOT NULL,
     ID_prodotto INT NOT NULL,
-    quantità INT NOT NULL,
-    FOREIGN KEY (ID_utente) REFERENCES Utente(ID_utente),
+    quantitï¿½ INT NOT NULL,
+    FOREIGN KEY (email) REFERENCES Utente(email),
     FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto),
-    PRIMARY KEY(ID_utente, ID_prodotto)
+    PRIMARY KEY(email, ID_prodotto)
 );
 
 -- Creazione della tabella Ordine
 CREATE TABLE Ordine (
     ID_ordine INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     N_carta_iban VARCHAR(50) NOT NULL,
-    ID_utente INT NOT NULL,
+    email VARCHAR(50) NOT NULL,
     data DATE NOT NULL,
     spesa FLOAT NOT NULL,
     indirizzo VARCHAR(50) NOT NULL,
-    FOREIGN KEY (ID_utente) REFERENCES Utente(ID_utente),
+    FOREIGN KEY (email) REFERENCES Utente(email),
     FOREIGN KEY (N_carta_iban) REFERENCES Metodo_Di_Pagamento(N_carta_iban)
 );
 
@@ -76,7 +76,7 @@ CREATE TABLE Contenente (
     ID_prodotto INT NOT NULL,
     ID_ordine INT NOT NULL,
     prezzo_all_acquisto FLOAT NOT NULL,
-    quantità INT NOT NULL,
+    quantitï¿½ INT NOT NULL,
     PRIMARY KEY (ID_prodotto, ID_ordine),
     FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto),
     FOREIGN KEY (ID_ordine) REFERENCES Ordine(ID_ordine)
@@ -93,7 +93,7 @@ VALUES
 ('francesco.rossi@email.com', 'francescoRossi', 'passwordSicura123', 'Francesco', 'Rossi', 'USER');
 
 -- Inserimento dei prodotti che sono spezie
-INSERT INTO Prodotto (prezzo, quantità_magazzino, nome, descrizione)
+INSERT INTO Prodotto (prezzo, quantitï¿½_magazzino, nome, descrizione)
 VALUES
 (3, 100, 'Pepe Nero', 'Pepe nero in grani'),
 (6, 30, 'Zenzero', 'Zenzero in polvere'),
@@ -103,16 +103,16 @@ VALUES
 (5, 70, 'Cumino', 'Cumino in semi');
 
 -- Inserimento dei metodi di pagamento
-INSERT INTO Metodo_Di_Pagamento (ID_utente, N_carta_iban, metodo)
+INSERT INTO Metodo_Di_Pagamento (email, N_carta_iban, metodo)
 VALUES
-(1, 'IT60X0542811101000000123456', 'Carta di Credito'),
-(2, 'IT30Y0542811101000000654321', 'PayPal');
+('giulia.fiori@email.com', 'IT60X0542811101000000123456', 'Carta di Credito'),
+('antonio.verdi@email.com', 'IT30Y0542811101000000654321', 'PayPal');
 
 -- Inserimento degli ordini
-INSERT INTO Ordine (N_carta_iban, ID_utente, data, spesa, indirizzo)
+INSERT INTO Ordine (N_carta_iban, email, data, spesa, indirizzo)
 VALUES
-('IT60X0542811101000000123456', 1, '2024-06-05', 10.00, 'Via Roma 1'),
-('IT30Y0542811101000000654321', 2, '2024-06-05', 7.00, 'Via Milano 2');
+('IT60X0542811101000000123456', 'giulia.fiori@email.com', '2024-06-05', 10.00, 'Via Roma 1'),
+('IT30Y0542811101000000654321', 'antonio.verdi@email.com', '2024-06-05', 7.00, 'Via Milano 2');
 
 -- Inserimento delle spedizioni
 INSERT INTO Spedizione (ID_ordine, N_spedizione, G_di_arrivo, corriere)
@@ -121,7 +121,7 @@ VALUES
 (2, 'SPED002', '2024-06-08', 'DHL');
 
 -- Contenente
-INSERT INTO Contenente (ID_prodotto, ID_ordine, prezzo_all_acquisto, quantità)
+INSERT INTO Contenente (ID_prodotto, ID_ordine, prezzo_all_acquisto, quantitï¿½)
 VALUES
 (1, 1, 3.00, 2),
 (2, 2, 6.00, 1),
@@ -130,11 +130,11 @@ VALUES
 (5, 1, 4.00, 3);
 
 -- Carrello
-INSERT INTO Carrello (ID_utente, ID_prodotto, quantità)
+INSERT INTO Carrello (email, ID_prodotto, quantitï¿½)
 VALUES
-(1, 1, 2),
-(1, 2, 1),
-(1, 3, 1),
-(2, 4, 2),
-(2, 5, 3),
-(2, 6, 1);
+('giulia.fiori@email.com', 1, 2),
+('giulia.fiori@email.com', 2, 1),
+('giulia.fiori@email.com', 3, 1),
+('antonio.verdi@email.com', 4, 2),
+('antonio.verdi@email.com', 5, 3),
+('antonio.verdi@email.com', 6, 1);

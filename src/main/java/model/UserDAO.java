@@ -45,7 +45,7 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 	@Override
 	public synchronized boolean doDelete(String code) throws SQLException {
 		Connection connection = null;
-		preparedStatement = null;
+		3 preparedStatement = null;
 
 		int result = 0;
 

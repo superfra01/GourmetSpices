@@ -14,7 +14,6 @@ DROP TABLE IF EXISTS Utente;
 
 -- Creazione della tabella Utente
 CREATE TABLE Utente (
-    ID_utente INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     email VARCHAR(50) PRIMARY KEY NOT NULL,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
@@ -35,7 +34,7 @@ CREATE TABLE Metodo_Di_Pagamento (
 CREATE TABLE Prodotto (
     ID_prodotto INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     prezzo INT NOT NULL,
-    quantit�_magazzino INT NOT NULL,
+    quantita_magazzino INT NOT NULL,
     nome VARCHAR(50) NOT NULL,
     descrizione VARCHAR(50) NOT NULL
 );
@@ -44,7 +43,7 @@ CREATE TABLE Prodotto (
 CREATE TABLE Carrello (
     email VARCHAR(50) NOT NULL,
     ID_prodotto INT NOT NULL,
-    quantit� INT NOT NULL,
+    quantita INT NOT NULL,
     FOREIGN KEY (email) REFERENCES Utente(email),
     FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto),
     PRIMARY KEY(email, ID_prodotto)
@@ -76,7 +75,7 @@ CREATE TABLE Contenente (
     ID_prodotto INT NOT NULL,
     ID_ordine INT NOT NULL,
     prezzo_all_acquisto FLOAT NOT NULL,
-    quantit� INT NOT NULL,
+    quantita INT NOT NULL,
     PRIMARY KEY (ID_prodotto, ID_ordine),
     FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto),
     FOREIGN KEY (ID_ordine) REFERENCES Ordine(ID_ordine)
@@ -93,7 +92,7 @@ VALUES
 ('francesco.rossi@email.com', 'francescoRossi', 'passwordSicura123', 'Francesco', 'Rossi', 'USER');
 
 -- Inserimento dei prodotti che sono spezie
-INSERT INTO Prodotto (prezzo, quantit�_magazzino, nome, descrizione)
+INSERT INTO Prodotto (prezzo, quantita_magazzino, nome, descrizione)
 VALUES
 (3, 100, 'Pepe Nero', 'Pepe nero in grani'),
 (6, 30, 'Zenzero', 'Zenzero in polvere'),
@@ -121,7 +120,7 @@ VALUES
 (2, 'SPED002', '2024-06-08', 'DHL');
 
 -- Contenente
-INSERT INTO Contenente (ID_prodotto, ID_ordine, prezzo_all_acquisto, quantit�)
+INSERT INTO Contenente (ID_prodotto, ID_ordine, prezzo_all_acquisto, quantita)
 VALUES
 (1, 1, 3.00, 2),
 (2, 2, 6.00, 1),
@@ -130,7 +129,7 @@ VALUES
 (5, 1, 4.00, 3);
 
 -- Carrello
-INSERT INTO Carrello (email, ID_prodotto, quantit�)
+INSERT INTO Carrello (email, ID_prodotto, quantita)
 VALUES
 ('giulia.fiori@email.com', 1, 2),
 ('giulia.fiori@email.com', 2, 1),

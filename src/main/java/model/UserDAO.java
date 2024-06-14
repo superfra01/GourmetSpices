@@ -1,12 +1,19 @@
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.sql.DataSource;
 
 public class UserDAO implements BeanDAO<UserBean, String>{
 	private static String TABLE_NAME = "utente";
 	private DataSource dataSource = null;
 
-	public UtenteDAO(DataSource dataSource) {
+	public UserDAO(DataSource dataSource) {
 		this.dataSource = dataSource;	
 	}
 	
@@ -45,7 +52,7 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 	@Override
 	public synchronized boolean doDelete(String code) throws SQLException {
 		Connection connection = null;
-		3 preparedStatement = null;
+		PreparedStatement preparedStatement = null;
 
 		int result = 0;
 
@@ -93,7 +100,7 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 				bean.setEmail(rs.getString("email"));
 				bean.setUsername(rs.getString("username"));
 				bean.setPassword(rs.getString("password"));
-				bean.setAdmin(rs.getString("Tipo_utente"));
+				bean.setTipoUtente(rs.getString("Tipo_utente"));
 				
 
 			}
@@ -139,7 +146,7 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
 				bean.setPassword(rs.getString("password"));
-				bean.setTipo_utente(rs.getString("Tipo_utente"));
+				bean.setTipoUtente(rs.getString("Tipo_utente"));
 				
 				utenti.add(bean);
 			}

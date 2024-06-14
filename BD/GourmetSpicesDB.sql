@@ -14,7 +14,8 @@ DROP TABLE IF EXISTS Utente;
 
 -- Creazione della tabella Utente
 CREATE TABLE Utente (
-    email VARCHAR(50) PRIMARY KEY NOT NULL,
+    ID_utente INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    email VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
     nome VARCHAR(50) NOT NULL,
@@ -24,10 +25,10 @@ CREATE TABLE Utente (
 
 -- Creazione della tabella Metodo_Di_Pagamento
 CREATE TABLE Metodo_Di_Pagamento (
-    email VARCHAR(50) NOT NULL,
+    ID_utente INT NOT NULL,
     N_carta_iban VARCHAR(50) PRIMARY KEY NOT NULL,
     metodo VARCHAR(50) NOT NULL,
-    FOREIGN KEY (email) REFERENCES Utente(email)
+    FOREIGN KEY (ID_utente) REFERENCES Utente(ID_utente)
 );
 
 -- Creazione della tabella Prodotto
@@ -41,23 +42,23 @@ CREATE TABLE Prodotto (
 
 -- Creazione della tabella Carrello
 CREATE TABLE Carrello (
-    email VARCHAR(50) NOT NULL,
+    ID_utente INT NOT NULL,
     ID_prodotto INT NOT NULL,
     quantita INT NOT NULL,
-    FOREIGN KEY (email) REFERENCES Utente(email),
+    FOREIGN KEY (ID_utente) REFERENCES Utente(ID_utente),
     FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto),
-    PRIMARY KEY(email, ID_prodotto)
+    PRIMARY KEY(ID_utente, ID_prodotto)
 );
 
 -- Creazione della tabella Ordine
 CREATE TABLE Ordine (
     ID_ordine INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     N_carta_iban VARCHAR(50) NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    ID_utente INT NOT NULL,
     data DATE NOT NULL,
     spesa FLOAT NOT NULL,
     indirizzo VARCHAR(50) NOT NULL,
-    FOREIGN KEY (email) REFERENCES Utente(email),
+    FOREIGN KEY (ID_utente) REFERENCES Utente(ID_utente),
     FOREIGN KEY (N_carta_iban) REFERENCES Metodo_Di_Pagamento(N_carta_iban)
 );
 
@@ -82,14 +83,14 @@ CREATE TABLE Contenente (
 );
 
 -- Inserimento degli utenti
-INSERT INTO Utente (email, username, password, nome, cognome, Tipo_utente)
+INSERT INTO Utente (ID_utente, email, username, password, nome, cognome, Tipo_utente)
 VALUES
-('giulia.fiori@email.com', 'giuliaFiori', 'passwordSicura123', 'Giulia', 'Fiori', 'USER'),
-('antonio.verdi@email.com', 'antonioVerdi', 'passwordSicura123', 'Antonio', 'Verdi', 'USER'),
-('sofia.viola@email.com', 'sofiaViola', 'passwordSicura123', 'Sofia', 'Viola', 'USER'),
-('marco.azzurri@email.com', 'marcoAzzurri', 'passwordSicura123', 'Marco', 'Azzurri', 'USER'),
-('laura.gialli@email.com', 'lauraGialli', 'passwordSicura123', 'Laura', 'Gialli', 'USER'),
-('francesco.rossi@email.com', 'francescoRossi', 'passwordSicura123', 'Francesco', 'Rossi', 'USER');
+(1,'giulia.fiori@email.com', 'giuliaFiori', 'passwordSicura123', 'Giulia', 'Fiori', 'USER'),
+(2,'antonio.verdi@email.com', 'antonioVerdi', 'passwordSicura123', 'Antonio', 'Verdi', 'USER'),
+(3,'sofia.viola@email.com', 'sofiaViola', 'passwordSicura123', 'Sofia', 'Viola', 'USER'),
+(4,'marco.azzurri@email.com', 'marcoAzzurri', 'passwordSicura123', 'Marco', 'Azzurri', 'USER'),
+(5,'laura.gialli@email.com', 'lauraGialli', 'passwordSicura123', 'Laura', 'Gialli', 'USER'),
+(6,'francesco.rossi@email.com', 'francescoRossi', 'passwordSicura123', 'Francesco', 'Rossi', 'USER');
 
 -- Inserimento dei prodotti che sono spezie
 INSERT INTO Prodotto (prezzo, quantita_magazzino, nome, descrizione)
@@ -102,16 +103,16 @@ VALUES
 (5, 70, 'Cumino', 'Cumino in semi');
 
 -- Inserimento dei metodi di pagamento
-INSERT INTO Metodo_Di_Pagamento (email, N_carta_iban, metodo)
+INSERT INTO Metodo_Di_Pagamento (ID_utente, N_carta_iban, metodo)
 VALUES
-('giulia.fiori@email.com', 'IT60X0542811101000000123456', 'Carta di Credito'),
-('antonio.verdi@email.com', 'IT30Y0542811101000000654321', 'PayPal');
+(1, 'IT60X0542811101000000123456', 'Carta di Credito'),
+(2, 'IT30Y0542811101000000654321', 'PayPal');
 
 -- Inserimento degli ordini
-INSERT INTO Ordine (N_carta_iban, email, data, spesa, indirizzo)
+INSERT INTO Ordine (N_carta_iban, ID_utente, data, spesa, indirizzo)
 VALUES
-('IT60X0542811101000000123456', 'giulia.fiori@email.com', '2024-06-05', 10.00, 'Via Roma 1'),
-('IT30Y0542811101000000654321', 'antonio.verdi@email.com', '2024-06-05', 7.00, 'Via Milano 2');
+('IT60X0542811101000000123456', 1, '2024-06-05', 10.00, 'Via Roma 1'),
+('IT30Y0542811101000000654321', 2, '2024-06-05', 7.00, 'Via Milano 2');
 
 -- Inserimento delle spedizioni
 INSERT INTO Spedizione (ID_ordine, N_spedizione, G_di_arrivo, corriere)
@@ -129,11 +130,11 @@ VALUES
 (5, 1, 4.00, 3);
 
 -- Carrello
-INSERT INTO Carrello (email, ID_prodotto, quantita)
+INSERT INTO Carrello (ID_utente, ID_prodotto, quantita)
 VALUES
-('giulia.fiori@email.com', 1, 2),
-('giulia.fiori@email.com', 2, 1),
-('giulia.fiori@email.com', 3, 1),
-('antonio.verdi@email.com', 4, 2),
-('antonio.verdi@email.com', 5, 3),
-('antonio.verdi@email.com', 6, 1);
+(1, 1, 2),
+(1, 2, 1),
+(1, 3, 1),
+(2, 4, 2),
+(2, 5, 3),
+(2, 6, 1);

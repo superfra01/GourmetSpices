@@ -11,8 +11,8 @@ public class ContenenteBean implements Serializable {
     private int quantita;
     
     public ContenenteBean() {
-        this.idProdotto = 0;
-        this.idOrdine = 0;
+        this.idProdotto = -1;//non specificato
+        this.idOrdine = -1;//non specificato
         this.prezzoAllAcquisto = 0.0f;
         this.quantita = 0;
     }
@@ -55,4 +55,6 @@ public class ContenenteBean implements Serializable {
 
     public void setQuantita(int quantita) {
         this.quantita = quantita;
-   
+    }
+}
+

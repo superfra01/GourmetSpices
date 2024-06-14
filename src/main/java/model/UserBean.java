@@ -15,7 +15,7 @@ public class UserBean implements Serializable {
     private String tipoUtente;
     
     public UserBean() {
-    	this.idUtente = "";
+    	this.idUtente = -1;// id non specificato
         this.email = "";
         this.username = "";
         this.password = "";

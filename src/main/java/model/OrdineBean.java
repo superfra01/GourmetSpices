@@ -14,7 +14,7 @@ public class OrdineBean implements Serializable {
     private String indirizzo;
     
     public OrdineBean() {
-        this.idOrdine = 0;
+        this.idOrdine = -1;//id non specificato
         this.nCartaIban = "";
         this.email = "";
         this.data = new Date();

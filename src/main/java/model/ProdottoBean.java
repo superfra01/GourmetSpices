@@ -12,7 +12,7 @@ public class ProdottoBean implements Serializable {
     private String descrizione;
     
     public ProdottoBean() {
-        this.idProdotto = 0;
+        this.idProdotto = -1;//id non specificato
         this.prezzo = 0;
         this.quantitaMagazzino = 0;
         this.nome = "";

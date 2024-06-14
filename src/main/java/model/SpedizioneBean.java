@@ -12,7 +12,7 @@ public class SpedizioneBean implements Serializable {
     private String corriere;
     
     public SpedizioneBean() {
-        this.idOrdine = 0;
+        this.idOrdine = -1;//id non specificato
         this.nSpedizione = "";
         this.gDiArrivo = new Date();
         this.corriere = "";

@@ -9,7 +9,7 @@
     <a href="<%= request.getContextPath() %>/HomePage.jsp"><img src="<%= request.getContextPath() %>/images/logo.webp" alt="logo" class="logo"></a>
     <nav>
         <ul>
-            <li><a class="selected" href="<%= request.getContextPath() %>/pages/HomePage.jsp">Home</a></li>
+            <li><a class="selected" href="<%= request.getContextPath() %>/HomePage.jsp">Home</a></li>
             <li><a href="<%= request.getContextPath() %>/shop.jsp">Shop</a></li>
             <li><a href="<%= request.getContextPath() %>/about.jsp">About</a></li>
             <li><a href="<%= request.getContextPath() %>/contact.jsp">Contact</a></li>

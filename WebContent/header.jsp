@@ -10,11 +10,11 @@
     <nav>
         <ul>
             <li><a class="selected" href="<%= request.getContextPath() %>/pages/HomePage.jsp">Home</a></li>
-            <li><a href="<%= request.getContextPath() %>/pages/shop.jsp">Shop</a></li>
-            <li><a href="<%= request.getContextPath() %>/pages/about.jsp">About</a></li>
-            <li><a href="<%= request.getContextPath() %>/pages/contact.jsp">Contact</a></li>
-            <li><a href="<%= request.getContextPath() %>/pages/cart.jsp"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
-            <li><a href="<%= request.getContextPath() %>/pages/login.jsp"><i class="fa fa-user fa-lg"></i></a></li>
+            <li><a href="<%= request.getContextPath() %>/shop.jsp">Shop</a></li>
+            <li><a href="<%= request.getContextPath() %>/about.jsp">About</a></li>
+            <li><a href="<%= request.getContextPath() %>/contact.jsp">Contact</a></li>
+            <li><a href="<%= request.getContextPath() %>/cart.jsp"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
+            <li><a href="<%= request.getContextPath() %>/login.jsp"><i class="fa fa-user fa-lg"></i></a></li>
         </ul>
     </nav>
 </header>

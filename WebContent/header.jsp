@@ -13,6 +13,8 @@
             <li><a href="<%= request.getContextPath() %>/shop.jsp">Shop</a></li>
             <li><a href="<%= request.getContextPath() %>/about.jsp">About</a></li>
             <li><a href="<%= request.getContextPath() %>/contact.jsp">Contact</a></li>
+            <% UserBean user = (UserBean) request.getSession().getAttribute("tipoUtente");
+            %>
             <li><a href="<%= request.getContextPath() %>/cart.jsp"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
             <li><a href="<%= request.getContextPath() %>/login.jsp"><i class="fa fa-user fa-lg"></i></a></li>
         </ul>

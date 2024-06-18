@@ -20,19 +20,40 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
 
     @Override
     public synchronized void doSave(OrdineBean data) throws SQLException {
-        String insertSQL = "INSERT INTO " + OrdineDAO.TABLE_NAME
-                + " (nCartaIban, email, data, spesa, indirizzo) VALUES (?, ?, ?, ?, ?)";
+    	if(data.getIdOrdine()!=-1) {
+    		String insertSQL = "INSERT INTO " + OrdineDAO.TABLE_NAME
+                    + " (nCartaIban, email, data, ID_utente, spesa, indirizzo) VALUES (?, ?, ?, ?, ?)";
+    		try (Connection connection = dataSource.getConnection();
+    	            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
+    	            preparedStatement.setString(1, data.getnCartaIban());
+    	            preparedStatement.setString(2, data.getEmail());
+    	            preparedStatement.setDate(3, new Date(data.getData().getTime()));
+    	            preparedStatement.setInt(4, data.getIdUtente());
+    	            preparedStatement.setFloat(5, data.getSpesa());
+    	            preparedStatement.setString(6, data.getIndirizzo());
 
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
-            preparedStatement.setString(1, data.getnCartaIban());
-            preparedStatement.setString(2, data.getEmail());
-            preparedStatement.setDate(3, new Date(data.getData().getTime()));
-            preparedStatement.setFloat(4, data.getSpesa());
-            preparedStatement.setString(5, data.getIndirizzo());
+    	            preparedStatement.executeUpdate();
+    	        }
+    	}
+    		
+    	else {
+    		String insertSQL = "INSERT INTO " + OrdineDAO.TABLE_NAME
+                	+ " (ID_ordine, nCartaIban, email, data, ID_utente, spesa, indirizzo) VALUES (?, ?, ?, ?, ?)";
+    		try (Connection connection = dataSource.getConnection();
+    	            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
+    				preparedStatement.setInt(1, data.getIdOrdine());
+    	            preparedStatement.setString(2, data.getnCartaIban());
+    	            preparedStatement.setString(3, data.getEmail());
+    	            preparedStatement.setDate(4, new Date(data.getData().getTime()));
+    	            preparedStatement.setInt(5, data.getIdUtente());
+    	            preparedStatement.setFloat(6, data.getSpesa());
+    	            preparedStatement.setString(7, data.getIndirizzo());
 
-            preparedStatement.executeUpdate();
-        }
+    	            preparedStatement.executeUpdate();
+    		}
+    	}
+
+        
     }
 
     @Override
@@ -81,6 +102,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
                      bean.setnCartaIban(rs.getString("nCartaIban"));
                      bean.setEmail(rs.getString("email"));
                      bean.setData(rs.getDate("data"));
+                     bean.setIdUtente(rs.getInt("ID_utente"));
                      bean.setSpesa(rs.getFloat("spesa"));
                      bean.setIndirizzo(rs.getString("indirizzo"));
                      ordini.add(bean);
@@ -106,6 +128,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
                     bean.setnCartaIban(rs.getString("nCartaIban"));
                     bean.setEmail(rs.getString("email"));
                     bean.setData(rs.getDate("data"));
+                    bean.setIdUtente(rs.getInt("ID_utente"));
                     bean.setSpesa(rs.getFloat("spesa"));
                     bean.setIndirizzo(rs.getString("indirizzo"));
                     return bean;
@@ -134,6 +157,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
                 bean.setnCartaIban(rs.getString("nCartaIban"));
                 bean.setEmail(rs.getString("email"));
                 bean.setData(rs.getDate("data"));
+                bean.setIdUtente(rs.getInt("ID_utente"));
                 bean.setSpesa(rs.getFloat("spesa"));
                 bean.setIndirizzo(rs.getString("indirizzo"));
                 ordini.add(bean);

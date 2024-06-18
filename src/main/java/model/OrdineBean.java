@@ -10,6 +10,7 @@ public class OrdineBean implements Serializable {
     private String nCartaIban;
     private String email;
     private Date data;
+    private int idUtente;
     private float spesa;
     private String indirizzo;
     
@@ -18,15 +19,17 @@ public class OrdineBean implements Serializable {
         this.nCartaIban = "";
         this.email = "";
         this.data = new Date();
+        this.idUtente = -1;//id non specificato
         this.spesa = 0.0f;
         this.indirizzo = "";
     }
     
-    public OrdineBean(int idOrdine, String nCartaIban, String email, Date data, float spesa, String indirizzo) {
+    public OrdineBean(int idOrdine, String nCartaIban, String email, Date data, int idUtente, float spesa, String indirizzo) {
         this.idOrdine = idOrdine;
         this.nCartaIban = nCartaIban;
         this.email = email;
-        this.data = data;
+        this.data = data; 
+        this.idUtente = idUtente;
         this.spesa = spesa;
         this.indirizzo = indirizzo;
     }
@@ -62,6 +65,14 @@ public class OrdineBean implements Serializable {
 
     public void setData(Date data) {
         this.data = data;
+    }
+    
+    public int getIdUtente() {
+        return idUtente;
+    }
+
+    public void setIdUtente(int idUtente) {
+        this.idUtente = idUtente;
     }
 
     public float getSpesa() {

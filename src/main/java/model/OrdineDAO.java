@@ -64,8 +64,35 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
 
    
 
+	
+	public synchronized Collection<OrdineBean> doRetrieveByUserKey(Integer code) throws SQLException {
+        String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " WHERE ID_utente = ?";
+        
+        Collection<OrdineBean> ordini = new ArrayList<>();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
+            preparedStatement.setInt(1, code);
+            
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+            	 while (rs.next()) {
+                     OrdineBean bean = new OrdineBean();
+                     bean.setIdOrdine(rs.getInt("idOrdine"));
+                     bean.setnCartaIban(rs.getString("nCartaIban"));
+                     bean.setEmail(rs.getString("email"));
+                     bean.setData(rs.getDate("data"));
+                     bean.setSpesa(rs.getFloat("spesa"));
+                     bean.setIndirizzo(rs.getString("indirizzo"));
+                     ordini.add(bean);
+                 }
+            }
+        }
+        return null;
+    }
+	
 	@Override
-    public synchronized OrdineBean doRetrieveByKey(Integer code) throws SQLException {
+	public synchronized OrdineBean doRetrieveByKey(Integer code) throws SQLException {
+	
         String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " WHERE idOrdine = ?";
 
         try (Connection connection = dataSource.getConnection();

@@ -11,9 +11,14 @@
 </head>
 <body>
     <jsp:include page="header.jsp" />
-    
+
     <main>
-    	<% UserBean user = (UserBean) request.getSession();%>
+        <%
+            UserBean user = (UserBean) request.getSession().getAttribute("user");
+            if (user != null) {
+            	// OrdineDAO ordineDAO = new OrdineDAO((DataSource) getServletContext().getAttribute("DataSource")); (COMMENTATO PERCHE' NON FUNZIONANTE) 
+                Collection<OrdineBean> ordini = ordineDAO.doRetrieveByUserKey(user.getIdUtente());
+        %>
         <div class="user-info">
             <h2>User Information</h2>
             <p>Username: <%= user.getUsername() %></p>
@@ -32,9 +37,35 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%
+                        if (ordini != null && !ordini.isEmpty()) {
+                            for (OrdineBean ordine : ordini) {
+                    %>
+                    <tr>
+                        <td><%= ordine.getData() %></td>
+                        <td><%= ordine.getIndirizzo() %></td> <!-- INDIRIZZO COME PLACEHOLDER BISOGNA VEDERE COME PRENDERE I PRODOTTI NELL'ORDINE -->
+                        <td><%= ordine.getSpesa() %></td>
+                    </tr>
+                    <%
+                            }
+                        } else {
+                    %>
+                    <tr>
+                        <td colspan="3">No purchase history available.</td>
+                    </tr>
+                    <%
+                        }
+                    %>
                 </tbody>
             </table>
         </div>
+        <%
+            } else {
+        %>
+        <p>Please log in to view your purchase history.</p>
+        <%
+            }
+        %>
     </main>
 
     <jsp:include page="footer.jsp" />

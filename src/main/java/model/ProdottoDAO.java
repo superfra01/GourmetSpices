@@ -19,19 +19,37 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
 
     @Override
     public synchronized void doSave(ProdottoBean data) throws SQLException {
-        String insertSQL = "INSERT INTO " + TABLE_NAME
-                + " (ID_prodotto, prezzo, quantita_magazzino, nome, descrizione) VALUES (?, ?, ?, ?, ?)";
+    	if(data.getIdProdotto()!=-1) {
+    		String insertSQL = "INSERT INTO " + TABLE_NAME
+                    + " (prezzo, quantita_magazzino, nome, descrizione) VALUES (?, ?, ?, ?)";
 
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
-            preparedStatement.setInt(1, data.getIdProdotto());
-            preparedStatement.setInt(2, data.getPrezzo());
-            preparedStatement.setInt(3, data.getQuantitaMagazzino());
-            preparedStatement.setString(4, data.getNome());
-            preparedStatement.setString(5, data.getDescrizione());
+            try (Connection connection = dataSource.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
+                preparedStatement.setInt(1, data.getPrezzo());
+                preparedStatement.setInt(2, data.getQuantitaMagazzino());
+                preparedStatement.setString(3, data.getNome());
+                preparedStatement.setString(4, data.getDescrizione());
 
-            preparedStatement.executeUpdate();
-        }
+                preparedStatement.executeUpdate();
+            }
+    	}
+    	else {
+    		String insertSQL = "INSERT INTO " + TABLE_NAME
+                    + " (ID_prodotto, prezzo, quantita_magazzino, nome, descrizione) VALUES (?, ?, ?, ?, ?)";
+
+            try (Connection connection = dataSource.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
+                preparedStatement.setInt(1, data.getIdProdotto());
+                preparedStatement.setInt(2, data.getPrezzo());
+                preparedStatement.setInt(3, data.getQuantitaMagazzino());
+                preparedStatement.setString(4, data.getNome());
+                preparedStatement.setString(5, data.getDescrizione());
+
+                preparedStatement.executeUpdate();
+            }
+    		
+    	}
+        
     }
 
     @Override

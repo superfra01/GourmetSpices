@@ -20,9 +20,9 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
 
     @Override
     public synchronized void doSave(OrdineBean data) throws SQLException {
-    	if(data.getIdOrdine()!=-1) {
+    	if(data.getIdOrdine()==-1) {
     		String insertSQL = "INSERT INTO " + OrdineDAO.TABLE_NAME
-                    + " (nCartaIban, email, data, ID_utente, spesa, indirizzo) VALUES (?, ?, ?, ?, ?)";
+                    + " (nCartaIban, email, data, ID_utente, spesa, indirizzo) VALUES (?, ?, ?, ?, ?, ?)";
     		try (Connection connection = dataSource.getConnection();
     	            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
     	            preparedStatement.setString(1, data.getnCartaIban());
@@ -38,7 +38,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
     		
     	else {
     		String insertSQL = "INSERT INTO " + OrdineDAO.TABLE_NAME
-                	+ " (ID_ordine, nCartaIban, email, data, ID_utente, spesa, indirizzo) VALUES (?, ?, ?, ?, ?)";
+                	+ " (ID_ordine, nCartaIban, email, data, ID_utente, spesa, indirizzo) VALUES (?, ?, ?, ?, ?, ?, ?)";
     		try (Connection connection = dataSource.getConnection();
     	            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
     				preparedStatement.setInt(1, data.getIdOrdine());

@@ -22,60 +22,30 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		if(data.getIdUtente()==-1) {
-			String insertSQL = "INSERT INTO " + UserDAO.TABLE_NAME
-					+ " (email, username, password, nome, cognome, Tipo_utente) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO " + UserDAO.TABLE_NAME
+				+ " (email, username, password, nome, cognome, Tipo_utente) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+		try {
+			connection = dataSource.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, data.getEmail());
+			preparedStatement.setString(2, data.getUsername());
+			preparedStatement.setString(3, data.getPassword());
+			preparedStatement.setString(4, data.getNome());
+			preparedStatement.setString(5, data.getCognome());
+			preparedStatement.setString(6, data.getTipoUtente());
+
+			preparedStatement.executeUpdate();
+
+		} finally {
 			try {
-				connection = dataSource.getConnection();
-				preparedStatement = connection.prepareStatement(insertSQL);
-				preparedStatement.setString(1, data.getEmail());
-				preparedStatement.setString(2, data.getUsername());
-				preparedStatement.setString(3, data.getPassword());
-				preparedStatement.setString(4, data.getNome());
-				preparedStatement.setString(5, data.getCognome());
-				preparedStatement.setString(6, data.getTipoUtente());
-
-				preparedStatement.executeUpdate();
-
+				if (preparedStatement != null)
+					preparedStatement.close();
 			} finally {
-				try {
-					if (preparedStatement != null)
-						preparedStatement.close();
-				} finally {
-					if (connection != null)
-						connection.close();
-				}
+				if (connection != null)
+					connection.close();
 			}
 		}
-		else {
-			String insertSQL = "INSERT INTO " + UserDAO.TABLE_NAME
-					+ " (ID_utente, email, username, password, nome, cognome, Tipo_utente) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-			try {
-				connection = dataSource.getConnection();
-				preparedStatement = connection.prepareStatement(insertSQL);
-				preparedStatement.setInt(1, data.getIdUtente());
-				preparedStatement.setString(2, data.getEmail());
-				preparedStatement.setString(3, data.getUsername());
-				preparedStatement.setString(4, data.getPassword());
-				preparedStatement.setString(5, data.getNome());
-				preparedStatement.setString(6, data.getCognome());
-				preparedStatement.setString(7, data.getTipoUtente());
-
-				preparedStatement.executeUpdate();
-
-			} finally {
-				try {
-					if (preparedStatement != null)
-						preparedStatement.close();
-				} finally {
-					if (connection != null)
-						connection.close();
-				}
-			}
-		}
-
 		
 		
 	}

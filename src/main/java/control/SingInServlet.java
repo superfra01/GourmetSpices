@@ -98,7 +98,65 @@ public class SingInServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+        String password = request.getParameter("password");
+        String nome = request.getParameter("nome");
+        String cognome = request.getParameter("cognome");
+        String username = request.getParameter("username");
+		
+		
+		
+		
+		List<String> errors = new ArrayList<>();
+    	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("signIn.jsp");
+		
+    	
+    	
+		if(email == null || email.trim().isEmpty()) {
+			errors.add("Il campo email non può essere vuoto!");
+		}
+        if(password == null || password.trim().isEmpty()) {
+        	errors.add("Il campo password non può essere vuoto!");
+		}
+        if(nome == null || nome.trim().isEmpty()) {
+        	errors.add("Il campo nome non può essere vuoto!");
+		}
+        if(cognome == null || cognome.trim().isEmpty()) {
+        	errors.add("Il campo cognome non può essere vuoto!");
+		}
+        if(username == null || username.trim().isEmpty()) {
+        	errors.add("Il campo username non può essere vuoto!");
+        }
+        if (!errors.isEmpty()) {
+        	request.setAttribute("errors", errors);
+        	dispatcherToLoginPage.forward(request, response);
+        	return;
+        }
+        
+        email = email.trim();
+        password = hashPassword(password.trim());
+        nome = nome.trim();
+        cognome = cognome.trim();
+        username = username.trim();
+        
+        UserDAO account = new UserDAO((DataSource) getServletContext().getAttribute("DataSource"));
+        UserBean user = new UserBean();
+        
+		try {
+			user.setNome(nome);
+			user.setCognome(cognome);
+			user.setEmail(email);
+			user.setPassword(hashPassword(password));
+			user.setUsername(username);
+			user.setTipoUtente("user");
+			
+			account.doSave(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+		response.sendRedirect("homepage.jsp");
+		
 	}
 	// Metodo per creare l'hash della password con il salt
 	

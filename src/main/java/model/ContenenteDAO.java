@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.sql.DataSource;
 
-public class ContenenteDAODAFINIRE implements BeanDAO<ContenenteBean, ContenenteCombinedKey> {
+public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombinedKey> {
     private static final String TABLE_NAME = "contenente";
     private DataSource dataSource;
 
-    public ContenenteDAODAFINIRE(DataSource dataSource) {
+    public ContenenteDAO(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

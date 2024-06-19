@@ -5,29 +5,29 @@ import java.io.Serializable;
 public class CarrelloBean implements Serializable {
     private static final long serialVersionUID = 2856723757650934257L;
     
-    private int idUtente;
+    private String email;
     private int idProdotto;
     private int quantita;
     
     public CarrelloBean() {
-        this.idUtente = -1;//non specificato
+        this.email = "";//non specificato
         this.idProdotto = -1;//non specificato
         this.quantita = 0;
     }
     
-    public CarrelloBean(int idUtente, int idProdotto, int quantita) {
-        this.idUtente = idUtente;
+    public CarrelloBean(String email, int idProdotto, int quantita) {
+        this.email = email;
         this.idProdotto = idProdotto;
         this.quantita = quantita;
     }
 
     // Getters and Setters
-    public int getIdUtente() {
-        return idUtente;
+    public String getIdemail() {
+        return email;
     }
 
-    public void setEmail(int idUtente) {
-        this.idUtente = idUtente;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getIdProdotto() {

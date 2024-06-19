@@ -64,6 +64,10 @@ public class MetodoDiPagamentoDAO implements BeanDAO<MetodoDiPagamentoBean, Stri
         }
         return null;
     }
+    public synchronized MetodoDiPagamentoBean doRetrieveByUserKey(String code) throws SQLException {
+    	
+    }
+    
 
     @Override
     public synchronized Collection<MetodoDiPagamentoBean> doRetrieveAll(String order) throws SQLException {

@@ -24,7 +24,7 @@ public class DataSourceInitializer implements ServletContextListener {
 			Context initCtx = new InitialContext();
 			Context envCtx = (Context) initCtx.lookup("java:comp/env");
 
-			dataSource = (DataSource) envCtx.lookup("jdbc/hotel");
+			dataSource = (DataSource) envCtx.lookup("jdbc/GourmetSpicesDB");
 
 		} catch (NamingException e) {
 			System.out.println("Error" + e.getMessage());

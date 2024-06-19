@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet{
 		
 		if(password.equals(user.getPassword()) && user.getEmail()!=""){
         	request.getSession().setAttribute("utente", user);
-			response.sendRedirect("homepage.jsp");
+			response.sendRedirect("HomePage.jsp");
 		}else{
 			errors.add("Username o password non validi!");
 			request.setAttribute("errors", errors);
@@ -118,7 +118,7 @@ public class LoginServlet extends HttpServlet{
 		
 		if(password.equals(user.getPassword()) && user.getEmail()!=""){
         	request.getSession().setAttribute("utente", user);
-			response.sendRedirect("homepage.jsp");
+			response.sendRedirect("HomePage.jsp");
 		}else{
 			errors.add("Username o password non validi!");
 			request.setAttribute("errors", errors);

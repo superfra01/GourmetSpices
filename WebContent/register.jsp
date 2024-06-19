@@ -16,7 +16,7 @@
         <div class="login-container">
             <h3>Un mondo ricco di spezie e di sapori travolgenti ti aspetta</h3>
             <h4>Register</h4>
-            <form action="/register" method="post">
+            <form action="<%= request.getContextPath() %>/register" method="post">
             	<input type="text" name="email" placeholder="E-mail" required>
             	<input type="text" name="nome" placeholder="Nome" required>
             	<input type="text" name="cognome" placeholder="Cognome" required>

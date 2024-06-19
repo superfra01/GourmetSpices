@@ -91,7 +91,7 @@ public class SingInServlet extends HttpServlet{
 			e.printStackTrace();
 		}
         
-		response.sendRedirect("homepage.jsp");
+		response.sendRedirect("HomePage.jsp");
 		
 		
 		
@@ -157,7 +157,7 @@ public class SingInServlet extends HttpServlet{
 			e.printStackTrace();
 		}
         
-		response.sendRedirect("homepage.jsp");
+		response.sendRedirect("HomePage.jsp");
 		
 	}
 	// Metodo per creare l'hash della password con il salt

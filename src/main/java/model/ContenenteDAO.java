@@ -154,7 +154,6 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
         }
         return contenenti;
     }
-}
 
 public synchronized Collection<ContenenteBean> doRetrieveByOrderKey(int key) throws SQLException {
     Connection connection = null;

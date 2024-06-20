@@ -16,13 +16,14 @@
         <%
             UserBean user = (UserBean) request.getSession().getAttribute("user");
             if (user != null) {
-            	// OrdineDAO ordineDAO = new OrdineDAO((DataSource) getServletContext().getAttribute("DataSource")); (COMMENTATO PERCHE' NON FUNZIONANTE) 
-                Collection<OrdineBean> ordini = ordineDAO.doRetrieveByUserKey(user.getIdUtente());
+                List<OrdineBean> ordini = (List<OrdineBean>) request.getSession().getAttribute("ordini");
         %>
         <div class="user-info">
             <h2>User Information</h2>
             <p>Username: <%= user.getUsername() %></p>
             <p>Email: <%= user.getEmail() %></p>
+            <p>Nome: <%= user.getNome() %></p>
+            <p>Cognome: <%= user.getCognome() %></p>
             <p>Password: ******</p>
         </div>
 
@@ -32,28 +33,40 @@
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Product</th>
+                        <th>Products</th>
                         <th>Price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <%
-                        if (ordini != null && !ordini.isEmpty()) {
+                    <% 
+                        if (ordini != null) {
                             for (OrdineBean ordine : ordini) {
+                            	
                     %>
                     <tr>
                         <td><%= ordine.getData() %></td>
-                        <td><%= ordine.getIndirizzo() %></td> <!-- INDIRIZZO COME PLACEHOLDER BISOGNA VEDERE COME PRENDERE I PRODOTTI NELL'ORDINE -->
                         <td><%= ordine.getSpesa() %></td>
+                        <td><%= ordine.getIndirizzo() %></td>  
                     </tr>
-                    <%
+                    <% 
+                    			List<ContenenteBean> contenteLista = (List<ContenenteBean>) request.getSession().getAttribute(Integer.toString(ordine.getIdOrdine()));
+                    			for (ContenenteBean contente : contenteLista){
+                    				int quantità = contente.getQuantita();
+                    				ProdottoBean prodotto = (ProdottoBean) request.getSession().getAttribute(Integer.toString(contente.getIdProdotto()));
+                    				%>
+                                    <tr>
+                                        <td><%= prodotto.getNome() %></td>
+                                        <td><%= prodotto.getPrezzo() %></td>  
+                                    </tr>
+                                    <% 
+                    			}
                             }
                         } else {
                     %>
                     <tr>
                         <td colspan="3">No purchase history available.</td>
                     </tr>
-                    <%
+                    <% 
                         }
                     %>
                 </tbody>
@@ -62,7 +75,9 @@
         <%
             } else {
         %>
-        <p>Please log in to view your purchase history.</p>
+        <div class="error-message">
+            <p>You must be logged in to view this page.</p>
+        </div>
         <%
             }
         %>

@@ -15,7 +15,7 @@
         <h4>Quality Guaranteed</h4>
         <h2>Super Value Deals</h2>
         <h1>On all products</h1>
-        <button>Shop Now</button>
+        <button type="button" onclick="window.location.href='shop.jsp'">Shop Now</button>
     </section>
     
     <section id="product1" class="section-p1">

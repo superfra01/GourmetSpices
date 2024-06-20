@@ -7,7 +7,7 @@
     <title>Register</title>
     <link rel="shortcut icon" href="<%= request.getContextPath() %>/images/logo.png">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/login_register.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="<%= request.getContextPath() %>/scripts/validation.js"></script> <!-- Link to external JS file -->
 </head>
 <body>
     <jsp:include page="header.jsp" />
@@ -16,13 +16,19 @@
         <div class="login-container">
             <h3>Un mondo ricco di spezie e di sapori travolgenti ti aspetta</h3>
             <h4>Register</h4>
-            <form action="<%= request.getContextPath() %>/register" method="post">
-            	<input type="text" name="email" placeholder="E-mail" required>
-            	<input type="text" name="nome" placeholder="Nome" required>
-            	<input type="text" name="cognome" placeholder="Cognome" required>
+            <form id="regForm" action="<%= request.getContextPath() %>/register" method="post">
+                <input type="text" name="email" placeholder="E-mail" required>
+                <span id="errorEmail"></span>
+                <input type="text" name="nome" placeholder="Nome" required>
+                <span id="errorNome"></span>
+                <input type="text" name="cognome" placeholder="Cognome" required>
+                <span id="errorCognome"></span>
                 <input type="text" name="username" placeholder="Username" required>
+                <span id="errorUsername"></span>
                 <input type="password" name="password" placeholder="Password" required>
+                <span id="errorPassword"></span>
                 <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                <span id="errorConfirmPassword"></span>
                 <button type="submit">Register</button>
             </form>
             <p>Already have an account? <a href="<%= request.getContextPath() %>/login.jsp">Login</a></p>

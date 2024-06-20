@@ -7,7 +7,6 @@
     <title>Login</title>
     <link rel="shortcut icon" href="<%= request.getContextPath() %>/images/logo.png">
     <link href="<%= request.getContextPath() %>/css/login_register.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <jsp:include page="header.jsp" />

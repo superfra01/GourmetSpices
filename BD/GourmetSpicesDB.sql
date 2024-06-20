@@ -40,8 +40,18 @@ CREATE TABLE Prodotto (
 );
 
 -- Creazione della tabella Carrello
-CREATE TABLE Carrello (
-    email VARCHAR(50) NOT NULL,
+
+CREATE TABLE Carrello(
+	ID_carrello INT NOT NULL AUTO_INCREMENT,
+	email VARCHAR(50) NOT NULL,
+	PRIMARY KEY(ID_carrello),
+	FOREIGN KEY (email) REFERENCES Utente(email)
+	
+);
+
+-- Creazione della tabella Contenente_Carrello
+CREATE TABLE Contenente_Carrello (
+    ID_carrello INT NOT NULL AUTO_INCREMENT,
     ID_prodotto INT NOT NULL,
     quantita INT NOT NULL,
     FOREIGN KEY (email) REFERENCES Utente(email),
@@ -119,7 +129,7 @@ VALUES
 (1, 'SPED001', '2024-06-07', 'GLS'),
 (2, 'SPED002', '2024-06-08', 'DHL');
 
--- Contenente
+-- Inserimento dei prodotti nei vari ordini (Contenente)
 INSERT INTO Contenente (ID_prodotto, ID_ordine, prezzo_all_acquisto, quantita)
 VALUES
 (1, 1, 3.00, 2),
@@ -128,12 +138,18 @@ VALUES
 (4, 1, 9.00, 2),
 (5, 1, 4.00, 3);
 
--- Carrello
-INSERT INTO Carrello (email, ID_prodotto, quantita)
+-- Inserimento dei carrelli
+INSERT INTO Carrello (email)
 VALUES
-('giulia.fiori@email.com', 1, 2),
-('giulia.fiori@email.com', 2, 1),
-('giulia.fiori@email.com', 3, 1),
-('antonio.verdi@email.com', 4, 2),
-('antonio.verdi@email.com', 5, 3),
-('antonio.verdi@email.com', 6, 1);
+('giulia.fiori@email.com'),
+('antonio.verdi@email.com');
+
+-- Inserimento dei prodotti nei vari carrelli (Contenente_Carrello)
+INSERT INTO Contenente_Carrello (ID_carrello, ID_prodotto, quantita)
+VALUES
+(1, 1, 2),
+(1, 2, 1),
+(1, 3, 1),
+(2, 4, 2),
+(2, 5, 3),
+(2, 6, 1);

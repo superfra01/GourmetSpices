@@ -6,35 +6,37 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+
 import javax.sql.DataSource;
 
-public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombinedKey> {
-    private static final String TABLE_NAME = "contenente";
+public class ContenenteCarrelloDAO implements BeanDAO<ContenenteCarrelloBean,ContenenteCarrelloCombinedKey>{
+	private static final String TABLE_NAME = "contenente_carrello";
     private DataSource dataSource;
-
-    public ContenenteDAO(DataSource dataSource) {
-        this.dataSource = dataSource;
+    
+    ContenenteCarrelloDAO(DataSource dataSource){
+    	this.dataSource = dataSource;
     }
-
-    @Override
-    public synchronized void doSave(ContenenteBean data) throws SQLException {
-        Connection connection = null;
+    
+    
+    
+	@Override
+	public void doSave(ContenenteCarrelloBean data) throws SQLException {
+		Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         String insertSQL = "INSERT INTO " + TABLE_NAME
-                + " (ID_prodotto, ID_ordine, prezzoAllAcquisto, quantita) VALUES (?, ?, ?, ?)";
+                + " (ID_carrello, ID_ordine, quantita) VALUES (?, ?, ?)";
 
         try {
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(insertSQL);
 
             String idProdotto = data.getIdProdotto() == 0 ? "*" : String.valueOf(data.getIdProdotto());
-            String idOrdine = data.getIdOrdine() == 0 ? "*" : String.valueOf(data.getIdOrdine());
+            String idOrdine = data.getIdCarrello() == 0 ? "*" : String.valueOf(data.getIdCarrello());
 
             preparedStatement.setString(1, idProdotto);
             preparedStatement.setString(2, idOrdine);
-            preparedStatement.setFloat(3, data.getPrezzoAllAcquisto());
-            preparedStatement.setInt(4, data.getQuantita());
+            preparedStatement.setInt(3, data.getQuantita());
 
             preparedStatement.executeUpdate();
         } finally {
@@ -46,26 +48,26 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
                     connection.close();
             }
         }
-    }
-
-    @Override
-    public synchronized boolean doDelete(ContenenteCombinedKey key) throws SQLException {
-        Connection connection = null;
+		
+	}
+	@Override
+	public boolean doDelete(ContenenteCarrelloCombinedKey key) throws SQLException {
+		Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE ID_prodotto = ? AND ID_ordine = ?";
+        String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE ID_prodotto = ? AND ID_carrello = ?";
 
         try {
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(deleteSQL);
 
             String idProdotto = key.getIdProdotto() == 0 ? "*" : String.valueOf(key.getIdProdotto());
-            String idOrdine = key.getIdOrdine() == 0 ? "*" : String.valueOf(key.getIdOrdine());
+            String idCarrello = key.getIdCarrello() == 0 ? "*" : String.valueOf(key.getIdCarrello());
 
             preparedStatement.setString(1, idProdotto);
-            preparedStatement.setString(2, idOrdine);
+            preparedStatement.setString(2, idCarrello);
 
             result = preparedStatement.executeUpdate();
         } finally {
@@ -79,30 +81,28 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
         }
         return (result != 0);
     }
-
-    @Override
-    public synchronized ContenenteBean doRetrieveByKey(ContenenteCombinedKey key) throws SQLException {
-        Connection connection = null;
+	@Override
+	public ContenenteCarrelloBean doRetrieveByKey(ContenenteCarrelloCombinedKey key) throws SQLException {
+		Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        ContenenteBean bean = null;
+        ContenenteCarrelloBean bean = null;
 
-        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE ID_prodotto = ? AND ID_ordine = ?";
+        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE ID_prodotto = ? AND ID_carrello = ?";
 
         try {
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);
 
             preparedStatement.setInt(1, key.getIdProdotto());
-            preparedStatement.setInt(2, key.getIdOrdine());
+            preparedStatement.setInt(2, key.getIdCarrello());
 
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                bean = new ContenenteBean();
+                bean = new ContenenteCarrelloBean();
                 bean.setIdProdotto(rs.getInt("ID_prodotto"));
-                bean.setIdOrdine(rs.getInt("ID_ordine"));
-                bean.setPrezzoAllAcquisto(rs.getFloat("prezzoAllAcquisto"));
+                bean.setIdCarrello(rs.getInt("ID_Carrello"));
                 bean.setQuantita(rs.getInt("quantita"));
             }
         } finally {
@@ -115,13 +115,13 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
             }
         }
         return bean;
-    }
-
-    @Override
-    public synchronized Collection<ContenenteBean> doRetrieveAll(String order) throws SQLException {
-        Connection connection = null;
+		
+	}
+	@Override
+	public Collection<ContenenteCarrelloBean> doRetrieveAll(String order) throws SQLException {
+		Connection connection = null;
         PreparedStatement preparedStatement = null;
-        Collection<ContenenteBean> contenenti = new ArrayList<>();
+        Collection<ContenenteCarrelloBean> contenenti = new ArrayList<>();
 
         String selectSQL = "SELECT * FROM " + TABLE_NAME;
         if (order != null && !order.equals("")) {
@@ -135,10 +135,9 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                ContenenteBean bean = new ContenenteBean();
+                ContenenteCarrelloBean bean = new ContenenteCarrelloBean();
                 bean.setIdProdotto(rs.getInt("ID_prodotto"));
-                bean.setIdOrdine(rs.getInt("ID_ordine"));
-                bean.setPrezzoAllAcquisto(rs.getFloat("prezzoAllAcquisto"));
+                bean.setIdCarrello(rs.getInt("ID_Carrello"));
                 bean.setQuantita(rs.getInt("quantita"));
 
                 contenenti.add(bean);
@@ -153,40 +152,8 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
             }
         }
         return contenenti;
-    }
-
-public synchronized Collection<ContenenteBean> doRetrieveByOrderKey(int key) throws SQLException {
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    Collection<ContenenteBean> contenenti = new ArrayList<>();
-
-    String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE idProdotto = * AND idOrdine = ?";
-    preparedStatement.setInt(1, key);
-
-    try {
-        connection = dataSource.getConnection();
-        preparedStatement = connection.prepareStatement(selectSQL);
-
-        ResultSet rs = preparedStatement.executeQuery();
-
-        while (rs.next()) {
-            ContenenteBean bean = new ContenenteBean();
-            bean.setIdProdotto(rs.getInt("idProdotto"));
-            bean.setIdOrdine(rs.getInt("idOrdine"));
-            bean.setPrezzoAllAcquisto(rs.getFloat("prezzoAllAcquisto"));
-            bean.setQuantita(rs.getInt("quantita"));
-
-            contenenti.add(bean);
-        }
-    } finally {
-        try {
-            if (preparedStatement != null)
-                preparedStatement.close();
-        } finally {
-            if (connection != null)
-                connection.close();
-        }
-    }
-    return contenenti;
-}
+	}
+    
+    
+    
 }

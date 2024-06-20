@@ -2,47 +2,38 @@ package model;
 
 import java.io.Serializable;
 
-public class CarrelloBean implements Serializable {
-    private static final long serialVersionUID = 2856723757650934257L;
-    
-    private String email;
-    private int idProdotto;
-    private int quantita;
-    
-    public CarrelloBean() {
-        this.email = "";//non specificato
-        this.idProdotto = -1;//non specificato
-        this.quantita = 0;
-    }
-    
-    public CarrelloBean(String email, int idProdotto, int quantita) {
-        this.email = email;
-        this.idProdotto = idProdotto;
-        this.quantita = quantita;
-    }
+public class CarrelloBean implements Serializable{
 
-    // Getters and Setters
-    public String getIdemail() {
-        return email;
-    }
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2738401824662646060L;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getIdProdotto() {
-        return idProdotto;
-    }
-
-    public void setIdProdotto(int idProdotto) {
-        this.idProdotto = idProdotto;
-    }
-
-    public int getQuantita() {
-        return quantita;
-    }
-
-    public void setQuantita(int quantita) {
-        this.quantita = quantita;
-    }
+	
+	int idCarrello;
+	String email;
+	
+	CarrelloBean(){
+		idCarrello = 0;
+		email = "";
+	}
+	CarrelloBean(int idCarrello, String email){
+		this.idCarrello = idCarrello;
+		this.email = email;
+	}
+	
+	public void setIdCarrello(int idCarrello) {
+		this.idCarrello =idCarrello;
+	}
+	
+	public int getIdCarrello(){
+		return idCarrello;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getEmail(){
+		return email;
+	}
 }

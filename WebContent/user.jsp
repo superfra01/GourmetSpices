@@ -14,7 +14,7 @@
 
     <main>
         <%
-            UserBean user = (UserBean) request.getSession().getAttribute("user");
+            UserBean user = (UserBean) request.getSession().getAttribute("utente");
             if (user != null) {
                 List<OrdineBean> ordini = (List<OrdineBean>) request.getSession().getAttribute("ordini");
         %>

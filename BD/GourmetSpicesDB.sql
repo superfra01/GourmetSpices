@@ -3,7 +3,7 @@ CREATE DATABASE GourmetSpicesDB;
 
 USE GourmetSpicesDB;
 
--- Elimina le tabelle se esistono già nell'ordine corretto per rispettare le chiavi esterne
+-- Elimina le tabelle se esistono giï¿½ nell'ordine corretto per rispettare le chiavi esterne
 DROP TABLE IF EXISTS Spedizione;
 DROP TABLE IF EXISTS Contenente;
 DROP TABLE IF EXISTS Carrello;
@@ -37,6 +37,14 @@ CREATE TABLE Prodotto (
     quantita_magazzino INT NOT NULL,
     nome VARCHAR(50) NOT NULL,
     descrizione VARCHAR(50) NOT NULL
+);
+-- Creazione della tabella immagine_prodotto
+CREATE TABLE Immagine_Prodotto (
+    ID_prodotto INT NOT NULL,
+    ID_immagine INT NOT NULL AUTO_INCREMENT,
+    Immagine BLOB NOT NULL,
+    PRIMARY KEY (ID_immagine),
+    FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto)
 );
 
 -- Creazione della tabella Carrello
@@ -94,12 +102,13 @@ CREATE TABLE Contenente (
 -- Inserimento degli utenti
 INSERT INTO Utente (email, username, password, nome, cognome, Tipo_utente)
 VALUES
-('giulia.fiori@email.com', 'giuliaFiori', 'passwordSicura123', 'Giulia', 'Fiori', 'USER'),
-('antonio.verdi@email.com', 'antonioVerdi', 'passwordSicura123', 'Antonio', 'Verdi', 'USER'),
-('sofia.viola@email.com', 'sofiaViola', 'passwordSicura123', 'Sofia', 'Viola', 'USER'),
-('marco.azzurri@email.com', 'marcoAzzurri', 'passwordSicura123', 'Marco', 'Azzurri', 'USER'),
-('laura.gialli@email.com', 'lauraGialli', 'passwordSicura123', 'Laura', 'Gialli', 'USER'),
-('francesco.rossi@email.com', 'francescoRossi', 'passwordSicura123', 'Francesco', 'Rossi', 'USER');
+('giulia.fiori@email.com', 'giuliaFiori', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Giulia', 'Fiori', 'USER'),
+('antonio.verdi@email.com', 'antonioVerdi', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Antonio', 'Verdi', 'USER'),
+('sofia.viola@email.com', 'sofiaViola', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Sofia', 'Viola', 'USER'),
+('marco.azzurri@email.com', 'marcoAzzurri', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Marco', 'Azzurri', 'USER'),
+('laura.gialli@email.com', 'lauraGialli', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Laura', 'Gialli', 'USER'),
+('francesco.rossi@email.com', 'francescoRossi', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Francesco', 'Rossi', 'USER'),
+('admin@email.com', 'admin', 'c2FsYXRpbm9jgDuGupZTKef1fbq/0KPyq9PpBIIUPYCpzfoIag/VbQ==', 'admin', 'admin', 'ADMIN'),;
 
 -- Inserimento dei prodotti che sono spezie
 INSERT INTO Prodotto (prezzo, quantita_magazzino, nome, descrizione)

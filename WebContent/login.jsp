@@ -17,7 +17,7 @@
             <h3>Un mondo ricco di spezie e di sapori travolgenti ti aspetta</h3>
             <h4>Login</h4>
             <form action="<%= request.getContextPath() %>/login" method="post">
-                <input type="text" name="username" placeholder="Username" required>
+                <input type="text" name="email" placeholder="email" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit">Login</button>
             </form>

@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS Utente;
 CREATE TABLE Utente (
     email VARCHAR(50) PRIMARY KEY NOT NULL,
     username VARCHAR(50) NOT NULL,
-    password VARCHAR(50) NOT NULL,
+    password VARCHAR(200) NOT NULL,
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
     Tipo_utente VARCHAR(16) NOT NULL DEFAULT 'USER'

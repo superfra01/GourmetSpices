@@ -81,7 +81,7 @@ public class SingInServlet extends HttpServlet{
 			user.setNome(nome);
 			user.setCognome(cognome);
 			user.setEmail(email);
-			user.setPassword(hashPassword(password));
+			user.setPassword(password);
 			user.setUsername(username);
 			user.setTipoUtente("user");
 			
@@ -147,7 +147,7 @@ public class SingInServlet extends HttpServlet{
 			user.setNome(nome);
 			user.setCognome(cognome);
 			user.setEmail(email);
-			user.setPassword(hashPassword(password));
+			user.setPassword(password);
 			user.setUsername(username);
 			user.setTipoUtente("user");
 			
@@ -155,6 +155,7 @@ public class SingInServlet extends HttpServlet{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		
 		}
         
 		response.sendRedirect("HomePage.jsp");

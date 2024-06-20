@@ -23,7 +23,7 @@ public class UserDAO implements BeanDAO<UserBean, String>{
 		PreparedStatement preparedStatement = null;
 		
 		String insertSQL = "INSERT INTO " + UserDAO.TABLE_NAME
-				+ " (email, username, password, nome, cognome, Tipo_utente) VALUES (?, ?, ?, ?, ?, ?, ?)";
+				+ " (email, username, password, nome, cognome, Tipo_utente) VALUES (?, ?, ?, ?, ?, ?)";
 
 		try {
 			connection = dataSource.getConnection();

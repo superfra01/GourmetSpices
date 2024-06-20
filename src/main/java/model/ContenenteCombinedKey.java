@@ -6,7 +6,7 @@ public class ContenenteCombinedKey{
 	private int idProdotto;
 	private int idOrdine;
 	
-	ContenenteCombinedKey(){
+	public ContenenteCombinedKey(){
 		super();
 		idProdotto=0;
 		idOrdine=0;

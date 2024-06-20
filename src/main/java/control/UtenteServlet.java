@@ -17,8 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import model.ContenenteBean;
+import model.ContenenteCombinedKey;
+import model.ContenenteDAO;
 import model.OrdineBean;
 import model.OrdineDAO;
+import model.ProdottoDAO;
 import model.UserBean;
 import model.UserDAO;
 
@@ -58,14 +62,25 @@ public class UtenteServlet extends HttpServlet{
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 		String email = utente.getEmail();
 		
-		OrdineDAO ordini = new OrdineDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
+		OrdineDAO Ordini = new OrdineDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
+		ContenenteDAO Contenenti = new ContenenteDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
+		ProdottoDAO Prodotti = new ProdottoDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
 		try {
-			List<OrdineBean> list=((List<OrdineBean>)ordini.doRetrieveByUserKey(email));
+			List<OrdineBean> list=((List<OrdineBean>) Ordini.doRetrieveByUserKey(email));
+			request.getSession().setAttribute("ordini", list);
+			for(OrdineBean ordine: list) {
+				List<ContenenteBean> ContenenteList = (List<ContenenteBean>) Contenenti.doRetrieveByOrderKey(ordine.getIdOrdine());
+				request.getSession().setAttribute(Integer.toString(ordine.getIdOrdine()), ContenenteList);
+				for(ContenenteBean Contenente: ContenenteList) {
+					request.getSession().setAttribute(Integer.toString(Contenente.getIdProdotto()), Prodotti.doRetrieveByKey(Contenente.getIdProdotto()));
+					
+				}
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getSession().setAttribute("ordini", ordini);
+		
 		
 		RequestDispatcher dispatcherToUser = request.getRequestDispatcher("user.jsp");
 		

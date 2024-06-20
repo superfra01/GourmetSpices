@@ -93,11 +93,8 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);
 
-            String idProdotto = key.getIdProdotto() == 0 ? "*" : String.valueOf(key.getIdProdotto());
-            String idOrdine = key.getIdOrdine() == 0 ? "*" : String.valueOf(key.getIdOrdine());
-
-            preparedStatement.setString(1, idProdotto);
-            preparedStatement.setString(2, idOrdine);
+            preparedStatement.setInt(1, key.getIdProdotto());
+            preparedStatement.setInt(2, key.getIdOrdine());
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -157,4 +154,40 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
         }
         return contenenti;
     }
+}
+
+public synchronized Collection<ContenenteBean> doRetrieveByOrderKey(int key) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    Collection<ContenenteBean> contenenti = new ArrayList<>();
+
+    String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE idProdotto = * AND idOrdine = ?";
+    preparedStatement.setInt(1, key);
+
+    try {
+        connection = dataSource.getConnection();
+        preparedStatement = connection.prepareStatement(selectSQL);
+
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            ContenenteBean bean = new ContenenteBean();
+            bean.setIdProdotto(rs.getInt("idProdotto"));
+            bean.setIdOrdine(rs.getInt("idOrdine"));
+            bean.setPrezzoAllAcquisto(rs.getFloat("prezzoAllAcquisto"));
+            bean.setQuantita(rs.getInt("quantita"));
+
+            contenenti.add(bean);
+        }
+    } finally {
+        try {
+            if (preparedStatement != null)
+                preparedStatement.close();
+        } finally {
+            if (connection != null)
+                connection.close();
+        }
+    }
+    return contenenti;
+}
 }

@@ -7,10 +7,12 @@ USE GourmetSpicesDB;
 DROP TABLE IF EXISTS Spedizione;
 DROP TABLE IF EXISTS Contenente;
 DROP TABLE IF EXISTS Carrello;
+DROP TABLE IF EXISTS contenente_carrello;
 DROP TABLE IF EXISTS Ordine;
 DROP TABLE IF EXISTS Metodo_Di_Pagamento;
 DROP TABLE IF EXISTS Prodotto;
 DROP TABLE IF EXISTS Utente;
+DROP TABLE IF EXISTS Immagine_prodotto;
 
 -- Creazione della tabella Utente
 CREATE TABLE Utente (
@@ -62,9 +64,9 @@ CREATE TABLE Contenente_Carrello (
     ID_carrello INT NOT NULL AUTO_INCREMENT,
     ID_prodotto INT NOT NULL,
     quantita INT NOT NULL,
-    FOREIGN KEY (email) REFERENCES Utente(email),
+    FOREIGN KEY (ID_carrello) REFERENCES Carrello(ID_carrello),
     FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto),
-    PRIMARY KEY(email, ID_prodotto)
+    PRIMARY KEY(ID_carrello, ID_prodotto)
 );
 
 -- Creazione della tabella Ordine
@@ -108,7 +110,7 @@ VALUES
 ('marco.azzurri@email.com', 'marcoAzzurri', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Marco', 'Azzurri', 'USER'),
 ('laura.gialli@email.com', 'lauraGialli', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Laura', 'Gialli', 'USER'),
 ('francesco.rossi@email.com', 'francescoRossi', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Francesco', 'Rossi', 'USER'),
-('admin@email.com', 'admin', 'c2FsYXRpbm9jgDuGupZTKef1fbq/0KPyq9PpBIIUPYCpzfoIag/VbQ==', 'admin', 'admin', 'ADMIN'),;
+('admin@email.com', 'admin', 'c2FsYXRpbm9jgDuGupZTKef1fbq/0KPyq9PpBIIUPYCpzfoIag/VbQ==', 'admin', 'admin', 'ADMIN');
 
 -- Inserimento dei prodotti che sono spezie
 INSERT INTO Prodotto (prezzo, quantita_magazzino, nome, descrizione)
@@ -162,3 +164,13 @@ VALUES
 (2, 4, 2),
 (2, 5, 3),
 (2, 6, 1);
+
+-- Inserimento di un'immagine nella tabella
+INSERT INTO Immagine_Prodotto (ID_prodotto, Immagine)
+VALUES 
+(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\pepe-nero.jpg')),
+(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\pepe-nero-zoom.jpg')),
+(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\cumino.jpg')),
+(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\cumino-zoom.jpg')),
+(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\coriandolo.jpg')),
+(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\coriandolo-zoom.jpg'));

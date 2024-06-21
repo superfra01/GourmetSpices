@@ -108,8 +108,7 @@ public class LoginServlet extends HttpServlet{
         UserBean user = null;
 		try {
 			user = account.doRetrieveByKey(email);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException e) {		
 			e.printStackTrace();
 		}
         

@@ -25,6 +25,13 @@
             <p>Cognome: <%= user.getCognome() %></p>
             <p>Password: ******</p>
         </div>
+        
+        <div class="logout-button">
+        	<form action="<%= request.getContextPath() %>/logout" method="get">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+        
 
         <div class="purchase-history">
             <h2>Purchase History</h2>

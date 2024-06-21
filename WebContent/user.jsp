@@ -27,7 +27,7 @@
         </div>
         
         <div class="logout-button">
-        	<form action="<%= request.getContextPath() %>/logout" method="get">
+        	<form action="<%= request.getContextPath() %>/logout" method="post">
                 <button type="submit">Logout</button>
             </form>
         </div>

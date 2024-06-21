@@ -3,7 +3,7 @@ CREATE DATABASE GourmetSpicesDB;
 
 USE GourmetSpicesDB;
 
--- Elimina le tabelle se esistono già nell'ordine corretto per rispettare le chiavi esterne
+-- Elimina le tabelle se esistono giï¿½ nell'ordine corretto per rispettare le chiavi esterne
 DROP TABLE IF EXISTS Spedizione;
 DROP TABLE IF EXISTS Contenente;
 DROP TABLE IF EXISTS Carrello;
@@ -40,22 +40,23 @@ CREATE TABLE Prodotto (
     nome VARCHAR(50) NOT NULL,
     descrizione VARCHAR(50) NOT NULL
 );
-
--- Creazione della tabella Immagine_prodotto
+-- Creazione della tabella immagine_prodotto
 CREATE TABLE Immagine_Prodotto (
     ID_prodotto INT NOT NULL,
     ID_immagine INT NOT NULL AUTO_INCREMENT,
-    Immagine_nome VARCHAR(255) NOT NULL,
+    Immagine varchar(50) NOT NULL,
     PRIMARY KEY (ID_immagine),
     FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto)
 );
 
 -- Creazione della tabella Carrello
+
 CREATE TABLE Carrello(
-    ID_carrello INT NOT NULL AUTO_INCREMENT,
-    email VARCHAR(50) NOT NULL,
-    PRIMARY KEY(ID_carrello),
-    FOREIGN KEY (email) REFERENCES Utente(email)
+	ID_carrello INT NOT NULL AUTO_INCREMENT,
+	email VARCHAR(50) NOT NULL,
+	PRIMARY KEY(ID_carrello),
+	FOREIGN KEY (email) REFERENCES Utente(email)
+	
 );
 
 -- Creazione della tabella Contenente_Carrello
@@ -166,7 +167,7 @@ VALUES
 (2, 6, 1);
 
 -- Inserimento di un'immagine nella tabella
-INSERT INTO Immagine_Prodotto (ID_prodotto, Immagine_nome)
+INSERT INTO Immagine_Prodotto (ID_prodotto, Immagine)
 VALUES 
 (1, 'pepe-nero.jpg'),
 (1, 'pepe-nero-zoom.jpg'),
@@ -174,3 +175,4 @@ VALUES
 (6, 'cumino-zoom.jpg'),
 (7, 'coriandolo.jpg'),
 (7, 'coriandolo-zoom.jpg');
+

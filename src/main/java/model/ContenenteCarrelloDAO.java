@@ -13,7 +13,7 @@ public class ContenenteCarrelloDAO implements BeanDAO<ContenenteCarrelloBean,Con
 	private static final String TABLE_NAME = "contenente_carrello";
     private DataSource dataSource;
     
-    ContenenteCarrelloDAO(DataSource dataSource){
+    public ContenenteCarrelloDAO(DataSource dataSource){
     	this.dataSource = dataSource;
     }
     
@@ -115,6 +115,42 @@ public class ContenenteCarrelloDAO implements BeanDAO<ContenenteCarrelloBean,Con
             }
         }
         return bean;
+		
+	}
+	public Collection<ContenenteCarrelloBean> doRetrieveByCarrelloKey(int key) throws SQLException {
+		Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Collection<ContenenteCarrelloBean> contenenti = new ArrayList<>();
+        
+
+        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE ID_prodotto = * AND ID_carrello = ?";
+
+        try {
+            connection = dataSource.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+
+            preparedStatement.setInt(1, key);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while(rs.next()) {
+            	ContenenteCarrelloBean bean = null;
+                bean = new ContenenteCarrelloBean();
+                bean.setIdProdotto(rs.getInt("ID_prodotto"));
+                bean.setIdCarrello(rs.getInt("ID_Carrello"));
+                bean.setQuantita(rs.getInt("quantita"));
+                contenenti.add(bean);
+            }
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                if (connection != null)
+                    connection.close();
+            }
+        }
+        return contenenti;
 		
 	}
 	@Override

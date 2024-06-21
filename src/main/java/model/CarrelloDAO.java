@@ -109,6 +109,41 @@ public class CarrelloDAO implements BeanDAO<CarrelloBean, Integer>{
 		} 
 		return bean;
 	}
+	public CarrelloBean doRetrieveByUserKey(String code) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		CarrelloBean bean = new CarrelloBean();
+
+		String selectSQL = "SELECT * FROM " + CarrelloDAO.TABLE_NAME + " WHERE email = ?";
+
+		try {
+		
+			connection = dataSource.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, code);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				bean.setIdCarrello(rs.getInt("ID_carrello"));
+				bean.setEmail(rs.getString("email"));
+				
+
+			}
+
+		}finally {
+		
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if(connection != null)
+					connection.close();
+			}
+		} 
+		return bean;
+	}
 
 	@Override
 	public Collection<CarrelloBean> doRetrieveAll(String order) throws SQLException {

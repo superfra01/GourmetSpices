@@ -6,14 +6,14 @@ public class ContenenteCarrelloCombinedKey{
 	private int idCarrello;
     private int idProdotto;
 	
-	ContenenteCarrelloCombinedKey(){
+	public ContenenteCarrelloCombinedKey(){
 		super();
 		idCarrello=0;
 		idProdotto=0;
 		
 	}
 	
-	ContenenteCarrelloCombinedKey(int idProdotto, int idCarrello){
+	public ContenenteCarrelloCombinedKey(int idProdotto, int idCarrello){
 		this.idProdotto=idProdotto;
 		this.idCarrello=idCarrello;
 	}

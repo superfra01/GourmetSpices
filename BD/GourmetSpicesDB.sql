@@ -3,7 +3,7 @@ CREATE DATABASE GourmetSpicesDB;
 
 USE GourmetSpicesDB;
 
--- Elimina le tabelle se esistono giï¿½ nell'ordine corretto per rispettare le chiavi esterne
+-- Elimina le tabelle se esistono già nell'ordine corretto per rispettare le chiavi esterne
 DROP TABLE IF EXISTS Spedizione;
 DROP TABLE IF EXISTS Contenente;
 DROP TABLE IF EXISTS Carrello;
@@ -40,23 +40,22 @@ CREATE TABLE Prodotto (
     nome VARCHAR(50) NOT NULL,
     descrizione VARCHAR(50) NOT NULL
 );
--- Creazione della tabella immagine_prodotto
+
+-- Creazione della tabella Immagine_prodotto
 CREATE TABLE Immagine_Prodotto (
     ID_prodotto INT NOT NULL,
     ID_immagine INT NOT NULL AUTO_INCREMENT,
-    Immagine BLOB NOT NULL,
+    Immagine_nome VARCHAR(255) NOT NULL,
     PRIMARY KEY (ID_immagine),
     FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto)
 );
 
 -- Creazione della tabella Carrello
-
 CREATE TABLE Carrello(
-	ID_carrello INT NOT NULL AUTO_INCREMENT,
-	email VARCHAR(50) NOT NULL,
-	PRIMARY KEY(ID_carrello),
-	FOREIGN KEY (email) REFERENCES Utente(email)
-	
+    ID_carrello INT NOT NULL AUTO_INCREMENT,
+    email VARCHAR(50) NOT NULL,
+    PRIMARY KEY(ID_carrello),
+    FOREIGN KEY (email) REFERENCES Utente(email)
 );
 
 -- Creazione della tabella Contenente_Carrello
@@ -120,7 +119,8 @@ VALUES
 (8, 40, 'Cannella', 'Cannella in stecche'),
 (9, 25, 'Chiodi di Garofano', 'Chiodi di garofano interi'),
 (4, 60, 'Noce Moscata', 'Noce moscata in polvere'),
-(5, 70, 'Cumino', 'Cumino in semi');
+(5, 70, 'Cumino', 'Cumino in semi'),
+(4, 80, 'Coriandolo', 'Coriandolo in polvere');
 
 -- Inserimento dei metodi di pagamento
 INSERT INTO Metodo_Di_Pagamento (email, N_carta_iban, metodo)
@@ -166,11 +166,11 @@ VALUES
 (2, 6, 1);
 
 -- Inserimento di un'immagine nella tabella
-INSERT INTO Immagine_Prodotto (ID_prodotto, Immagine)
+INSERT INTO Immagine_Prodotto (ID_prodotto, Immagine_nome)
 VALUES 
-(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\pepe-nero.jpg')),
-(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\pepe-nero-zoom.jpg')),
-(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\cumino.jpg')),
-(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\cumino-zoom.jpg')),
-(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\coriandolo.jpg')),
-(1, LOAD_FILE('C:\Users\raofr\Documents\GitHub\GourmetSpices\WebContent\images\prodotti\coriandolo-zoom.jpg'));
+(1, 'pepe-nero.jpg'),
+(1, 'pepe-nero-zoom.jpg'),
+(6, 'cumino.jpg'),
+(6, 'cumino-zoom.jpg'),
+(7, 'coriandolo.jpg'),
+(7, 'coriandolo-zoom.jpg');

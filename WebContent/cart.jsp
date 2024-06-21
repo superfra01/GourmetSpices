@@ -17,17 +17,26 @@
             UserBean user = (UserBean) request.getSession().getAttribute("utente");
             if (user != null) {
                 int totalCost = 0;
-                List<ContenenteCarrelloBean> cartItems = (List<ContenenteCarrelloBean>) request.getSession().getAttribute("ContenenteCarrelloBeanList");
+                int idCarrello = (int) request.getSession().getAttribute("idCarrello");
+                List<ContenenteCarrelloBean> cartItems = (List<ContenenteCarrelloBean>) request.getSession().getAttribute("ContenenteCarrelloBeanList"+ Integer.toString(idCarrello));
                 if (cartItems != null && !cartItems.isEmpty()) {
                     for (ContenenteCarrelloBean item : cartItems) {
-                        ProdottoBean product = (ProdottoBean) request.getSession().getAttribute(Integer.toString(item.getIdProdotto()));
-                        int quantity = (int) request.getSession().getAttribute(Integer.toString(item.getIdCarrello()) + Integer.toString(item.getIdProdotto()));
+                    	List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("prodottoimmagini" + Integer.toString(item.getIdProdotto()));
+                        ProdottoBean product = (ProdottoBean) request.getSession().getAttribute("Prodotto" + Integer.toString(item.getIdProdotto()));
+                        int quantity = item.getQuantita();
                         // Display product information and quantity
                         %>
                         <div class="cart-item">
                             <p><%= product.getNome() %></p>
                             <p>Quantity: <%= quantity %></p>
                             <p>Price: <%= product.getPrezzo() %></p>
+                            <%
+                            for(ImmagineProdottoBean immagine : immagini) {                           	
+                            %>
+                            	<img src="<%=request.getContextPath()%>/images/prodotti/<%=immagine.getImmagine()%>">
+                            <%	
+                            }
+                            %>
                         </div>
                         <% 
                         // Calculate total cost

@@ -18,8 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import model.ContenenteBean;
+import model.ContenenteCarrelloBean;
 import model.ContenenteCombinedKey;
 import model.ContenenteDAO;
+import model.ImmagineProdottoBean;
+import model.ImmagineProdottoDAO;
 import model.OrdineBean;
 import model.OrdineDAO;
 import model.ProdottoDAO;
@@ -38,14 +41,29 @@ public class ProdottiServlet extends HttpServlet{
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 		String email = utente.getEmail();
 		
-		OrdineDAO ordini = new OrdineDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
+		OrdineDAO Ordini = new OrdineDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
+		ContenenteDAO Contenenti = new ContenenteDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
+		ProdottoDAO Prodotti = new ProdottoDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
+		
+		ImmagineProdottoDAO ImmaginiProdotti = new ImmagineProdottoDAO((DataSource)getServletContext().getAttribute("DataSource"));
 		try {
-			List<OrdineBean> list=((List<OrdineBean>)ordini.doRetrieveByUserKey(email));
+			List<OrdineBean> list=((List<OrdineBean>) Ordini.doRetrieveByUserKey(email));
+			request.getSession().setAttribute("ordini", list);
+			for(OrdineBean ordine: list) {
+				List<ContenenteBean> ContenenteList = (List<ContenenteBean>) Contenenti.doRetrieveByOrderKey(ordine.getIdOrdine());
+				request.getSession().setAttribute(Integer.toString(ordine.getIdOrdine()), ContenenteList);
+				for(ContenenteBean Contenente: ContenenteList) {
+					request.getSession().setAttribute(Integer.toString(Contenente.getIdProdotto()), Prodotti.doRetrieveByKey(Contenente.getIdProdotto()));
+					List<ImmagineProdottoBean> Immagini = (List<ImmagineProdottoBean>)ImmaginiProdotti.doRetrieveByProductKey(Contenente.getIdProdotto());
+					request.getSession().setAttribute("images"+Integer.toString(Contenente.getIdProdotto()), Immagini);//
+					
+				}
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getSession().setAttribute("ordini", ordini);
+		
 		
 		RequestDispatcher dispatcherToUser = request.getRequestDispatcher("user.jsp");
 		
@@ -64,6 +82,8 @@ public class ProdottiServlet extends HttpServlet{
 		OrdineDAO Ordini = new OrdineDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
 		ContenenteDAO Contenenti = new ContenenteDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
 		ProdottoDAO Prodotti = new ProdottoDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
+		
+		ImmagineProdottoDAO ImmaginiProdotti = new ImmagineProdottoDAO((DataSource)getServletContext().getAttribute("DataSource"));
 		try {
 			List<OrdineBean> list=((List<OrdineBean>) Ordini.doRetrieveByUserKey(email));
 			request.getSession().setAttribute("ordini", list);
@@ -72,6 +92,8 @@ public class ProdottiServlet extends HttpServlet{
 				request.getSession().setAttribute(Integer.toString(ordine.getIdOrdine()), ContenenteList);
 				for(ContenenteBean Contenente: ContenenteList) {
 					request.getSession().setAttribute(Integer.toString(Contenente.getIdProdotto()), Prodotti.doRetrieveByKey(Contenente.getIdProdotto()));
+					List<ImmagineProdottoBean> Immagini = (List<ImmagineProdottoBean>)ImmaginiProdotti.doRetrieveByProductKey(Contenente.getIdProdotto());
+					request.getSession().setAttribute("images"+Integer.toString(Contenente.getIdProdotto()), Immagini);//
 					
 				}
 			}

@@ -19,7 +19,7 @@ main {
 }
 
 .login-container h3 {
-    color: #E07363; /* Colore del titolo */
+    color: #E07363;
 }
 
 .login-container form {
@@ -31,6 +31,16 @@ main {
 }
 .login-container a:hover {
     color: #E07363;
+}
+
+.error-messages {
+    color: red;
+    font-weight: bold;
+}
+
+.error-messages ul {
+    list-style-type: none;
+    padding: 0;
 }
 
 input[type="text"],
@@ -53,15 +63,4 @@ button {
 
 button:hover {
     background-color: #E07363;
-}
-
-/* Stili per i messaggi di errore */
-.error-messages {
-    color: red;
-    font-weight: bold;
-}
-
-.error-messages ul {
-    list-style-type: none;
-    padding: 0;
 }

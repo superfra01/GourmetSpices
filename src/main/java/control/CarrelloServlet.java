@@ -139,14 +139,14 @@ public class CarrelloServlet extends HttpServlet{
 			request.getSession().setAttribute("idCarrello", idCarrello);
 		
 			List<ContenenteCarrelloBean> ContenenteCarrelloBeanList = (List<ContenenteCarrelloBean>) Contenente.doRetrieveByCarrelloKey(idCarrello);
-			request.getSession().setAttribute(Integer.toString(idCarrello), ContenenteCarrelloBeanList);
+			request.getSession().setAttribute("ContenenteCarrelloBeanList"+Integer.toString(idCarrello), ContenenteCarrelloBeanList);
 			for(ContenenteCarrelloBean ContenenteCarrello :ContenenteCarrelloBeanList) {
 				int quantità = ContenenteCarrello.getQuantita();
 				ProdottoBean Prodotto = Prodotti.doRetrieveByKey(ContenenteCarrello.getIdProdotto());
 				//request.getSession().setAttribute(Integer.toString(idCarrello)+Integer.toString(ContenenteCarrello.getIdProdotto()),quantità);
-				request.getSession().setAttribute(Integer.toString(ContenenteCarrello.getIdProdotto()), Prodotto);
+				request.getSession().setAttribute("prodotto"+Integer.toString(ContenenteCarrello.getIdProdotto()), Prodotto);
 				List<ImmagineProdottoBean> Immagini = (List<ImmagineProdottoBean>)ImmaginiProdotti.doRetrieveByProductKey(ContenenteCarrello.getIdProdotto());
-				request.getSession().setAttribute("images"+Integer.toString(ContenenteCarrello.getIdProdotto()), Immagini);
+				request.getSession().setAttribute("prodottoimmagini"+Integer.toString(ContenenteCarrello.getIdProdotto()), Immagini);
 			}
 			
 		} catch (SQLException e) {

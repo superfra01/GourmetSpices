@@ -69,7 +69,7 @@ public class LoginServlet extends HttpServlet{
         	request.getSession().setAttribute("utente", user);
 			response.sendRedirect("HomePage.jsp");
 		}else{
-			errors.add("Username o password non validi!");
+			errors.add("Username o password errata!");
 			request.setAttribute("errors", errors);
 			dispatcherToLoginPage.forward(request, response);
 		}

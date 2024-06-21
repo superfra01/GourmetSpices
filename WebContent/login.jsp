@@ -7,6 +7,9 @@
     <title>Login</title>
     <link rel="shortcut icon" href="<%= request.getContextPath() %>/images/logo.png">
     <link href="<%= request.getContextPath() %>/css/login_register.css" rel="stylesheet">
+
+    <script src="<%= request.getContextPath() %>/scripts/loginValidation.js"></script>
+
     <style>
         .error-messages {
             color: red;
@@ -28,7 +31,9 @@
 
             <form id="loginForm" action="<%= request.getContextPath() %>/login" method="post">
                 <input type="text" name="email" placeholder="Email" required>
+                <span id="errorEmail"></span>
                 <input type="password" name="password" placeholder="Password" required>
+                <span id="errorPassword"></span>
                 <button type="submit">Login</button>
             </form>
             

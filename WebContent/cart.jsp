@@ -13,6 +13,55 @@
     <jsp:include page="header.jsp" />
     
     <main>
+        <% 
+            UserBean user = (UserBean) request.getSession().getAttribute("utente");
+            if (user != null) {
+                int totalCost = 0;
+                List<ContenenteCarrelloBean> cartItems = (List<ContenenteCarrelloBean>) request.getSession().getAttribute("ContenenteCarrelloBeanList");
+                if (cartItems != null && !cartItems.isEmpty()) {
+                    for (ContenenteCarrelloBean item : cartItems) {
+                        ProdottoBean product = (ProdottoBean) request.getSession().getAttribute(Integer.toString(item.getIdProdotto()));
+                        int quantity = (int) request.getSession().getAttribute(Integer.toString(item.getIdCarrello()) + Integer.toString(item.getIdProdotto()));
+                        // Display product information and quantity
+                        %>
+                        <div class="cart-item">
+                            <p><%= product.getNome() %></p>
+                            <p>Quantity: <%= quantity %></p>
+                            <p>Price: <%= product.getPrezzo() %></p>
+                        </div>
+                        <% 
+                        // Calculate total cost
+                        totalCost += quantity * product.getPrezzo();
+                    }
+                    %>
+                    // Display total cost
+                    <div class="total-cost">
+                        <p>Total Cost: <%= totalCost %></p>
+                    </div>
+                    // Order button
+                    <div class="logout-button">
+                		<form action="<%= request.getContextPath() %>/order" method="get">
+                        	<button type="submit">Proceed to checkout</button>
+                    	</form>
+                	</div>
+                	<%
+                } else {
+                    // Handle empty cart scenario
+                    %>
+                    <div class="error-message">
+                        <p>Your cart is empty.</p>
+                    </div>
+                    <% 
+                }
+            } else {
+                // Handle not logged in scenario
+                %>
+                <div class="error-message">
+                    <p>You must be logged in to view this page.</p>
+                </div>
+                <% 
+            }
+        %>
     </main>
 
     <jsp:include page="footer.jsp" />

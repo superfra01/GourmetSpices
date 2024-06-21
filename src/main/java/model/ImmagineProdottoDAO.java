@@ -29,7 +29,7 @@ public class ImmagineProdottoDAO implements BeanDAO<ImmagineProdottoBean, Intege
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setInt(1, data.getIdProdotto());
-            preparedStatement.setBytes(2, data.getImmagine());
+            preparedStatement.setString(2, data.getImmagine());
 
             preparedStatement.executeUpdate();
         } finally {
@@ -89,7 +89,7 @@ public class ImmagineProdottoDAO implements BeanDAO<ImmagineProdottoBean, Intege
             while (rs.next()) {
                 bean.setIdProdotto(rs.getInt("ID_prodotto"));
                 bean.setIdImmagine(rs.getInt("ID_immagine"));
-                bean.setImmagine(rs.getBytes("Immagine"));
+                bean.setImmagine(rs.getString("Immagine"));
             }
         } finally {
             try {
@@ -103,6 +103,40 @@ public class ImmagineProdottoDAO implements BeanDAO<ImmagineProdottoBean, Intege
         return bean;
     }
 
+    public synchronized Collection<ImmagineProdottoBean> doRetrieveByProductKey(Integer idProdotto) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        Collection<ImmagineProdottoBean> immagini = new ArrayList<ImmagineProdottoBean>();
+        
+
+        String selectSQL = "SELECT * FROM " + ImmagineProdottoDAO.TABLE_NAME + " WHERE ID_prodotto = ?";
+
+        try {
+            connection = dataSource.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, idProdotto);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+            	ImmagineProdottoBean bean = new ImmagineProdottoBean();
+                bean.setIdProdotto(rs.getInt("ID_prodotto"));
+                bean.setIdImmagine(rs.getInt("ID_immagine"));
+                bean.setImmagine(rs.getString("Immagine"));
+                immagini.add(bean);
+            }
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                if (connection != null)
+                    connection.close();
+            }
+        }
+        return immagini;
+    }
     @Override
     public synchronized Collection<ImmagineProdottoBean> doRetrieveAll(String order) throws SQLException {
         Connection connection = null;
@@ -125,7 +159,7 @@ public class ImmagineProdottoDAO implements BeanDAO<ImmagineProdottoBean, Intege
                 bean = new ImmagineProdottoBean();
                 bean.setIdProdotto(rs.getInt("ID_prodotto"));
                 bean.setIdImmagine(rs.getInt("ID_immagine"));
-                bean.setImmagine(rs.getBytes("Immagine"));
+                bean.setImmagine(rs.getString("Immagine"));
 
                 immagini.add(bean);
             }

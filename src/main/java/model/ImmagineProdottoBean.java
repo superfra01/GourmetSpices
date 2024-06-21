@@ -7,7 +7,7 @@ public class ImmagineProdottoBean implements Serializable {
     
     private int idProdotto;
     private int idImmagine;
-    private byte[] immagine;
+    private String immagine;
     
     public ImmagineProdottoBean() {
         this.idProdotto = 0;
@@ -15,7 +15,7 @@ public class ImmagineProdottoBean implements Serializable {
         this.immagine = null;
     }
     
-    public ImmagineProdottoBean(int idProdotto, int idImmagine, byte[] immagine) {
+    public ImmagineProdottoBean(int idProdotto, int idImmagine, String immagine) {
         this.idProdotto = idProdotto;
         this.idImmagine = idImmagine;
         this.immagine = immagine;
@@ -37,11 +37,11 @@ public class ImmagineProdottoBean implements Serializable {
         this.idImmagine = idImmagine;
     }
 
-    public byte[] getImmagine() {
+    public String getImmagine() {
         return immagine;
     }
 
-    public void setImmagine(byte[] immagine) {
-        this.immagine = immagine;
+    public void setImmagine(String immagine_url) {
+        this.immagine = immagine_url;
     }
 }

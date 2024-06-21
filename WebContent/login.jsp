@@ -7,6 +7,16 @@
     <title>Login</title>
     <link rel="shortcut icon" href="<%= request.getContextPath() %>/images/logo.png">
     <link href="<%= request.getContextPath() %>/css/login_register.css" rel="stylesheet">
+    <style>
+        .error-messages {
+            color: red;
+            font-weight: bold;
+        }
+        .error-messages ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
     <jsp:include page="header.jsp" />

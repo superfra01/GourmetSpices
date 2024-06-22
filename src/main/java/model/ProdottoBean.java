@@ -6,7 +6,7 @@ public class ProdottoBean implements Serializable {
     private static final long serialVersionUID = 2856723757650934256L;
     
     private int idProdotto;
-    private int prezzo;
+    private float prezzo;
     private int quantitaMagazzino;
     private int valido;
     private String nome;
@@ -21,7 +21,7 @@ public class ProdottoBean implements Serializable {
         this.descrizione = "";
     }
     
-    public ProdottoBean(int idProdotto, int prezzo, int quantitaMagazzino, int valido, String nome, String descrizione) {
+    public ProdottoBean(int idProdotto, float prezzo, int quantitaMagazzino, int valido, String nome, String descrizione) {
         this.idProdotto = idProdotto;
         this.prezzo = prezzo;
         this.quantitaMagazzino = quantitaMagazzino;
@@ -39,11 +39,11 @@ public class ProdottoBean implements Serializable {
         this.idProdotto = idProdotto;
     }
 
-    public int getPrezzo() {
+    public float getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(int prezzo) {
+    public void setPrezzo(float prezzo) {
         this.prezzo = prezzo;
     }
 

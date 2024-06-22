@@ -25,7 +25,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
 
             try (Connection connection = dataSource.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
-                preparedStatement.setInt(1, data.getPrezzo());
+                preparedStatement.setFloat(1, data.getPrezzo());
                 preparedStatement.setInt(2, data.getQuantitaMagazzino());
                 preparedStatement.setInt(3, data.getValidoProdotto());
                 preparedStatement.setString(4, data.getNome());
@@ -41,7 +41,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
             try (Connection connection = dataSource.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
                 preparedStatement.setInt(1, data.getIdProdotto());
-                preparedStatement.setInt(2, data.getPrezzo());
+                preparedStatement.setFloat(2, data.getPrezzo());
                 preparedStatement.setInt(3, data.getQuantitaMagazzino());
                 preparedStatement.setInt(4, data.getValidoProdotto());
                 preparedStatement.setString(5, data.getNome());
@@ -78,7 +78,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
                 if (rs.next()) {
                     ProdottoBean bean = new ProdottoBean();
                     bean.setIdProdotto(rs.getInt("ID_prodotto"));
-                    bean.setPrezzo(rs.getInt("prezzo"));
+                    bean.setPrezzo(rs.getFloat("prezzo"));
                     bean.setQuantitaMagazzino(rs.getInt("quantita_magazzino"));
                     bean.setValidoProdotto(rs.getInt("valido"));
                     bean.setNome(rs.getString("nome"));
@@ -106,7 +106,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
             while (rs.next()) {
                 ProdottoBean bean = new ProdottoBean();
                 bean.setIdProdotto(rs.getInt("ID_prodotto"));
-                bean.setPrezzo(rs.getInt("prezzo"));
+                bean.setPrezzo(rs.getFloat("prezzo"));
                 bean.setQuantitaMagazzino(rs.getInt("quantita_magazzino"));
                 bean.setValidoProdotto(rs.getInt("valido"));
                 bean.setNome(rs.getString("nome"));

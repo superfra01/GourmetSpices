@@ -10,7 +10,7 @@
 		   <% 
 	       UserBean user = (UserBean) request.getSession().getAttribute("utente");
 	       if (user != null) {
-	           int totalCost = 0;
+	           float totalCost = 0;
 	           Integer idCarrello = (Integer) request.getSession().getAttribute("idCarrello");
 	           List<ContenenteCarrelloBean> cartItems = (List<ContenenteCarrelloBean>) request.getSession().getAttribute("ContenenteCarrelloBeanList"+idCarrello.toString());
 	           if (cartItems != null && !cartItems.isEmpty()) {

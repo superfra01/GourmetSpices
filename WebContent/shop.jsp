@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.List, model.ProdottoBean, model.ImmagineProdottoBean" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.List, model.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,10 +29,13 @@
                             <h2><%= prodotto.getNome() %></h2>
                             <p><%= prodotto.getDescrizione() %></p>
                             <span>€ <%= prodotto.getPrezzo() %></span>
-                            <form action="<%=request.getContextPath()%>/CarrelloAggiungi" method="post">
-                                <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
-                                <button type="submit">Aggiungi al carrello</button>
-                            </form>
+                            <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
+            				if(user!=null){%>
+	                            <form action="<%=request.getContextPath()%>/CarrelloAggiungi" method="post">
+	                                <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
+	                                <button type="submit">Aggiungi al carrello</button>
+	                            </form>
+                            <%}%>
                         </div>
             <%
                     }

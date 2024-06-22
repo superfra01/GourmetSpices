@@ -55,7 +55,7 @@
                         	<button type="submit">Proceed to checkout</button>
                     	</form>
                 	</div>
-                	<div class="checkout-button">
+                	<div class="empty-button">
                 		<form action="<%= request.getContextPath() %>/SvuotaCarrello" method="get">
                         	<button type="submit">Empty cart</button>
                     	</form>

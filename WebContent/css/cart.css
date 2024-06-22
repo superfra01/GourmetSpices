@@ -47,3 +47,14 @@ main {
 .checkout-button button:hover {
     background-color: #E07363;
 }
+.empty-button button {
+    background-color: #E0AA77;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.empty-button button:hover {
+    background-color: #E07363;
+}

@@ -31,25 +31,6 @@
                 <button type="submit">Logout</button>
             </form>
         </div>
-        
-        <div class="payment-method">
-            <h2>Insert Payment Method</h2>
-            <form action="<%= request.getContextPath() %>/addPaymentMethod" method="post">
-                <label for="cardNumber">Card Number:</label>
-                <input type="text" id="cardNumber" name="cardNumber" required>
-                
-                <label for="expiryDate">Expiry Date:</label>
-                <input type="text" id="expiryDate" name="expiryDate" required>
-                
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" required>
-                
-                <label for="cardHolderName">Card Holder Name:</label>
-                <input type="text" id="cardHolderName" name="cardHolderName" required>
-                
-                <button type="submit">Add Payment Method</button>
-            </form>
-        </div>
 
         <div class="purchase-history">
             <h2>Purchase History</h2>

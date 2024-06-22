@@ -60,9 +60,7 @@
 	                </div>
 	                <!-- Order button -->
 	                <div class="checkout-button">
-	                    <form action="<%= request.getContextPath() %>/order" method="get">
-	                        <button type="submit">Proceed to checkout</button>
-	                    </form>
+	                    <button type="button" onclick="window.location.href='finalizza.jsp'">Proceed to checkout</button>
 	                </div>
 	                <div class="empty-button">
 	                    <form action="<%= request.getContextPath() %>/SvuotaCarrello" method="get">

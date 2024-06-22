@@ -32,7 +32,5 @@
     </section>
     
     <jsp:include page="footer.jsp" />
-    
-    <script src="<%= request.getContextPath() %>/scripts/script.js"></script>
 </body>
 </html>

@@ -41,7 +41,7 @@ public class UpdateQuantityServlet extends HttpServlet{
 		
 		List<String> errors = new ArrayList<>();
 		
-		RequestDispatcher dispatcherToCart = request.getRequestDispatcher("cart.jsp");
+		RequestDispatcher dispatcherToCart = request.getRequestDispatcher("carrello");
 
 		
 		if(email == null || email.trim().isEmpty()) {
@@ -65,17 +65,12 @@ public class UpdateQuantityServlet extends HttpServlet{
         	
         	ContenenteCarrelloDAO ContenenteCarrelli = new ContenenteCarrelloDAO((DataSource)getServletContext().getAttribute("DataSource"));
         	
-        	List<ContenenteCarrelloBean> ContenenteCarrelloList = (List<ContenenteCarrelloBean>) ContenenteCarrelli.doRetrieveByCarrelloKey(idCarrello);
-        	
-        	for(ContenenteCarrelloBean ContenenteCarrello: ContenenteCarrelloList) {
-        		int idProdotto = ContenenteCarrello.getIdProdotto();
-        		ContenenteCarrelloCombinedKey key = new ContenenteCarrelloCombinedKey(idProdotto,idCarrello);
-            	ContenenteCarrelli.doDelete(key);
-            	request.getSession().removeAttribute("ProdottoCarrello"+Integer.toString(idProdotto));
-            	request.getSession().removeAttribute("Prodottoimmagini"+Integer.toString(idProdotto));
-        	}
-        	request.getSession().removeAttribute("ContenenteCarrelloBeanList"+Integer.toString(idCarrello));
-        	
+        	String idProdotto = request.getParameter("updateProductId");
+        	ContenenteCarrelloCombinedKey key = new ContenenteCarrelloCombinedKey(Integer.parseInt(idProdotto), idCarrello);
+        	ContenenteCarrelloBean ContenenteCarrello = ContenenteCarrelli.doRetrieveByKey(key);
+        	int quantita = Integer.parseInt(request.getParameter("quantity"));
+        	ContenenteCarrello.setQuantita(quantita);
+        	ContenenteCarrelli.doSave(ContenenteCarrello);
         	
         }catch (SQLException e) {
 			// TODO Auto-generated catch block

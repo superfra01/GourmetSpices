@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" import="model.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.List, model.ProdottoBean, model.ImmagineProdottoBean" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,22 +12,29 @@
     
     <div class="shop-container">
         <h1>Benvenuto nel nostro Shop</h1>
+
         <div class="product-list">
-            <div class="product-item">
-                <img src="path/to/product1.jpg" alt="Product 1">
-                <h2>Prodotto 1</h2>
-                <p>Descrizione del prodotto 1.</p>
-                <span>€19.99</span>
-                <button>Aggiungi al carrello</button>
-            </div>
-            <div class="product-item">
-                <img src="path/to/product2.jpg" alt="Product 2">
-                <h2>Prodotto 2</h2>
-                <p>Descrizione del prodotto 2.</p>
-                <span>€29.99</span>
-                <button>Aggiungi al carrello</button>
-            </div>
-            <!-- Aggiungere altri prodotti secondo necessità -->
+            <%
+                List<ProdottoBean> prodottiList = (List<ProdottoBean>) request.getAttribute("ProdottiList");
+                if (prodottiList != null) {
+                    for (ProdottoBean prodotto : prodottiList) {
+                    	List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("Prodottoimmagini"+Integer.toString(item.getIdProdotto()));
+            %>
+                        <div class="product-item">
+                            <% for (ImmagineProdottoBean immagine : immagini) { %>
+                                <img src="<%=request.getContextPath()%>/images/prodotti/<%=immagine.getImmagine()%>" alt="<%= prodotto.getNome() %>">
+                            <% 
+                            	break;
+                            	} %>
+                            <h2><%= prodotto.getNome() %></h2>
+                            <p><%= prodotto.getDescrizione() %></p>
+                            <span>€ <%= prodotto.getPrezzo() %></span>
+                            <button>Aggiungi al carrello</button>
+                        </div>
+            <%
+                    }
+                }
+            %>
         </div>
     </div>
     

@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>Finalizza Pagamento</title>
+<link href="<%= request.getContextPath() %>/css/finalizza.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="header.jsp" />

@@ -24,6 +24,8 @@
             <p>Nome: <%= user.getNome() %></p>
             <p>Cognome: <%= user.getCognome() %></p>
             <p>Password: ******</p>
+            <%if (user.getTipoUtente().equals("ADMIN"))%>
+            	<button type="button" onclick="window.location.href='admin.jsp'">Admin Page</button>
         </div>
         
         <div class="logout-button">
@@ -60,7 +62,7 @@
                     %>
                     <tr>
                         <td><%= prodotto.getNome() %></td>
-                        <td><%= prodotto.getPrezzo() %></td>  
+                        <td><%= prodotto.getPrezzo() %></td> 
                     </tr>
                     <% 
                                 }

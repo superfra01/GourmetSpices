@@ -37,6 +37,7 @@ CREATE TABLE Prodotto (
     ID_prodotto INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     prezzo INT NOT NULL,
     quantita_magazzino INT NOT NULL,
+    valido INT NOT NULL,
     nome VARCHAR(50) NOT NULL,
     descrizione VARCHAR(50) NOT NULL
 );

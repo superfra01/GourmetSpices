@@ -8,6 +8,7 @@ public class ProdottoBean implements Serializable {
     private int idProdotto;
     private int prezzo;
     private int quantitaMagazzino;
+    private int valido;
     private String nome;
     private String descrizione;
     
@@ -15,14 +16,16 @@ public class ProdottoBean implements Serializable {
         this.idProdotto = -1;//id non specificato
         this.prezzo = 0;
         this.quantitaMagazzino = 0;
+        this.valido = 1;
         this.nome = "";
         this.descrizione = "";
     }
     
-    public ProdottoBean(int idProdotto, int prezzo, int quantitaMagazzino, String nome, String descrizione) {
+    public ProdottoBean(int idProdotto, int prezzo, int quantitaMagazzino, int valido, String nome, String descrizione) {
         this.idProdotto = idProdotto;
         this.prezzo = prezzo;
         this.quantitaMagazzino = quantitaMagazzino;
+        this.valido = valido;
         this.nome = nome;
         this.descrizione = descrizione;
     }
@@ -50,6 +53,14 @@ public class ProdottoBean implements Serializable {
 
     public void setQuantitaMagazzino(int quantitaMagazzino) {
         this.quantitaMagazzino = quantitaMagazzino;
+    }
+    
+    public int getValidoProdotto() {
+        return valido;
+    }
+
+    public void setValidoProdotto(int validoProdotto) {
+        this.valido = validoProdotto;
     }
 
     public String getNome() {

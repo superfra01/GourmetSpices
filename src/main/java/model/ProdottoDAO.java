@@ -21,29 +21,31 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
     public synchronized void doSave(ProdottoBean data) throws SQLException {
     	if(data.getIdProdotto()!=-1) {
     		String insertSQL = "INSERT INTO " + TABLE_NAME
-                    + " (prezzo, quantita_magazzino, nome, descrizione) VALUES (?, ?, ?, ?)";
+                    + " (prezzo, quantita_magazzino, valido, nome, descrizione) VALUES (?, ?, ?, ?, ?)";
 
             try (Connection connection = dataSource.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
                 preparedStatement.setInt(1, data.getPrezzo());
                 preparedStatement.setInt(2, data.getQuantitaMagazzino());
-                preparedStatement.setString(3, data.getNome());
-                preparedStatement.setString(4, data.getDescrizione());
+                preparedStatement.setInt(3, data.getValidoProdotto());
+                preparedStatement.setString(4, data.getNome());
+                preparedStatement.setString(5, data.getDescrizione());
 
                 preparedStatement.executeUpdate();
             }
     	}
     	else {
     		String insertSQL = "INSERT INTO " + TABLE_NAME
-                    + " (ID_prodotto, prezzo, quantita_magazzino, nome, descrizione) VALUES (?, ?, ?, ?, ?)";
+                    + " (ID_prodotto, prezzo, quantita_magazzino, valido, nome, descrizione) VALUES (?, ?, ?, ?, ?, ?)";
 
             try (Connection connection = dataSource.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
                 preparedStatement.setInt(1, data.getIdProdotto());
                 preparedStatement.setInt(2, data.getPrezzo());
                 preparedStatement.setInt(3, data.getQuantitaMagazzino());
-                preparedStatement.setString(4, data.getNome());
-                preparedStatement.setString(5, data.getDescrizione());
+                preparedStatement.setInt(4, data.getValidoProdotto());
+                preparedStatement.setString(5, data.getNome());
+                preparedStatement.setString(6, data.getDescrizione());
 
                 preparedStatement.executeUpdate();
             }
@@ -78,6 +80,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
                     bean.setIdProdotto(rs.getInt("ID_prodotto"));
                     bean.setPrezzo(rs.getInt("prezzo"));
                     bean.setQuantitaMagazzino(rs.getInt("quantita_magazzino"));
+                    bean.setValidoProdotto(rs.getInt("valido"));
                     bean.setNome(rs.getString("nome"));
                     bean.setDescrizione(rs.getString("descrizione"));
                     return bean;
@@ -105,6 +108,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
                 bean.setIdProdotto(rs.getInt("ID_prodotto"));
                 bean.setPrezzo(rs.getInt("prezzo"));
                 bean.setQuantitaMagazzino(rs.getInt("quantita_magazzino"));
+                bean.setValidoProdotto(rs.getInt("valido"));
                 bean.setNome(rs.getString("nome"));
                 bean.setDescrizione(rs.getString("descrizione"));
                 prodotti.add(bean);

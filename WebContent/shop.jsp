@@ -29,7 +29,10 @@
                             <h2><%= prodotto.getNome() %></h2>
                             <p><%= prodotto.getDescrizione() %></p>
                             <span>€ <%= prodotto.getPrezzo() %></span>
-                            <button>Aggiungi al carrello</button>
+                            <form action="<%=request.getContextPath()%>/CarrelloAggiungi" method="post">
+                                <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
+                                <button type="submit">Aggiungi al carrello</button>
+                            </form>
                         </div>
             <%
                     }

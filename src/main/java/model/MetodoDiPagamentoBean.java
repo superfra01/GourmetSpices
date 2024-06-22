@@ -1,24 +1,28 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
 
 public class MetodoDiPagamentoBean implements Serializable {
     private static final long serialVersionUID = 2856723757650934255L;
     
     private String email;
-    private String nCartaIban;
-    private String metodo;
+    private String NCarta;
+    private String CVV;
+    private Date data;
     
     public MetodoDiPagamentoBean() {
         this.email = "";
-        this.nCartaIban = "";
-        this.metodo = "";
+        this.NCarta = "";
+        this.CVV = "";
     }
     
-    public MetodoDiPagamentoBean(String email, String nCartaIban, String metodo) {
+    public MetodoDiPagamentoBean(String email, String nCartaIban, String metodo, Date data) {
         this.email = email;
-        this.nCartaIban = nCartaIban;
-        this.metodo = metodo;
+        this.NCarta = nCartaIban;
+        this.CVV = metodo;
     }
 
     // Getters and Setters
@@ -30,19 +34,27 @@ public class MetodoDiPagamentoBean implements Serializable {
         this.email = email;
     }
 
-    public String getnCartaIban() {
-        return nCartaIban;
+    public String getNCarta() {
+        return NCarta;
     }
 
-    public void setnCartaIban(String nCartaIban) {
-        this.nCartaIban = nCartaIban;
+    public void setNCarta(String NCarta) {
+        this.NCarta = NCarta;
     }
 
-    public String getMetodo() {
-        return metodo;
+    public String getCVV() {
+        return CVV;
     }
 
-    public void setMetodo(String metodo) {
-        this.metodo = metodo;
+    public void setCVV(String CVV) {
+        this.CVV = CVV;
     }
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
 }

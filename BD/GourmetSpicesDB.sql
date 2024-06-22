@@ -3,16 +3,16 @@ CREATE DATABASE GourmetSpicesDB;
 
 USE GourmetSpicesDB;
 
--- Elimina le tabelle se esistono giï¿½ nell'ordine corretto per rispettare le chiavi esterne
+-- Elimina le tabelle se esistono già nell'ordine corretto per rispettare le chiavi esterne
 DROP TABLE IF EXISTS Spedizione;
 DROP TABLE IF EXISTS Contenente;
 DROP TABLE IF EXISTS Carrello;
-DROP TABLE IF EXISTS contenente_carrello;
+DROP TABLE IF EXISTS Contenente_Carrello;
 DROP TABLE IF EXISTS Ordine;
 DROP TABLE IF EXISTS Metodo_Di_Pagamento;
 DROP TABLE IF EXISTS Prodotto;
 DROP TABLE IF EXISTS Utente;
-DROP TABLE IF EXISTS Immagine_prodotto;
+DROP TABLE IF EXISTS Immagine_Prodotto;
 
 -- Creazione della tabella Utente
 CREATE TABLE Utente (
@@ -27,8 +27,9 @@ CREATE TABLE Utente (
 -- Creazione della tabella Metodo_Di_Pagamento
 CREATE TABLE Metodo_Di_Pagamento (
     email VARCHAR(50) NOT NULL,
-    N_carta_iban VARCHAR(50) PRIMARY KEY NOT NULL,
-    metodo VARCHAR(50) NOT NULL,
+    NCarta VARCHAR(16) PRIMARY KEY NOT NULL,
+    CVV VARCHAR(50) NOT NULL,
+    data DATE NOT NULL,
     FOREIGN KEY (email) REFERENCES Utente(email)
 );
 
@@ -41,45 +42,44 @@ CREATE TABLE Prodotto (
     nome VARCHAR(50) NOT NULL,
     descrizione VARCHAR(50) NOT NULL
 );
--- Creazione della tabella immagine_prodotto
+
+-- Creazione della tabella Immagine_Prodotto
 CREATE TABLE Immagine_Prodotto (
     ID_prodotto INT NOT NULL,
     ID_immagine INT NOT NULL AUTO_INCREMENT,
-    Immagine varchar(50) NOT NULL,
+    Immagine VARCHAR(50) NOT NULL,
     PRIMARY KEY (ID_immagine),
     FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto)
 );
 
 -- Creazione della tabella Carrello
-
-CREATE TABLE Carrello(
-	ID_carrello INT NOT NULL AUTO_INCREMENT,
-	email VARCHAR(50) NOT NULL,
-	PRIMARY KEY(ID_carrello),
-	FOREIGN KEY (email) REFERENCES Utente(email)
-	
+CREATE TABLE Carrello (
+    ID_carrello INT NOT NULL AUTO_INCREMENT,
+    email VARCHAR(50) NOT NULL,
+    PRIMARY KEY (ID_carrello),
+    FOREIGN KEY (email) REFERENCES Utente(email)
 );
 
 -- Creazione della tabella Contenente_Carrello
 CREATE TABLE Contenente_Carrello (
-    ID_carrello INT NOT NULL AUTO_INCREMENT,
+    ID_carrello INT NOT NULL,
     ID_prodotto INT NOT NULL,
     quantita INT NOT NULL,
     FOREIGN KEY (ID_carrello) REFERENCES Carrello(ID_carrello),
     FOREIGN KEY (ID_prodotto) REFERENCES Prodotto(ID_prodotto),
-    PRIMARY KEY(ID_carrello, ID_prodotto)
+    PRIMARY KEY (ID_carrello, ID_prodotto)
 );
 
 -- Creazione della tabella Ordine
 CREATE TABLE Ordine (
     ID_ordine INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    N_carta_iban VARCHAR(50) NOT NULL,
+    NCarta VARCHAR(16) NOT NULL,
     email VARCHAR(50) NOT NULL,
     data DATE NOT NULL,
     spesa FLOAT NOT NULL,
     indirizzo VARCHAR(50) NOT NULL,
     FOREIGN KEY (email) REFERENCES Utente(email),
-    FOREIGN KEY (N_carta_iban) REFERENCES Metodo_Di_Pagamento(N_carta_iban)
+    FOREIGN KEY (NCarta) REFERENCES Metodo_Di_Pagamento(NCarta)
 );
 
 -- Creazione della tabella Spedizione
@@ -125,16 +125,16 @@ VALUES
 (4, 80, 'Coriandolo', 'Coriandolo in polvere');
 
 -- Inserimento dei metodi di pagamento
-INSERT INTO Metodo_Di_Pagamento (email, N_carta_iban, metodo)
+INSERT INTO Metodo_Di_Pagamento (email, NCarta, CVV, data)
 VALUES
-('giulia.fiori@email.com', 'IT60X0542811101000000123456', 'Carta di Credito'),
-('antonio.verdi@email.com', 'IT30Y0542811101000000654321', 'PayPal');
+('giulia.fiori@email.com', '1234567890123456', '123', '2024-12-31'),
+('antonio.verdi@email.com', '9876543210987654', '456', '2025-06-30');
 
 -- Inserimento degli ordini
-INSERT INTO Ordine (N_carta_iban, email, data, spesa, indirizzo)
+INSERT INTO Ordine (NCarta, email, data, spesa, indirizzo)
 VALUES
-('IT60X0542811101000000123456', 'giulia.fiori@email.com', '2024-06-05', 10.00, 'Via Roma 1'),
-('IT30Y0542811101000000654321', 'antonio.verdi@email.com', '2024-06-05', 7.00, 'Via Milano 2');
+('1234567890123456', 'giulia.fiori@email.com', '2024-06-05', 10.00, 'Via Roma 1'),
+('9876543210987654', 'antonio.verdi@email.com', '2024-06-05', 7.00, 'Via Milano 2');
 
 -- Inserimento delle spedizioni
 INSERT INTO Spedizione (ID_ordine, N_spedizione, G_di_arrivo, corriere)
@@ -167,7 +167,7 @@ VALUES
 (2, 5, 3),
 (2, 6, 1);
 
--- Inserimento di un'immagine nella tabella
+-- Inserimento di un'immagine nella tabella Immagine_Prodotto
 INSERT INTO Immagine_Prodotto (ID_prodotto, Immagine)
 VALUES 
 (1, 'pepe-nero.jpg'),
@@ -176,4 +176,3 @@ VALUES
 (6, 'cumino-zoom.jpg'),
 (7, 'coriandolo.jpg'),
 (7, 'coriandolo-zoom.jpg');
-

@@ -29,7 +29,7 @@ import model.ProdottoBean;
 import model.ProdottoDAO;
 import model.UserBean;
 import model.UserDAO;
-
+@WebServlet("/shop")
 public class ShopServlet extends HttpServlet{
 	private static final long serialVersionUID = -86976045570564505L;
 
@@ -43,12 +43,14 @@ public class ShopServlet extends HttpServlet{
 		ProdottoDAO Prodotti = new ProdottoDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
 		ImmagineProdottoDAO ImmagineProdotti = new ImmagineProdottoDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
 		try {
-			List<ProdottoBean> ProdottiList = (List<ProdottoBean>) Prodotti.doRetrieveAll("ID_prodotto");
+			List<ProdottoBean> ProdottiList = (List<ProdottoBean>) Prodotti.doRetrieveAll("");
+			request.getSession().setAttribute("ProdottiList", ProdottiList);
 			for(ProdottoBean Prodotto :ProdottiList) {
 				int idProdotto = Prodotto.getIdProdotto();
-				request.getSession().setAttribute("Prodotto"+Integer.toString(idProdotto), Prodotto);
+				
 				List<ImmagineProdottoBean> ImmagineProdottoBeanList = (List<ImmagineProdottoBean>) ImmagineProdotti.doRetrieveByProductKey(idProdotto);
-				request.getSession().setAttribute("ImmagineProdotto"+Integer.toString(idProdotto), Prodotto);
+				
+				request.getSession().setAttribute("ImmagineProdotto"+Integer.toString(idProdotto), ImmagineProdottoBeanList);
 				
 				
 			}

@@ -15,10 +15,10 @@
 
         <div class="product-list">
             <%
-                List<ProdottoBean> prodottiList = (List<ProdottoBean>) request.getAttribute("ProdottiList");
+                List<ProdottoBean> prodottiList = (List<ProdottoBean>) request.getSession().getAttribute("ProdottiList");
                 if (prodottiList != null) {
                     for (ProdottoBean prodotto : prodottiList) {
-                    	List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("Prodottoimmagini"+Integer.toString(prodotto.getIdProdotto()));
+                    	List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("ImmagineProdotto"+Integer.toString(prodotto.getIdProdotto()));
             %>
                         <div class="product-item">
                             <% for (ImmagineProdottoBean immagine : immagini) { %>

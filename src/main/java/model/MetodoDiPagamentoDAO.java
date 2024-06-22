@@ -19,14 +19,16 @@ public class MetodoDiPagamentoDAO implements BeanDAO<MetodoDiPagamentoBean, Stri
 
     @Override
     public synchronized void doSave(MetodoDiPagamentoBean data) throws SQLException {
-        String insertSQL = "INSERT INTO " + TABLE_NAME
-                + " (email, N_carta_iban, metodo) VALUES (?, ?, ?)";
+        String insertSQL = "INSERT INTO " + TABLE_NAME 
+                + " (email, NCarta, CVV, data) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
             preparedStatement.setString(1, data.getEmail());
-            preparedStatement.setString(2, data.getnCartaIban());
-            preparedStatement.setString(3, data.getMetodo());
+            preparedStatement.setString(2, data.getNCarta());
+            preparedStatement.setString(3, data.getCVV());
+            preparedStatement.setDate(3, data.getData());
+
 
             preparedStatement.executeUpdate();
         }
@@ -34,7 +36,7 @@ public class MetodoDiPagamentoDAO implements BeanDAO<MetodoDiPagamentoBean, Stri
 
     @Override
     public synchronized boolean doDelete(String code) throws SQLException {
-        String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE nCartaIban = ?";
+        String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE NCarta = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL)) {
@@ -46,7 +48,7 @@ public class MetodoDiPagamentoDAO implements BeanDAO<MetodoDiPagamentoBean, Stri
 
     @Override
     public synchronized MetodoDiPagamentoBean doRetrieveByKey(String code) throws SQLException {
-        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE N_carta_iban = ?";
+        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE NCarta = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
@@ -56,8 +58,9 @@ public class MetodoDiPagamentoDAO implements BeanDAO<MetodoDiPagamentoBean, Stri
                 if (rs.next()) {
                     MetodoDiPagamentoBean bean = new MetodoDiPagamentoBean();
                     bean.setEmail(rs.getString("email"));
-                    bean.setnCartaIban(rs.getString("nCartaIban"));
-                    bean.setMetodo(rs.getString("metodo"));
+                    bean.setNCarta(rs.getString("NCarta"));
+                    bean.setCVV(rs.getString("CVV"));
+                    bean.setData(rs.getDate("data"));
                     return bean;
                 }
             }
@@ -78,8 +81,9 @@ public class MetodoDiPagamentoDAO implements BeanDAO<MetodoDiPagamentoBean, Stri
                 while(rs.next()) {
                     MetodoDiPagamentoBean bean = new MetodoDiPagamentoBean();
                     bean.setEmail(rs.getString("email"));
-                    bean.setnCartaIban(rs.getString("nCartaIban"));
-                    bean.setMetodo(rs.getString("metodo"));
+                    bean.setNCarta(rs.getString("NCarta"));
+                    bean.setCVV(rs.getString("CVV"));
+                    bean.setData(rs.getDate("data"));
                     metodiDiPagamento.add(bean);
                 }
             }
@@ -104,8 +108,9 @@ public class MetodoDiPagamentoDAO implements BeanDAO<MetodoDiPagamentoBean, Stri
             while (rs.next()) {
                 MetodoDiPagamentoBean bean = new MetodoDiPagamentoBean();
                 bean.setEmail(rs.getString("email"));
-                bean.setnCartaIban(rs.getString("N_carta_iban"));
-                bean.setMetodo(rs.getString("metodo"));
+                bean.setNCarta(rs.getString("NCarta"));
+                bean.setCVV(rs.getString("CVV"));
+                bean.setData(rs.getDate("data"));
                 metodiDiPagamento.add(bean);
             }
         }

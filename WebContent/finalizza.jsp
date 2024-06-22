@@ -9,26 +9,7 @@
 	<main>
 		   <% 
 	       UserBean user = (UserBean) request.getSession().getAttribute("utente");
-	       if (user != null) {%>
-		    	   <div class="payment-method">
-		            <h2>Insert Payment Method</h2>
-		            <form action="<%= request.getContextPath() %>/addPaymentMethod" method="post">
-		                <label for="cardNumber">Card Number:</label>
-		                <input type="text" id="cardNumber" name="cardNumber" required>
-		                
-		                <label for="expiryDate">Expiry Date:</label>
-		                <input type="text" id="expiryDate" name="expiryDate" required>
-		                
-		                <label for="cvv">CVV:</label>
-		                <input type="text" id="cvv" name="cvv" required>
-		                
-		                <label for="cardHolderName">Card Holder Name:</label>
-		                <input type="text" id="cardHolderName" name="cardHolderName" required>
-		                
-		                <button type="submit">Add Payment Method</button>
-		             </form>
-		        	</div>
-		       <%
+	       if (user != null) {
 	           int totalCost = 0;
 	           Integer idCarrello = (Integer) request.getSession().getAttribute("idCarrello");
 	           List<ContenenteCarrelloBean> cartItems = (List<ContenenteCarrelloBean>) request.getSession().getAttribute("ContenenteCarrelloBeanList"+idCarrello.toString());
@@ -63,11 +44,24 @@
 	                   <p>Total Cost: <b><%= totalCost %></b>€</p>
 	               </div>
 	               <!-- Order button -->
-	               <div class="order-button">
-	                   <form action="<%= request.getContextPath() %>/order" method="get">
-	                       <button type="submit">Order products</button>
-	                   </form>
-	               </div>
+		    	   <div class="payment-method">
+		            <h2>Insert Payment Method</h2>
+		            <form action="<%= request.getContextPath() %>/order" method="post">
+		                <label for="cardNumber">Card Number:</label>
+		                <input type="text" id="cardNumber" name="cardNumber" required>
+		                
+		                <label for="expiryDate">Expiry Date:</label>
+		                <input type="text" id="expiryDate" name="expiryDate" required>
+		                
+		                <label for="cvv">CVV:</label>
+		                <input type="text" id="cvv" name="cvv" required>
+		                
+		                <label for="cardHolderName">Card Holder Name:</label>
+		                <input type="text" id="cardHolderName" name="cardHolderName" required>
+		                
+		                <button type="submit">Effettua pagamento e concludi ordine</button>
+		             </form>
+		        	</div>
 	               <%
 	       } else {
 	           // Handle not logged in scenario

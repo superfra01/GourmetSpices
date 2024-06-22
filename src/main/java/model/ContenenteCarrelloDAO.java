@@ -39,7 +39,6 @@ public class ContenenteCarrelloDAO implements BeanDAO<ContenenteCarrelloBean,Con
             preparedStatement.setString(1, idCarrello);
             preparedStatement.setString(2, idProdotto);
             preparedStatement.setInt(3, data.getQuantita());
-            System.out.println(data.getQuantita());
             preparedStatement.executeUpdate();
         } finally {
             try {

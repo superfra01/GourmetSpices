@@ -22,7 +22,7 @@ import model.ProdottoDAO;
 import model.UserBean;
 
 
-@WebServlet("CarrelloAggiungi")
+@WebServlet("/carrelloaggiungi")
 public class CarrelloAggiungiServlet extends HttpServlet{
 
 	/**
@@ -32,6 +32,7 @@ public class CarrelloAggiungiServlet extends HttpServlet{
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		RequestDispatcher dispatcherToShop = request.getRequestDispatcher("shop.jsp");
 		String idProdotto = request.getParameter("AddProdottoId");
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 		String email = utente.getEmail();
@@ -55,7 +56,7 @@ public class CarrelloAggiungiServlet extends HttpServlet{
 		}
 		
 				
-			
+		dispatcherToShop.forward(request, response);
 		
 		
 		

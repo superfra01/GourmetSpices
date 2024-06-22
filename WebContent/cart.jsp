@@ -29,13 +29,14 @@
                         %>
                         <div class="cart-item">
                             <p><%= product.getNome() %></p>
-                            <p>Quantity: <%= quantity %></p>
-                            <p>Price: <%= product.getPrezzo() %></p>
+                            <p>Quantity: <b><%= quantity %></b></p>
+                            <p>Price: <b><%= product.getPrezzo() %>€</b></p>
                             <%
                             for(ImmagineProdottoBean immagine : immagini) {                           	
                             %>
                             	<img src="<%=request.getContextPath()%>/images/prodotti/<%=immagine.getImmagine()%>">
                             <%	
+                            	break;
                             }
                             %>
                         </div>
@@ -46,7 +47,7 @@
                     %>
                     <!-- Display total cost -->
                     <div class="total-cost">
-                        <p>Total Cost: <%= totalCost %></p>
+                        <p>Total Cost: <b><%= totalCost %></b>€</p>
                     </div>
                     <!-- Order button -->
                     <div class="logout-button">

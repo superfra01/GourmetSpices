@@ -95,7 +95,6 @@ public class CarrelloServlet extends HttpServlet{
 				//request.getSession().setAttribute(Integer.toString(idCarrello)+Integer.toString(ContenenteCarrello.getIdProdotto()),quantità);
 				request.getSession().setAttribute("ProdottoCarrello"+Integer.toString(idProdotto), Prodotto);
 				ProdottoBean product = (ProdottoBean) request.getSession().getAttribute("ProdottoCarrello"+idProdotto);
-				System.out.println("id fuori cart:"+idProdotto);
 				List<ImmagineProdottoBean> Immagini = (List<ImmagineProdottoBean>)ImmaginiProdotti.doRetrieveByProductKey(idProdotto);
 				request.getSession().setAttribute("Prodottoimmagini"+Integer.toString(idProdotto), Immagini);
 			}

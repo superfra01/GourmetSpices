@@ -59,6 +59,9 @@
 		                <label for="cardHolderName">Card Holder Name:</label>
 		                <input type="text" id="cardHolderName" name="cardHolderName" required>
 		                
+		                <label for="indirizzoSpedizione">Card Holder Name:</label>
+		                <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" required>
+		                
 		                <button type="submit">Effettua pagamento e concludi ordine</button>
 		             </form>
 		        	</div>

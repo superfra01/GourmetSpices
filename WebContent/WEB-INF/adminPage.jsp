@@ -8,6 +8,7 @@
 <link href="<%= request.getContextPath() %>/css/admin.css" rel="stylesheet">
 </head>
 <body>
+	
     <h1>Admin Page</h1>
     
     <!-- Form per inserire un nuovo elemento nel catalogo -->

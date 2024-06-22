@@ -18,23 +18,28 @@
                 List<ProdottoBean> prodottiList = (List<ProdottoBean>) request.getSession().getAttribute("ProdottiList");
                 if (prodottiList != null) {
                     for (ProdottoBean prodotto : prodottiList) {
-                    	List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("ImmagineProdotto"+Integer.toString(prodotto.getIdProdotto()));
+                        List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("ImmagineProdotto" + Integer.toString(prodotto.getIdProdotto()));
             %>
                         <div class="product-item">
                             <% for (ImmagineProdottoBean immagine : immagini) { %>
                                 <img src="<%=request.getContextPath()%>/images/prodotti/<%=immagine.getImmagine()%>" alt="<%= prodotto.getNome() %>">
                             <% 
-                            	break;
-                            	} %>
-                            <h2><%= prodotto.getNome() %></h2>
+                                break;
+                                } 
+                            %>
+                            <h2>
+                                <a href="<%=request.getContextPath()%>/specificaProdotto.jsp?id=<%= prodotto.getIdProdotto() %>">
+                                    <%= prodotto.getNome() %>
+                                </a>
+                            </h2>
                             <p><%= prodotto.getDescrizione() %></p>
                             <span>€ <%= prodotto.getPrezzo() %></span>
                             <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
-            				if(user!=null){%>
-	                            <form action="<%=request.getContextPath()%>/carrelloaggiungi" method="post">
-	                                <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
-	                                <button type="submit">Aggiungi al carrello</button>
-	                            </form>
+                            if(user!=null){%>
+                                <form action="<%=request.getContextPath()%>/carrelloaggiungi" method="post">
+                                    <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
+                                    <button type="submit">Aggiungi al carrello</button>
+                                </form>
                             <%}%>
                         </div>
             <%

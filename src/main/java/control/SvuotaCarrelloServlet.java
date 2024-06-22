@@ -68,11 +68,14 @@ public class SvuotaCarrelloServlet extends HttpServlet{
         	List<ContenenteCarrelloBean> ContenenteCarrelloList = (List<ContenenteCarrelloBean>) ContenenteCarrelli.doRetrieveByCarrelloKey(idCarrello);
         	
         	for(ContenenteCarrelloBean ContenenteCarrello: ContenenteCarrelloList) {
-        		ContenenteCarrelloCombinedKey key = new ContenenteCarrelloCombinedKey(ContenenteCarrello.getIdProdotto(),idCarrello);
+        		int idProdotto = ContenenteCarrello.getIdProdotto();
+        		ContenenteCarrelloCombinedKey key = new ContenenteCarrelloCombinedKey(idProdotto,idCarrello);
             	ContenenteCarrelli.doDelete(key);
-            		
-            	
+            	request.getSession().removeAttribute("ProdottoCarrello"+Integer.toString(idProdotto));
+            	request.getSession().removeAttribute("Prodottoimmagini"+Integer.toString(idProdotto));
         	}
+        	request.getSession().removeAttribute("ContenenteCarrelloBeanList"+Integer.toString(idCarrello));
+        	
         	
         }catch (SQLException e) {
 			// TODO Auto-generated catch block

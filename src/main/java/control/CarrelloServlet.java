@@ -30,7 +30,7 @@ import model.ProdottoDAO;
 import model.UserBean;
 import model.UserDAO;
 
-@WebServlet("/cart")
+@WebServlet("/carrello")
 public class CarrelloServlet extends HttpServlet{
 
 	/**
@@ -45,67 +45,8 @@ public class CarrelloServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String email = request.getParameter("email");
-		
-		
-		
-		List<String> errors = new ArrayList<>();
-		
-		RequestDispatcher dispatcherToCart = request.getRequestDispatcher("cart.jsp");
-
-		
-		if(email == null || email.trim().isEmpty()) {
-			errors.add("Il campo username non può essere vuoto!");
-		}
-		
-        if (!errors.isEmpty()) {
-        	request.setAttribute("errors", errors);
-        	dispatcherToCart.forward(request, response);
-        	return;
-        }
-        
-        email = email.trim();
-        
-        
-		
-		try {
-			CarrelloDAO Carrello = new CarrelloDAO((DataSource)getServletContext().getAttribute("DataSource"));
-	        CarrelloBean CarrelloBean = Carrello.doRetrieveByUserKey(email);
-			int idCarrello = CarrelloBean.getIdCarrello();
-	        
-			ContenenteCarrelloDAO Contenente = new ContenenteCarrelloDAO((DataSource)getServletContext().getAttribute("DataSource"));
-			ProdottoDAO Prodotti = new ProdottoDAO((DataSource)getServletContext().getAttribute("DataSource"));
-			ImmagineProdottoDAO ImmaginiProdotti = new ImmagineProdottoDAO((DataSource)getServletContext().getAttribute("DataSource"));
-			
-			request.getSession().setAttribute("idCarrello", idCarrello);
-		
-			List<ContenenteCarrelloBean> ContenenteCarrelloBeanList = (List<ContenenteCarrelloBean>) Contenente.doRetrieveByCarrelloKey(idCarrello);
-			for(ContenenteCarrelloBean ContenenteCarrello :ContenenteCarrelloBeanList) {
-				int quantità = ContenenteCarrello.getQuantita();
-				ProdottoBean Prodotto = Prodotti.doRetrieveByKey(ContenenteCarrello.getIdProdotto());
-				request.getSession().setAttribute(Integer.toString(idCarrello)+Integer.toString(ContenenteCarrello.getIdProdotto()),quantità);
-				request.getSession().setAttribute(Integer.toString(ContenenteCarrello.getIdProdotto()), Prodotto);
-				List<ImmagineProdottoBean> Immagini = (List<ImmagineProdottoBean>)ImmaginiProdotti.doRetrieveByProductKey(ContenenteCarrello.getIdProdotto());
-				request.getSession().setAttribute("images"+Integer.toString(ContenenteCarrello.getIdProdotto()), Immagini);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-		
-		
-		dispatcherToCart.forward(request, response);
-	}
-		
-		
-		
-
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String email = request.getParameter("email");
-		
+		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
+		String email = utente.getEmail();
 		
 		
 		List<String> errors = new ArrayList<>();
@@ -130,8 +71,15 @@ public class CarrelloServlet extends HttpServlet{
 		try {
 			CarrelloDAO Carrello = new CarrelloDAO((DataSource)getServletContext().getAttribute("DataSource"));
 	        CarrelloBean CarrelloBean = Carrello.doRetrieveByUserKey(email);
+	        if(CarrelloBean == null) {
+	        	System.out.println("merda");
+	        }
+	        //System.out.println("email"+CarrelloBean.getEmail());
 			int idCarrello = CarrelloBean.getIdCarrello();
-	        
+			//System.out.println(idCarrello);
+			
+			
+			
 			ContenenteCarrelloDAO Contenente = new ContenenteCarrelloDAO((DataSource)getServletContext().getAttribute("DataSource"));
 			ProdottoDAO Prodotti = new ProdottoDAO((DataSource)getServletContext().getAttribute("DataSource"));
 			ImmagineProdottoDAO ImmaginiProdotti = new ImmagineProdottoDAO((DataSource)getServletContext().getAttribute("DataSource"));
@@ -141,12 +89,15 @@ public class CarrelloServlet extends HttpServlet{
 			List<ContenenteCarrelloBean> ContenenteCarrelloBeanList = (List<ContenenteCarrelloBean>) Contenente.doRetrieveByCarrelloKey(idCarrello);
 			request.getSession().setAttribute("ContenenteCarrelloBeanList"+Integer.toString(idCarrello), ContenenteCarrelloBeanList);
 			for(ContenenteCarrelloBean ContenenteCarrello :ContenenteCarrelloBeanList) {
-				int quantità = ContenenteCarrello.getQuantita();
-				ProdottoBean Prodotto = Prodotti.doRetrieveByKey(ContenenteCarrello.getIdProdotto());
+				//int quantità = ContenenteCarrello.getQuantita();
+				int idProdotto = ContenenteCarrello.getIdProdotto();
+				ProdottoBean Prodotto = Prodotti.doRetrieveByKey(idProdotto);
 				//request.getSession().setAttribute(Integer.toString(idCarrello)+Integer.toString(ContenenteCarrello.getIdProdotto()),quantità);
-				request.getSession().setAttribute("prodotto"+Integer.toString(ContenenteCarrello.getIdProdotto()), Prodotto);
-				List<ImmagineProdottoBean> Immagini = (List<ImmagineProdottoBean>)ImmaginiProdotti.doRetrieveByProductKey(ContenenteCarrello.getIdProdotto());
-				request.getSession().setAttribute("prodottoimmagini"+Integer.toString(ContenenteCarrello.getIdProdotto()), Immagini);
+				request.getSession().setAttribute("ProdottoCarrello"+Integer.toString(idProdotto), Prodotto);
+				ProdottoBean product = (ProdottoBean) request.getSession().getAttribute("ProdottoCarrello"+idProdotto);
+				System.out.println("id fuori cart:"+idProdotto);
+				List<ImmagineProdottoBean> Immagini = (List<ImmagineProdottoBean>)ImmaginiProdotti.doRetrieveByProductKey(idProdotto);
+				request.getSession().setAttribute("Prodottoimmagini"+Integer.toString(idProdotto), Immagini);
 			}
 			
 		} catch (SQLException e) {
@@ -157,6 +108,16 @@ public class CarrelloServlet extends HttpServlet{
 		
 		
 		dispatcherToCart.forward(request, response);
+		
+		
+	}
+		
+		
+		
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		doGet(request, response);
 	}
 }
 	

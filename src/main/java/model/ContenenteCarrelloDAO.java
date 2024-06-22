@@ -123,7 +123,7 @@ public class ContenenteCarrelloDAO implements BeanDAO<ContenenteCarrelloBean,Con
         Collection<ContenenteCarrelloBean> contenenti = new ArrayList<>();
         
 
-        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE ID_prodotto = * AND ID_carrello = ?";
+        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE ID_carrello = ?";
 
         try {
             connection = dataSource.getConnection();

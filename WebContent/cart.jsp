@@ -50,9 +50,14 @@
                         <p>Total Cost: <b><%= totalCost %></b>€</p>
                     </div>
                     <!-- Order button -->
-                    <div class="logout-button">
+                    <div class="checkout-button">
                 		<form action="<%= request.getContextPath() %>/order" method="get">
                         	<button type="submit">Proceed to checkout</button>
+                    	</form>
+                	</div>
+                	<div class="checkout-button">
+                		<form action="<%= request.getContextPath() %>/SvuotaCarrello" method="get">
+                        	<button type="submit">Empty cart</button>
                     	</form>
                 	</div>
                 	<%

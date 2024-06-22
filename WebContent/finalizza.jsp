@@ -51,7 +51,7 @@
 		                <input type="text" id="cardNumber" name="cardNumber" required>
 		                
 		                <label for="expiryDate">Expiry Date:</label>
-		                <input type="text" id="expiryDate" name="expiryDate" required>
+		                <input type="date" id="expiryDate" name="expiryDate" required>
 		                
 		                <label for="cvv">CVV:</label>
 		                <input type="text" id="cvv" name="cvv" required>
@@ -59,7 +59,7 @@
 		                <label for="cardHolderName">Card Holder Name:</label>
 		                <input type="text" id="cardHolderName" name="cardHolderName" required>
 		                
-		                <label for="indirizzoSpedizione">Card Holder Name:</label>
+		                <label for="indirizzoSpedizione">Indirizzo di spedizione:</label>
 		                <input type="text" id="indirizzoSpedizione" name="indirizzoSpedizione" required>
 		                
 		                <button type="submit">Effettua pagamento e concludi ordine</button>

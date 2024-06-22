@@ -17,52 +17,55 @@
             UserBean user = (UserBean) request.getSession().getAttribute("utente");
             if (user != null) {
                 int totalCost = 0;
-                Integer idCarrello = (Integer) request.getSession().getAttribute("idCarrello");
-                List<ContenenteCarrelloBean> cartItems = (List<ContenenteCarrelloBean>) request.getSession().getAttribute("ContenenteCarrelloBeanList"+idCarrello.toString());
+                int idCarrello = (int) request.getSession().getAttribute("idCarrello");
+                List<ContenenteCarrelloBean> cartItems = (List<ContenenteCarrelloBean>) request.getSession().getAttribute("ContenenteCarrelloBeanList"+ Integer.toString(idCarrello));
                 if (cartItems != null && !cartItems.isEmpty()) {
                     for (ContenenteCarrelloBean item : cartItems) {
-                    	System.out.println("id dentro cart:"+item.getIdProdotto());
-                        ProdottoBean product = (ProdottoBean) request.getSession().getAttribute("ProdottoCarrello"+item.getIdProdotto());
-                        if(product==null)
-        					System.out.println("dio merda");
+                        List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("prodottoimmagini" + Integer.toString(item.getIdProdotto()));
+                        ProdottoBean product = (ProdottoBean) request.getSession().getAttribute("Prodotto" + Integer.toString(item.getIdProdotto()));
                         int quantity = item.getQuantita();
-                        
-                        List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("Prodottoimmagini"+Integer.toString(item.getIdProdotto()));
                         // Display product information and quantity
                         %>
                         <div class="cart-item">
-                            <p><%= product.getNome() %></p>
-                            <p>Quantity: <%= quantity %></p>
-                            <p>Price: <%= product.getPrezzo() %></p>
-                            <%
-                            for(ImmagineProdottoBean immagine : immagini) {                           	
-                            %>
-                            	<img src="<%=request.getContextPath()%>/images/prodotti/<%=immagine.getImmagine()%>">
-                            <%	
-                            }
-                            %>
+                            <div class="cart-item-image">
+                                <%
+                                if (immagini != null && !immagini.isEmpty()) {
+                                    for (ImmagineProdottoBean immagine : immagini) {
+                                %>
+                                    <img src="<%=request.getContextPath()%>/images/prodotti/<%=immagine.getImmagine()%>">
+                                <%
+                                        break;
+                                    }
+                                }
+                                %>
+                            </div>
+                            <div class="cart-item-details">
+                                <p><strong><%= product.getNome() %></strong></p>
+                                <p>Quantity: <%= quantity %></p>
+                                <p>Price: $<%= product.getPrezzo() %></p>
+                            </div>
+                            <div class="cart-item-price">
+                                <p>$<%= quantity * product.getPrezzo() %></p>
+                            </div>
                         </div>
                         <% 
                         // Calculate total cost
                         totalCost += quantity * product.getPrezzo();
                     }
                     %>
-                    <!-- Display total cost -->
                     <div class="total-cost">
-                        <p>Total Cost: <%= totalCost %></p>
+                        <p><strong>Total Cost: $<%= totalCost %></strong></p>
                     </div>
-                    <!-- Order button -->
-                    <div class="logout-button">
-                		<form action="<%= request.getContextPath() %>/order" method="get">
-                        	<button type="submit">Proceed to checkout</button>
-                    	</form>
-                	</div>
-                	<%
+                    <div class="checkout-button">
+                        <form action="<%= request.getContextPath() %>/order" method="get">
+                            <button type="submit">Proceed to Checkout</button>
+                        </form>
+                    </div>
+                    <%
                 } else {
                     // Handle empty cart scenario
                     %>
                     <div class="error-message">
-                    	<%=idCarrello%>
                         <p>Your cart is empty.</p>
                     </div>
                     <% 

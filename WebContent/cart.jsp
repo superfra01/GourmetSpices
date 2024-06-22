@@ -30,7 +30,7 @@
                         <div class="cart-item">
                             <p><%= product.getNome() %></p>
                             <form action="<%= request.getContextPath() %>/UpdateQuantity" method="post">
-                                <input type="hidden" name="productId" value="<%= item.getIdProdotto() %>">
+                                <input type="hidden" name="updateProductId" value="<%= item.getIdProdotto() %>">
                                 <label for="quantity<%= item.getIdProdotto() %>">Quantity:</label>
                                 <input type="text" id="quantity<%=item.getIdProdotto()%>" name="quantity" value="<%= quantity %>">
                                 <button type="submit">Update</button>

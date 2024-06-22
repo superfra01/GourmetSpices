@@ -25,19 +25,21 @@ public class ContenenteCarrelloDAO implements BeanDAO<ContenenteCarrelloBean,Con
         PreparedStatement preparedStatement = null;
 
         String insertSQL = "INSERT INTO " + TABLE_NAME
-                + " (ID_carrello, ID_ordine, quantita) VALUES (?, ?, ?)";
+                + " (ID_carrello, ID_prodotto, quantita) VALUES (?, ?, ?)"+
+        		"ON DUPLICATE KEY UPDATE quantita = VALUES(quantita)";
+        		
 
         try {
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(insertSQL);
 
             String idProdotto = data.getIdProdotto() == 0 ? "*" : String.valueOf(data.getIdProdotto());
-            String idOrdine = data.getIdCarrello() == 0 ? "*" : String.valueOf(data.getIdCarrello());
+            String idCarrello = data.getIdCarrello() == 0 ? "*" : String.valueOf(data.getIdCarrello());
 
-            preparedStatement.setString(1, idProdotto);
-            preparedStatement.setString(2, idOrdine);
+            preparedStatement.setString(1, idCarrello);
+            preparedStatement.setString(2, idProdotto);
             preparedStatement.setInt(3, data.getQuantita());
-
+            System.out.println(data.getQuantita());
             preparedStatement.executeUpdate();
         } finally {
             try {

@@ -32,7 +32,7 @@
                             <form action="<%= request.getContextPath() %>/updateQuantity" method="post">
                                 <input type="hidden" name="productId" value="<%= item.getIdProdotto() %>">
                                 <label for="quantity<%= item.getIdProdotto() %>">Quantity:</label>
-                                <input type="text" id="quantity<%= item.getIdProdotto() %>" name="quantity" value="<%= quantity %>">
+                                <input type="text" id="quantity<%=item.getIdProdotto()%>" name="quantity" value="<%= quantity %>">
                                 <button type="submit">Update</button>
                             </form>
                             <p>Price: <b><%= product.getPrezzo() %>€</b></p>

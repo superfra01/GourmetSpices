@@ -18,7 +18,7 @@
                 List<ProdottoBean> prodottiList = (List<ProdottoBean>) request.getAttribute("ProdottiList");
                 if (prodottiList != null) {
                     for (ProdottoBean prodotto : prodottiList) {
-                    	List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("Prodottoimmagini"+Integer.toString(item.getIdProdotto()));
+                    	List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("Prodottoimmagini"+Integer.toString(prodotto.getIdProdotto()));
             %>
                         <div class="product-item">
                             <% for (ImmagineProdottoBean immagine : immagini) { %>

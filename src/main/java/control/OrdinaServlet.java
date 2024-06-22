@@ -16,7 +16,7 @@ public class OrdinaServlet extends HttpServlet{
 	private static final long serialVersionUID = 137981767037505776L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        response.sendRedirect("login.jsp");
+        
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

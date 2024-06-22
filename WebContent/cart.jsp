@@ -41,7 +41,7 @@
 	                        <div class="cart-item-details">
 	                            <p><%= product.getNome() %></p>
 	                            <form action="<%= request.getContextPath() %>/UpdateQuantity" method="post">
-	                                <input type="hidden" name="productId" value="<%= item.getIdProdotto() %>">
+	                                <input type="hidden" name="updateProductId" value="<%= item.getIdProdotto() %>">
 	                                <label for="quantity<%= item.getIdProdotto() %>">Quantity:</label>
 	                                <input type="number" id="quantity<%=item.getIdProdotto()%>" name="quantity" value="<%= quantity %>" min="1">
 	                                <button type="submit">Update</button>
@@ -74,7 +74,6 @@
 	                // Handle empty cart scenario
 	                %>
 	                <div class="error-message">
-	                    <%=idCarrello%>
 	                    <p>Your cart is empty.</p>
 	                </div>
 	                <% 

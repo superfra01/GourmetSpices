@@ -83,7 +83,7 @@ public class SingInServlet extends HttpServlet{
 			user.setEmail(email);
 			user.setPassword(password);
 			user.setUsername(username);
-			user.setTipoUtente("user");
+			user.setTipoUtente("USER");
 			
 			account.doSave(user);
 		} catch (SQLException e) {

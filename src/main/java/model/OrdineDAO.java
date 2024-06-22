@@ -22,10 +22,10 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
     public synchronized void doSave(OrdineBean data) throws SQLException {
     	if(data.getIdOrdine()==-1) {
     		String insertSQL = "INSERT INTO " + OrdineDAO.TABLE_NAME
-                    + " (nCartaIban, email, data, spesa, indirizzo) VALUES (?, ?, ?, ?, ?)";
+                    + " (NCarta, email, data, spesa, indirizzo) VALUES (?, ?, ?, ?, ?)";
     		try (Connection connection = dataSource.getConnection();
     	            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
-    	            preparedStatement.setString(1, data.getnCartaIban());
+    	            preparedStatement.setString(1, data.getNCarta());
     	            preparedStatement.setString(2, data.getEmail());
     	            preparedStatement.setDate(3, new Date(data.getData().getTime()));
     	            preparedStatement.setFloat(4, data.getSpesa());
@@ -37,11 +37,11 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
     		
     	else {
     		String insertSQL = "INSERT INTO " + OrdineDAO.TABLE_NAME
-                	+ " (ID_ordine, nCartaIban, email, data, spesa, indirizzo) VALUES (?, ?, ?, ?, ?, ?)";
+                	+ " (ID_ordine, NCarta, email, data, spesa, indirizzo) VALUES (?, ?, ?, ?, ?, ?)";
     		try (Connection connection = dataSource.getConnection();
     	            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
     				preparedStatement.setInt(1, data.getIdOrdine());
-    	            preparedStatement.setString(2, data.getnCartaIban());
+    	            preparedStatement.setString(2, data.getNCarta());
     	            preparedStatement.setString(3, data.getEmail());
     	            preparedStatement.setDate(4, new Date(data.getData().getTime()));
     	            preparedStatement.setFloat(6, data.getSpesa());
@@ -97,7 +97,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
             	 while (rs.next()) {
                      OrdineBean bean = new OrdineBean();
                      bean.setIdOrdine(rs.getInt("idOrdine"));
-                     bean.setnCartaIban(rs.getString("nCartaIban"));
+                     bean.setnCartaIban(rs.getString("NCarta"));
                      bean.setEmail(rs.getString("email"));
                      bean.setData(rs.getDate("data"));
                      bean.setSpesa(rs.getFloat("spesa"));
@@ -122,7 +122,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
                 if (rs.next()) {
                     OrdineBean bean = new OrdineBean();
                     bean.setIdOrdine(rs.getInt("idOrdine"));
-                    bean.setnCartaIban(rs.getString("nCartaIban"));
+                    bean.setnCartaIban(rs.getString("NCarta"));
                     bean.setEmail(rs.getString("email"));
                     bean.setData(rs.getDate("data"));
                     bean.setSpesa(rs.getFloat("spesa"));
@@ -150,7 +150,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
             while (rs.next()) {
                 OrdineBean bean = new OrdineBean();
                 bean.setIdOrdine(rs.getInt("idOrdine"));
-                bean.setnCartaIban(rs.getString("nCartaIban"));
+                bean.setnCartaIban(rs.getString("NCarta"));
                 bean.setEmail(rs.getString("email"));
                 bean.setData(rs.getDate("data"));
                 bean.setSpesa(rs.getFloat("spesa"));
@@ -162,4 +162,15 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
         return ordini;
     }
 	
+    public synchronized int nextId() throws SQLException{
+    	String selectSQL = "SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Ordine' AND TABLE_SCHEMA = 'GourmetSpicesDB'";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+            ResultSet rs = preparedStatement.executeQuery()) {
+        	return rs.getInt("AUTO_INCREMENT");
+           
+        }
+    }
 }
+

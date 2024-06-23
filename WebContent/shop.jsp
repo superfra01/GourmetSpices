@@ -28,7 +28,7 @@
                                 } 
                             %>
                             <h2>
-                                <a href="<%=request.getContextPath()%>/specificaProdotto.jsp?id=<%= prodotto.getIdProdotto() %>">
+                                <a href="<%=request.getContextPath()%>/ProdottoSpecificato?id=<%= prodotto.getIdProdotto() %>">
                                     <%= prodotto.getNome() %>
                                 </a>
                             </h2>

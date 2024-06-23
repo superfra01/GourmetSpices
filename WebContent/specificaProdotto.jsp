@@ -13,17 +13,8 @@
     <div class="product-details-container">
         <%
             int productId = Integer.parseInt(request.getParameter("id"));
-            List<ProdottoBean> prodottiList = (List<ProdottoBean>) request.getSession().getAttribute("ProdottiList");
-            ProdottoBean prodotto = null;
-            if (prodottiList != null) {
-                for (ProdottoBean p : prodottiList) {
-                    if (p.getIdProdotto() == productId) {
-                        prodotto = p;
-                        break;
-                    }
-                }
-            }
-            List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("ImmagineProdotto" + Integer.toString(productId));
+            ProdottoBean prodotto = (ProdottoBean) request.getSession().getAttribute("ProdottoRichiesto");
+            List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("ProdottoRichiestoImmagini");
         %>
         <div class="product-image">
             <% for (ImmagineProdottoBean immagine : immagini) { %>

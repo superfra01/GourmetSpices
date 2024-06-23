@@ -26,18 +26,10 @@
             List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("ImmagineProdotto" + Integer.toString(productId));
         %>
         <div class="product-image">
-		    <% 
-		    boolean firstImage = true;
-		    for (ImmagineProdottoBean immagine : immagini) {
-		        if (!firstImage) { // Saltiamo la prima immagine
-		    %>
-		        <img src="<%=request.getContextPath()%>/images/prodotti/<%=immagine.getImmagine()%>" alt="<%= prodotto.getNome() %>">
-		    <% 
-		        }
-		        firstImage = false;
-		    } 
-		    %>
-		</div>
+            <% for (ImmagineProdottoBean immagine : immagini) { %>
+                <img src="<%=request.getContextPath()%>/images/prodotti/<%=immagine.getImmagine()%>" alt="<%= prodotto.getNome() %>">
+            <% break; } %>
+        </div>
         <div class="product-info">
             <h1><%= prodotto.getNome() %></h1>
             <p><%= prodotto.getDescrizione() %></p>

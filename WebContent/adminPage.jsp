@@ -8,6 +8,7 @@
 <link href="<%= request.getContextPath() %>/css/admin.css" rel="stylesheet">
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 	
     <h1>Admin Page</h1>
     
@@ -60,5 +61,6 @@
             <input type="submit" value="Cancella">
         </form>
     </div>
+    <jsp:include page="footer.jsp" />
 </body>
 </html>

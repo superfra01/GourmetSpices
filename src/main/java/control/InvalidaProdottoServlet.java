@@ -47,6 +47,9 @@ public class InvalidaProdottoServlet extends HttpServlet{
 		prodotto = Prodotti.doRetrieveByKey(idProdotto);
 		prodotto.setValidoProdotto(valido);
 		Prodotti.doSave(prodotto);
+		request.getSession().setAttribute("ProdottoRichiesto", prodotto);
+		List<ImmagineProdottoBean> ImmaginiProdoto = (List<ImmagineProdottoBean>) Immagini.doRetrieveByProductKey(idProdotto);
+		request.getSession().setAttribute("ProdottoRichiestoImmagini", ImmaginiProdoto);
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

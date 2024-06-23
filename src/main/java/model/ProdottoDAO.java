@@ -21,26 +21,27 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
     public synchronized void doSave(ProdottoBean data) throws SQLException {
     	if(data.getIdProdotto()!=-1) {
     		String insertSQL = "INSERT INTO " + TABLE_NAME
-                    + " (prezzo, valido, nome, descrizione) VALUES (?, ?, ?, ?)";
-
-            try (Connection connection = dataSource.getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
-                preparedStatement.setFloat(1, data.getPrezzo());
-                preparedStatement.setInt(2, data.getValidoProdotto());
-                preparedStatement.setString(3, data.getNome());
-                preparedStatement.setString(4, data.getDescrizione());
-
-                preparedStatement.executeUpdate();
-            }
-    	}
-    	else {
-    		String insertOrUpdateSQL = "INSERT INTO " + TABLE_NAME
                     + " (ID_prodotto, prezzo, valido, nome, descrizione) VALUES (?, ?, ?, ?, ?)"
                     + " ON DUPLICATE KEY UPDATE "
                     + "prezzo = VALUES(prezzo), "
                     + "valido = VALUES(valido), "
                     + "nome = VALUES(nome), "
                     + "descrizione = VALUES(descrizione)";
+
+            try (Connection connection = dataSource.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
+            	 preparedStatement.setInt(1, data.getIdProdotto());
+            	 preparedStatement.setFloat(2, data.getPrezzo());
+            	 preparedStatement.setInt(3, data.getValidoProdotto());
+            	 preparedStatement.setString(4, data.getNome());
+            	 preparedStatement.setString(5, data.getDescrizione());
+
+            	 preparedStatement.executeUpdate();
+            }
+    	}
+    	else {
+    		String insertOrUpdateSQL = "INSERT INTO " + TABLE_NAME
+                    + " (ID_prodotto, prezzo, valido, nome, descrizione) VALUES (?, ?, ?, ?, ?)";
 
 			try (Connection connection = dataSource.getConnection();
 			     PreparedStatement preparedStatement = connection.prepareStatement(insertOrUpdateSQL)) {
@@ -53,7 +54,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
 			    preparedStatement.executeUpdate();
 			}
 
-            
+             
     		
     	}
         

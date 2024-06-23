@@ -37,7 +37,6 @@ CREATE TABLE Metodo_Di_Pagamento (
 CREATE TABLE Prodotto (
     ID_prodotto INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     prezzo INT NOT NULL,
-    quantita_magazzino INT NOT NULL,
     valido INT NOT NULL DEFAULT 1,
     nome VARCHAR(50) NOT NULL,
     descrizione VARCHAR(50) NOT NULL
@@ -114,15 +113,15 @@ VALUES
 ('admin@email.com', 'admin', 'c2FsYXRpbm9IS/2gld3f28WW5kC9phK5hntWSGZ00Oo83HeBwbeW7Q==', 'admin', 'admin', 'ADMIN');
 
 -- Inserimento dei prodotti che sono spezie
-INSERT INTO Prodotto (prezzo, quantita_magazzino, nome, descrizione)
+INSERT INTO Prodotto (prezzo, nome, descrizione)
 VALUES
-(3, 100, 'Pepe Nero', 'Pepe nero in grani'),
-(6, 30, 'Zenzero', 'Zenzero in polvere'),
-(8, 40, 'Cannella', 'Cannella in stecche'),
-(9, 25, 'Chiodi di Garofano', 'Chiodi di garofano interi'),
-(4, 60, 'Noce Moscata', 'Noce moscata in polvere'),
-(5, 70, 'Cumino', 'Cumino in semi'),
-(4, 80, 'Coriandolo', 'Coriandolo in polvere');
+(3, 'Pepe Nero', 'Pepe nero in grani'),
+(6, 'Zenzero', 'Zenzero in polvere'),
+(8, 'Cannella', 'Cannella in stecche'),
+(9, 'Chiodi di Garofano', 'Chiodi di garofano interi'),
+(4, 'Noce Moscata', 'Noce moscata in polvere'),
+(5, 'Cumino', 'Cumino in semi'),
+(4, 'Coriandolo', 'Coriandolo in polvere');
 
 -- Inserimento dei metodi di pagamento
 INSERT INTO Metodo_Di_Pagamento (email, NCarta, CVV, data)

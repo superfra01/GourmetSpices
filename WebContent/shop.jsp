@@ -19,30 +19,31 @@
                 if (prodottiList != null) {
                     for (ProdottoBean prodotto : prodottiList) {
                         List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("ImmagineProdotto" + Integer.toString(prodotto.getIdProdotto()));
+                        if(prodotto.getValidoProdotto()==1){
             %>
-                        <div class="product-item">
-                            <% for (ImmagineProdottoBean immagine : immagini) { %>
-                                <img src="<%=request.getContextPath()%>/images/prodotti/<%=immagine.getImmagine()%>" alt="<%= prodotto.getNome() %>">
-                            <% 
-                                break;
-                                } 
-                            %>
-                            <h2>
-                                <a href="<%=request.getContextPath()%>/ProdottoSpecificato?id=<%= prodotto.getIdProdotto() %>">
-                                    <%= prodotto.getNome() %>
-                                </a>
-                            </h2>
-                            <p><%= prodotto.getDescrizione() %></p>
-                            <span>€ <%= prodotto.getPrezzo() %></span>
-                            <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
-                            if(user!=null){%>
-                                <form action="<%=request.getContextPath()%>/carrelloaggiungi" method="post">
-                                    <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
-                                    <button type="submit">Aggiungi al carrello</button>
-                                </form>
-                            <%}%>
-                        </div>
-            <%
+	                        <div class="product-item">
+	                            <% for (ImmagineProdottoBean immagine : immagini) { %>
+	                                <img src="<%=request.getContextPath()%>/images/prodotti/<%=immagine.getImmagine()%>" alt="<%= prodotto.getNome() %>">
+	                            <% 
+	                                break;
+	                                } 
+	                            %>
+	                            <h2>
+	                                <a href="<%=request.getContextPath()%>/ProdottoSpecificato?id=<%= prodotto.getIdProdotto() %>">
+	                                    <%= prodotto.getNome() %>
+	                                </a>
+	                            </h2>
+	                            <p><%= prodotto.getDescrizione() %></p>
+	                            <span>€ <%= prodotto.getPrezzo() %></span>
+	                            <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
+	                            if(user!=null){%>
+	                                <form action="<%=request.getContextPath()%>/carrelloaggiungi" method="post">
+	                                    <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
+	                                    <button type="submit">Aggiungi al carrello</button>
+	                                </form>
+	                            <%}%>
+	                        </div>
+            <%			}
                     }
                 }
             %>

@@ -45,9 +45,9 @@
     <!-- Form per visualizzare un elemento del catalogo -->
     <div class="form-container">
         <h2>Visualizza Elemento</h2>
-        <form action="visualizzaElemento" method="get">
+        <form action="/specificaProdotto.jsp" method="get">
             <label for="id_visualizza">ID Elemento:</label>
-            <input type="text" id="id_visualizza" name="id_visualizza" required><br>
+            <input type="text" id="id_visualizza" name="id" required><br>
             <input type="submit" value="Visualizza">
         </form>
     </div>

@@ -47,7 +47,10 @@ public class CarrelloAggiungiServlet extends HttpServlet{
 				ContenenteCarrelloBean NewContenenteCarrello = new ContenenteCarrelloBean(idCarrello, Integer.parseInt(idProdotto), 1);
 				ContenenteCarrelli.doSave(NewContenenteCarrello);
 			}else {
+				if(request.getParameter("quantity")==null)
 				ContenenteCarrello.setQuantita(ContenenteCarrello.getQuantita()+1);
+				else
+					ContenenteCarrello.setQuantita(ContenenteCarrello.getQuantita()+Integer.parseInt(request.getParameter("quantity")));
 				ContenenteCarrelli.doSave(ContenenteCarrello);
 			}
 		} catch (Exception e) {

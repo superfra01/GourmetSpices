@@ -25,7 +25,7 @@
             <p>Cognome: <%= user.getCognome() %></p>
             <p>Password: ******</p>
             <%if (user.getTipoUtente().equals("ADMIN")){%>
-            	<button type="button" onclick="window.location.href='admin.jsp'">Admin Page</button>
+            	<button type="button" onclick="window.location.href='adminPage.jsp'">Admin Page</button>
             <%}%>
         </div>
         

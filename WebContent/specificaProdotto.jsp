@@ -28,7 +28,7 @@
 	       		if(user.getTipoUtente() == "ADMIN"){
 	       		%> 	
 		            <h1><%= prodotto.getNome() %> ID: <%= prodotto.getIdProdotto() %> </h1>
-		        }%>
+		        <%}%>
 		        <%else{%>
 		        	<h1><%= prodotto.getNome() %></h1>
 		        <%}%>

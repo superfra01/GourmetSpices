@@ -12,7 +12,7 @@
 
     <div class="product-details-container">
         <%
-            int productId = Integer.parseInt(request.getParameter("idProdotto"));
+            int productId = Integer.parseInt(request.getParameter("id"));
             List<ProdottoBean> prodottiList = (List<ProdottoBean>) request.getSession().getAttribute("ProdottiList");
             ProdottoBean prodotto = null;
             if (prodottiList != null) {

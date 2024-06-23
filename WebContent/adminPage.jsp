@@ -71,7 +71,17 @@
 	            <input type="submit" value="Cancella">
 	        </form>
 	    </div>
-	<%}%>
+	<%}
+	else {
+        // Handle not admin scenario
+        %>
+        <div class="error-message">
+            <p>You must be an admin in order to view this page.</p>
+        </div>
+        <% 
+    }
+	%>
+	
     <jsp:include page="footer.jsp" />
 </body>
 </html>

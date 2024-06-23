@@ -55,9 +55,10 @@
     <!-- Form per cancellare un elemento del catalogo -->
     <div class="form-container">
         <h2>Cancella Elemento</h2>
-        <form action="cancellaElemento" method="post">
+        <form action="InvalidaProdotto" method="post">
             <label for="id_cancella">ID Elemento:</label>
-            <input type="text" id="id_cancella" name="id_cancella" required><br>
+            <input type="hidden" name="valido" value="0" required>
+            <input type="text" id="id_cancella" name="id" required><br>
             <input type="submit" value="Cancella">
         </form>
     </div>

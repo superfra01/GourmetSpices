@@ -13,23 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import model.ContenenteBean;
-import model.ContenenteDAO;
 import model.ImmagineProdottoBean;
 import model.ImmagineProdottoDAO;
-import model.OrdineBean;
-import model.OrdineDAO;
 import model.ProdottoBean;
 import model.ProdottoDAO;
-import model.UserBean;
-import model.UserDAO;
+
+@WebServlet("/InvalidaProdotto")
+public class InvalidaProdottoServlet extends HttpServlet{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7631554330668275487L;
 
 
-@WebServlet("/ProdottoSpecificato")
-public class ProdottoSpecificoServlet extends HttpServlet{
-	private static final long serialVersionUID = -8697651045570564505L;
 
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
@@ -43,13 +42,11 @@ public class ProdottoSpecificoServlet extends HttpServlet{
 		
 		try {
 		int idProdotto = Integer.parseInt(request.getParameter("id"));
+		int valido = Integer.parseInt(request.getParameter("valido"));
 		ProdottoBean prodotto;
-		
-			prodotto = Prodotti.doRetrieveByKey(idProdotto);
-		
-		request.getSession().setAttribute("ProdottoRichiesto", prodotto);
-		List<ImmagineProdottoBean> immagini =(List<ImmagineProdottoBean>) Immagini.doRetrieveByProductKey(idProdotto);
-		request.getSession().setAttribute("ProdottoRichiestoImmagini", immagini);
+		prodotto = Prodotti.doRetrieveByKey(idProdotto);
+		prodotto.setValidoProdotto(valido);
+		Prodotti.doSave(prodotto);
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,4 +64,3 @@ public class ProdottoSpecificoServlet extends HttpServlet{
 		doGet(request, response);
 	}
 }
-

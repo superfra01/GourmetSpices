@@ -45,7 +45,7 @@ public class SingInServlet extends HttpServlet{
 		
 		
 		List<String> errors = new ArrayList<>();
-    	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("signIn.jsp");
+    	RequestDispatcher dispatcherToRegister = request.getRequestDispatcher("signIn.jsp");
 		
     	
     	
@@ -66,7 +66,7 @@ public class SingInServlet extends HttpServlet{
         }
         if (!errors.isEmpty()) {
         	request.setAttribute("errors", errors);
-        	dispatcherToLoginPage.forward(request, response);
+        	dispatcherToRegister.forward(request, response);
         	return;
         }
         
@@ -101,7 +101,7 @@ public class SingInServlet extends HttpServlet{
 			e.printStackTrace();
 		}
         
-		response.sendRedirect("HomePage.jsp");
+		response.sendRedirect("login.jsp");
 		
 		
 		

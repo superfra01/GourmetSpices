@@ -111,7 +111,7 @@ VALUES
 ('marco.azzurri@email.com', 'marcoAzzurri', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Marco', 'Azzurri', 'USER'),
 ('laura.gialli@email.com', 'lauraGialli', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Laura', 'Gialli', 'USER'),
 ('francesco.rossi@email.com', 'francescoRossi', 'c2FsYXRpbm/tmVKSSq+IgCOVraDwsetxEwbPQgWhaX2YuPaDpnkGzA==', 'Francesco', 'Rossi', 'USER'),
-('admin@email.com', 'admin', 'c2FsYXRpbm9jgDuGupZTKef1fbq/0KPyq9PpBIIUPYCpzfoIag/VbQ==', 'admin', 'admin', 'ADMIN');
+('admin@email.com', 'admin', 'c2FsYXRpbm9IS/2gld3f28WW5kC9phK5hntWSGZ00Oo83HeBwbeW7Q==', 'admin', 'admin', 'ADMIN');
 
 -- Inserimento dei prodotti che sono spezie
 INSERT INTO Prodotto (prezzo, quantita_magazzino, nome, descrizione)
@@ -172,7 +172,7 @@ INSERT INTO Immagine_Prodotto (ID_prodotto, Immagine)
 VALUES 
 (1, 'pepe-nero.jpg'),
 (1, 'pepe-nero-zoom.jpg'),
-(2, 'zenzero.jpg'),
+(2, 'zenzero.png'),
 (2, 'zenzero-zoom.png'),
 (3, 'cannella.jpg'),
 (3, 'cannella-zoom.jpg'),

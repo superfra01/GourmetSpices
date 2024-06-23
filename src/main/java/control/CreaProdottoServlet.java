@@ -33,14 +33,14 @@ public class CreaProdottoServlet extends HttpServlet{
 	private static final long serialVersionUID = -4173801915656104944L;
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/AggiungiImagine");
+		
 		ProdottoDAO Prodotti = new ProdottoDAO((DataSource)getServletContext().getAttribute("DataSource"));
 		try {
 			
 			ProdottoBean prodotto = new ProdottoBean();
 			prodotto.setNome(request.getParameter("nomeprodotto"));
 			prodotto.setDescrizione(request.getParameter("descrizione"));
-			if(request.getParameter("prezzo")==null)
-				System.out.println("dio merda");
 			float prezzo = Float.parseFloat(request.getParameter("prezzo"));
 			prodotto.setPrezzo(prezzo);
 
@@ -52,7 +52,7 @@ public class CreaProdottoServlet extends HttpServlet{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		dispatcher.forward(request, response);
 	}
 		
 		

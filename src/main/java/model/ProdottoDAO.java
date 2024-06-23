@@ -41,15 +41,14 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
     	}
     	else {
     		String insertOrUpdateSQL = "INSERT INTO " + TABLE_NAME
-                    + " (ID_prodotto, prezzo, valido, nome, descrizione) VALUES (?, ?, ?, ?, ?)";
+                    + " (prezzo, valido, nome, descrizione) VALUES (?, ?, ?, ?, ?)";
 
 			try (Connection connection = dataSource.getConnection();
 			     PreparedStatement preparedStatement = connection.prepareStatement(insertOrUpdateSQL)) {
-			    preparedStatement.setInt(1, data.getIdProdotto());
-			    preparedStatement.setFloat(2, data.getPrezzo());
-			    preparedStatement.setInt(3, data.getValidoProdotto());
-			    preparedStatement.setString(4, data.getNome());
-			    preparedStatement.setString(5, data.getDescrizione());
+			    preparedStatement.setFloat(1, data.getPrezzo());
+			    preparedStatement.setInt(2, data.getValidoProdotto());
+			    preparedStatement.setString(3, data.getNome());
+			    preparedStatement.setString(4, data.getDescrizione());
 			
 			    preparedStatement.executeUpdate();
 			}

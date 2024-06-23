@@ -18,9 +18,9 @@
 	    <!-- Form per inserire un nuovo elemento nel catalogo -->
 		<div class="form-container">
 		    <h2>Inserisci Nuovo Elemento</h2>
-		    <form action="<%=request.getContextPath()%>/" method="post" enctype="multipart/form-data">
+		    <form action="<%=request.getContextPath()%>/inserisciElemento" method="post" enctype="multipart/form-data">
 		        <label for="nome">Nome:</label>
-		        <input type="text" id="nome" name="nome" required><br>
+		        <input type="text" id="nomeprodotto" name="nomeprodotto" required><br>
 		        <label for="descrizione">Descrizione:</label>
 		        <input type="text" id="descrizione" name="descrizione" required><br>
 		        <label for="prezzo">Prezzo:</label>

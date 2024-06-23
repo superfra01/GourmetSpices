@@ -40,7 +40,7 @@ public class ModificaProdottoServlet extends HttpServlet{
 		ImmagineProdottoDAO Immagini = new ImmagineProdottoDAO((DataSource) getServletContext().getAttribute("DataSource"));
 		
 		try {
-		int idProdotto = Integer.parseInt(request.getParameter("id_modifica"));
+		int idProdotto = Integer.parseInt(request.getParameter("id"));
 		int valido = Integer.parseInt(request.getParameter("valido"));
 		int prezzo = Integer.parseInt(request.getParameter("prezzo_modifica"));
 		String Desc = request.getParameter("descrizione_modifica");

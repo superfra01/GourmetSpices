@@ -29,9 +29,9 @@
     <!-- Form per modificare un elemento esistente nel catalogo -->
     <div class="form-container">
         <h2>Modifica Elemento</h2>
-        <form action="/ModificaProdotto" method="post">
+        <form action="<%=request.getContextPath()%>/ModificaProdotto" method="post">
             <label for="id_modifica">ID Elemento:</label>
-            <input type="text" id="id_modifica" name="id_modifica" required><br>
+            <input type="text" id="id_modifica" name="id" required><br>
             <label for="nome_modifica">Nome:</label>
             <input type="text" id="nome_modifica" name="nome_modifica"><br>
             <label for="descrizione_modifica">Descrizione:</label>

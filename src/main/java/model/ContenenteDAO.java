@@ -172,10 +172,11 @@ public synchronized Collection<ContenenteBean> doRetrieveByOrderKey(int key) thr
 
         while (rs.next()) {
             ContenenteBean bean = new ContenenteBean();
-            bean.setIdProdotto(rs.getInt("ID_ordine"));
-            bean.setIdOrdine(rs.getInt("ID_prodotto"));
+            bean.setIdProdotto(rs.getInt("ID_prodotto"));
+            bean.setIdOrdine(rs.getInt("ID_ordine"));
             bean.setPrezzoAllAcquisto(rs.getFloat("prezzo_all_acquisto"));
             bean.setQuantita(rs.getInt("quantita"));
+            
 
             contenenti.add(bean);
         }

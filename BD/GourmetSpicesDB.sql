@@ -172,7 +172,22 @@ INSERT INTO Immagine_Prodotto (ID_prodotto, Immagine)
 VALUES 
 (1, 'pepe-nero.jpg'),
 (1, 'pepe-nero-zoom.jpg'),
+(2, 'zenzero.jpg'),
+(2, 'zenzero-zoom.png'),
+(3, 'cannella.jpg'),
+(3, 'cannella-zoom.jpg'),
+(4, 'cloves.jpg'),
+(4, 'cloves-zomm.jpg'),
+(5, 'nutmeg.jpg'),
+(5, 'nutmeg-zoom.jpg'),
 (6, 'cumino.jpg'),
 (6, 'cumino-zoom.jpg'),
 (7, 'coriandolo.jpg'),
 (7, 'coriandolo-zoom.jpg');
+
+
+
+
+
+
+

@@ -57,11 +57,11 @@
                                     int quantità = contente.getQuantita();
                                     ProdottoBean prodotto = (ProdottoBean) request.getSession().getAttribute("prodotto" + contente.getIdProdotto());
                             %>
-                            <li>
-                                <p><strong>Nome:</strong> <%= prodotto.getNome() %></p>
-                                <p><strong>Prezzo:</strong> <%= prodotto.getPrezzo() %></p>
-                                <p><strong>Quantità:</strong> <%= quantità %></p>
-                            </li>
+		                            <li>
+		                                <p><strong>Nome:</strong> <%= prodotto.getNome() %></p>
+		                                <p><strong>Prezzo:</strong> <%= prodotto.getPrezzo() %></p>
+		                                <p><strong>Quantità:</strong> <%= quantità %></p>
+		                            </li>
                             <% 
                                 }
                             %>

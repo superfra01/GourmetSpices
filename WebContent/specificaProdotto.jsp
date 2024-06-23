@@ -23,10 +23,18 @@
 	            <% break; } %>
 	        </div>
 	        <div class="product-info">
-	            <h1><%= prodotto.getNome() %></h1>
-	            <p><%= prodotto.getDescrizione() %></p>
-	            <span class="price">€ <%= prodotto.getPrezzo() %></span>
-	            <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
+	       		<%
+	       		UserBean user = (UserBean) request.getSession().getAttribute("utente");
+	       		if(user.getTipoUtente() == "ADMIN"){
+	       		%> 	
+		            <h1><%= prodotto.getNome() %> ID: <%= prodotto.getIdProdotto() %> </h1>
+		        }%>
+		        <%else{%>
+		        	<h1><%= prodotto.getNome() %></h1>
+		        <%}%>
+		            <p><%= prodotto.getDescrizione() %></p>
+		            <span class="price">€ <%= prodotto.getPrezzo() %></span>
+	            <%
 	            if(user != null && prodotto.getValidoProdotto()==1){ %>
 	                <form action="<%=request.getContextPath()%>/carrello" method="post">
 	                    <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
@@ -42,9 +50,7 @@
 	                </form>
 	            <%	
 	            }
-	            if(user.getTipoUtente().equals("ADMIN"))
 	            %>
-	            ID-PRODOTTO:<%= prodotto.getIdProdotto()%>
 	        </div>
 	      <%
             }

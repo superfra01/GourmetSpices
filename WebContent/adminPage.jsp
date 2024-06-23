@@ -29,7 +29,7 @@
     <!-- Form per modificare un elemento esistente nel catalogo -->
     <div class="form-container">
         <h2>Modifica Elemento</h2>
-        <form action="modificaElemento" method="post">
+        <form action="/ModificaProdotto" method="post">
             <label for="id_modifica">ID Elemento:</label>
             <input type="text" id="id_modifica" name="id_modifica" required><br>
             <label for="nome_modifica">Nome:</label>
@@ -38,6 +38,8 @@
             <input type="text" id="descrizione_modifica" name="descrizione_modifica"><br>
             <label for="prezzo_modifica">Prezzo:</label>
             <input type="number" id="prezzo_modifica" name="prezzo_modifica" step="0.01"><br>
+            <label for="valido">Valido:</label>
+            <input type="text" name="valido" value="0" required>
             <input type="submit" value="Modifica">
         </form>
     </div>

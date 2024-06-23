@@ -42,7 +42,9 @@
 	                </form>
 	            <%	
 	            }
+	            if(user.getTipoUtente().equals("ADMIN"))
 	            %>
+	            ID-PRODOTTO:<%= prodotto.getIdProdotto()%>
 	        </div>
 	      <%
             }

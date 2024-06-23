@@ -18,8 +18,8 @@ import model.ImmagineProdottoDAO;
 import model.ProdottoBean;
 import model.ProdottoDAO;
 
-@WebServlet("/InvalidaProdotto")
-public class InvalidaProdottoServlet extends HttpServlet{
+@WebServlet("/ModificaProdotto")
+public class ModificaProdottoServlet extends HttpServlet{
 
 	/**
 	 * 
@@ -40,11 +40,17 @@ public class InvalidaProdottoServlet extends HttpServlet{
 		ImmagineProdottoDAO Immagini = new ImmagineProdottoDAO((DataSource) getServletContext().getAttribute("DataSource"));
 		
 		try {
-		int idProdotto = Integer.parseInt(request.getParameter("id"));
+		int idProdotto = Integer.parseInt(request.getParameter("id_modifica"));
 		int valido = Integer.parseInt(request.getParameter("valido"));
+		int prezzo = Integer.parseInt(request.getParameter("prezzo_modifica"));
+		String Desc = request.getParameter("descrizione_modifica");
+		String Nome = request.getParameter("nome_modifica");
 		ProdottoBean prodotto;
 		prodotto = Prodotti.doRetrieveByKey(idProdotto);
+		prodotto.setPrezzo(prezzo);
+		prodotto.setNome(Nome);
 		prodotto.setValidoProdotto(valido);
+		prodotto.setDescrizione(Desc);
 		Prodotti.doSave(prodotto);
 		request.getSession().setAttribute("ProdottoRichiesto", prodotto);
 		List<ImmagineProdottoBean> ImmaginiProdoto = (List<ImmagineProdottoBean>) Immagini.doRetrieveByProductKey(idProdotto);

@@ -24,8 +24,9 @@
             <p>Nome: <%= user.getNome() %></p>
             <p>Cognome: <%= user.getCognome() %></p>
             <p>Password: ******</p>
-            <%if (user.getTipoUtente().equals("ADMIN"))%>
+            <%if (user.getTipoUtente().equals("ADMIN")){%>
             	<button type="button" onclick="window.location.href='admin.jsp'">Admin Page</button>
+            <%}%>
         </div>
         
         <div class="logout-button">
@@ -36,47 +37,48 @@
 
         <div class="purchase-history">
             <h2>Purchase History</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Products</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% 
-                        if (ordini != null) {
-                            for (OrdineBean ordine : ordini) {
-                    %>
-                    <tr>
-                        <td><%= ordine.getData() %></td>
-                        <td><%= ordine.getSpesa() %></td>
-                        <td><%= ordine.getIndirizzo() %></td>  
-                    </tr>
-                    <% 
-                                List<ContenenteBean> contenteLista = (List<ContenenteBean>) request.getSession().getAttribute("contenente"+Integer.toString(ordine.getIdOrdine()));
-                                for (ContenenteBean contente : contenteLista){
+            <div class="orders">
+                <% 
+                    if (ordini != null) {
+                        for (OrdineBean ordine : ordini) {
+                %>
+                <div class="order">
+                    <div class="order-info">
+                        <p><strong>Date:</strong> <%= ordine.getData() %></p>
+                        <p><strong>Spesa:</strong> <%= ordine.getSpesa() %></p>
+                        <p><strong>Indirizzo:</strong> <%= ordine.getIndirizzo() %></p>
+                    </div>
+                    <div class="order-products">
+                        <h3>Products:</h3>
+                        <ul>
+                            <% 
+                                List<ContenenteBean> contenteLista = (List<ContenenteBean>) request.getSession().getAttribute("contenente" + ordine.getIdOrdine());
+                                for (ContenenteBean contente : contenteLista) {
                                     int quantità = contente.getQuantita();
-                                    ProdottoBean prodotto = (ProdottoBean) request.getSession().getAttribute("prodotto"+Integer.toString(contente.getIdProdotto()));
-                    %>
-                    <tr>
-                        <td><%= prodotto.getNome() %></td>
-                        <td><%= prodotto.getPrezzo() %></td> 
-                    </tr>
-                    <% 
+                                    ProdottoBean prodotto = (ProdottoBean) request.getSession().getAttribute("prodotto" + contente.getIdProdotto());
+                            %>
+                            <li>
+                                <p><strong>Nome:</strong> <%= prodotto.getNome() %></p>
+                                <p><strong>Prezzo:</strong> <%= prodotto.getPrezzo() %></p>
+                                <p><strong>Quantità:</strong> <%= quantità %></p>
+                            </li>
+                            <% 
                                 }
-                            }
-                        } else {
-                    %>
-                    <tr>
-                        <td colspan="3">No purchase history available.</td>
-                    </tr>
-                    <% 
+                            %>
+                        </ul>
+                    </div>
+                </div>
+                <% 
                         }
-                    %>
-                </tbody>
-            </table>
+                    } else {
+                %>
+                <div class="no-orders">
+                    <p>No purchase history available.</p>
+                </div>
+                <% 
+                    }
+                %>
+            </div>
         </div>
         <%
             } else {

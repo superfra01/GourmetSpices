@@ -23,10 +23,16 @@
 	            <% break; } %>
 	        </div>
 	        <div class="product-info">
+	        	<%UserBean user = (UserBean) request.getSession().getAttribute("utente");
+	        	if(user.getTipoUtente()=="Admin") {%>
+	        		<h1><%= prodotto.getNome() %> ID: <%= prodotto.getIdProdotto() %></h1>	
+	        	<%}
+	        	else{%>
 	            <h1><%= prodotto.getNome() %></h1>
+	            <%}%>
 	            <p><%= prodotto.getDescrizione() %></p>
 	            <span class="price">€ <%= prodotto.getPrezzo() %></span>
-	            <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
+	            <%
 	            if(user != null && prodotto.getValidoProdotto()==1){ %>
 	                <form action="<%=request.getContextPath()%>/carrello" method="post">
 	                    <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">

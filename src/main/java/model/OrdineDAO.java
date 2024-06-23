@@ -37,15 +37,17 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
     		
     	else {
     		String insertSQL = "INSERT INTO " + OrdineDAO.TABLE_NAME
-                	+ " (ID_ordine, NCarta, email, data, spesa, indirizzo) VALUES (?, ?, ?, ?, ?, ?)";
+    	               + " (ID_ordine, NCarta, email, data, spesa, indirizzo) VALUES (?, ?, ?, ?, ?, ?)"
+    	               + " ON DUPLICATE KEY UPDATE "
+    	               + " NCarta = VALUES(NCarta), email = VALUES(email), data = VALUES(data), spesa = VALUES(spesa), indirizzo = VALUES(indirizzo)";
     		try (Connection connection = dataSource.getConnection();
     	            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
     				preparedStatement.setInt(1, data.getIdOrdine());
     	            preparedStatement.setString(2, data.getNCarta());
     	            preparedStatement.setString(3, data.getEmail());
     	            preparedStatement.setDate(4, new Date(data.getData().getTime()));
-    	            preparedStatement.setFloat(6, data.getSpesa());
-    	            preparedStatement.setString(7, data.getIndirizzo());
+    	            preparedStatement.setFloat(5, data.getSpesa());
+    	            preparedStatement.setString(6, data.getIndirizzo());
 
     	            preparedStatement.executeUpdate();
     		}
@@ -96,7 +98,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
             try (ResultSet rs = preparedStatement.executeQuery()) {
             	 while (rs.next()) {
                      OrdineBean bean = new OrdineBean();
-                     bean.setIdOrdine(rs.getInt("idOrdine"));
+                     bean.setIdOrdine(rs.getInt("ID_ordine"));
                      bean.setnCartaIban(rs.getString("NCarta"));
                      bean.setEmail(rs.getString("email"));
                      bean.setData(rs.getDate("data"));
@@ -106,7 +108,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
                  }
             }
         }
-        return null;
+        return ordini;
     }
 	
 	@Override
@@ -121,7 +123,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
                     OrdineBean bean = new OrdineBean();
-                    bean.setIdOrdine(rs.getInt("idOrdine"));
+                    bean.setIdOrdine(rs.getInt("ID_ordine"));
                     bean.setnCartaIban(rs.getString("NCarta"));
                     bean.setEmail(rs.getString("email"));
                     bean.setData(rs.getDate("data"));
@@ -149,7 +151,7 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
 
             while (rs.next()) {
                 OrdineBean bean = new OrdineBean();
-                bean.setIdOrdine(rs.getInt("idOrdine"));
+                bean.setIdOrdine(rs.getInt("ID_ordine"));
                 bean.setnCartaIban(rs.getString("NCarta"));
                 bean.setEmail(rs.getString("email"));
                 bean.setData(rs.getDate("data"));
@@ -163,14 +165,28 @@ public class OrdineDAO implements BeanDAO<OrdineBean, Integer> {
     }
 	
     public synchronized int nextId() throws SQLException{
-    	String selectSQL = "SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Ordine' AND TABLE_SCHEMA = 'GourmetSpicesDB'";
+    	String selectSQL = "SELECT COUNT(*) AS numero_ordini FROM ordine"
+    			+ "";
 
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-            ResultSet rs = preparedStatement.executeQuery()) {
-        	return rs.getInt("AUTO_INCREMENT");
-           
-        }
+    	int nextAutoIncrementValue = 0;
+
+    	try{
+    		Connection connection = dataSource.getConnection();
+	   	    PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+	   	    ResultSet rs = preparedStatement.executeQuery();
+
+    	    if (rs.next()) {
+    	        nextAutoIncrementValue = rs.getInt("numero_ordini")+1;
+    	    }
+    	    preparedStatement.close();
+    	    connection.close();
+    	}catch(SQLException e) {
+    		
+    	    e.printStackTrace(); // Gestione dell'eccezione SQL, puoi gestirla in modo più appropriato nel tuo caso
+    	}
+    	
+
+    	return nextAutoIncrementValue;
     }
 }
 

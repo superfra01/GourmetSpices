@@ -18,21 +18,25 @@ public class MetodoDiPagamentoDAO implements BeanDAO<MetodoDiPagamentoBean, Stri
     }
 
     @Override
-    public synchronized void doSave(MetodoDiPagamentoBean data) throws SQLException {
+    public synchronized void doSave(MetodoDiPagamentoBean data) {
         String insertSQL = "INSERT INTO " + TABLE_NAME 
-                + " (email, NCarta, CVV, data) VALUES (?, ?, ?, ?)";
+                          + " (email, NCarta, CVV, data) VALUES (?, ?, ?, ?)"
+                          + " ON DUPLICATE KEY UPDATE email = VALUES(email), CVV = VALUES(CVV), data = VALUES(data)";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
             preparedStatement.setString(1, data.getEmail());
             preparedStatement.setString(2, data.getNCarta());
             preparedStatement.setString(3, data.getCVV());
-            preparedStatement.setDate(3, data.getData());
-
+            preparedStatement.setDate(4, data.getData());
 
             preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            // Gestisci l'eccezione o logga un messaggio
+            e.printStackTrace(); // Esempio di log dell'eccezione
         }
     }
+
 
     @Override
     public synchronized boolean doDelete(String code) throws SQLException {

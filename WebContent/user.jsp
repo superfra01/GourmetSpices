@@ -55,10 +55,10 @@
                         <td><%= ordine.getIndirizzo() %></td>  
                     </tr>
                     <% 
-                                List<ContenenteBean> contenteLista = (List<ContenenteBean>) request.getSession().getAttribute(Integer.toString(ordine.getIdOrdine()));
+                                List<ContenenteBean> contenteLista = (List<ContenenteBean>) request.getSession().getAttribute("contenente"+Integer.toString(ordine.getIdOrdine()));
                                 for (ContenenteBean contente : contenteLista){
                                     int quantità = contente.getQuantita();
-                                    ProdottoBean prodotto = (ProdottoBean) request.getSession().getAttribute(Integer.toString(contente.getIdProdotto()));
+                                    ProdottoBean prodotto = (ProdottoBean) request.getSession().getAttribute("prodotto"+Integer.toString(contente.getIdProdotto()));
                     %>
                     <tr>
                         <td><%= prodotto.getNome() %></td>

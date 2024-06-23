@@ -16,6 +16,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import model.ContenenteBean;
+import model.ContenenteCarrelloDAO;
+import model.ContenenteCombinedKey;
+import model.ContenenteDAO;
+import model.ImmagineProdottoBean;
+import model.ImmagineProdottoDAO;
+import model.OrdineBean;
+import model.OrdineDAO;
+import model.ProdottoBean;
+import model.ProdottoDAO;
 import model.UserBean;
 import model.UserDAO;
 
@@ -58,21 +68,51 @@ public class LoginServlet extends HttpServlet{
         UserBean user = null;
 		try {
 			user = account.doRetrieveByKey(email);
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         
-       
 		
+		OrdineDAO Ordini = new OrdineDAO((DataSource) getServletContext().getAttribute("DataSource"));
+		ContenenteDAO Contenenti = new ContenenteDAO((DataSource) getServletContext().getAttribute("DataSource"));
+		ProdottoDAO Prodotti = new ProdottoDAO((DataSource) getServletContext().getAttribute("DataSource"));
+		ImmagineProdottoDAO Immagini = new ImmagineProdottoDAO((DataSource) getServletContext().getAttribute("DataSource"));
 		if(password.equals(user.getPassword()) && user.getEmail()!=""){
         	request.getSession().setAttribute("utente", user);
-			response.sendRedirect("HomePage.jsp");
+        	List<OrdineBean> OrdiniList;
+			try {
+				
+				OrdiniList = (List<OrdineBean>) Ordini.doRetrieveByUserKey(email);
+				request.getSession().setAttribute("ordini", OrdiniList);
+				for(OrdineBean Ordine: OrdiniList) {
+					int idOrdine = Ordine.getIdOrdine();
+					
+					List<ContenenteBean> ContenenteBeanList = (List<ContenenteBean>) Contenenti.doRetrieveByOrderKey(idOrdine);
+					request.getSession().setAttribute("contenente"+Integer.toString(idOrdine), ContenenteBeanList);
+					for(ContenenteBean Contenente: ContenenteBeanList) {
+						int idProdotto = Contenente.getIdProdotto();
+						ProdottoBean Prodotto = Prodotti.doRetrieveByKey(idProdotto);
+						request.getSession().setAttribute("prodotto"+Integer.toString(idProdotto), Prodotto);
+						List<ImmagineProdottoBean> ImmaginiProdotto = (List<ImmagineProdottoBean>) Immagini.doRetrieveByProductKey(idProdotto);
+						request.getSession().setAttribute("immaginiprodotto"+Integer.toString(idProdotto), ImmaginiProdotto);
+					}
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+			response.sendRedirect("user.jsp");
 		}else{
 			errors.add("Username o password errata!");
 			request.setAttribute("errors", errors);
 			dispatcherToLoginPage.forward(request, response);
 		}
+		
 	}
 		
 		
@@ -80,48 +120,7 @@ public class LoginServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		
-		List<String> errors = new ArrayList<>();
-		
-		RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("login.jsp");
-
-		
-		if(email == null || email.trim().isEmpty()) {
-			errors.add("Il campo username non può essere vuoto!");
-		}
-        if(password == null || password.trim().isEmpty()) {
-        	errors.add("Il campo password non può essere vuoto!");
-		}
-        if (!errors.isEmpty()) {
-        	request.setAttribute("errors", errors);
-        	dispatcherToLoginPage.forward(request, response);
-        	return;
-        }
-        
-        email = email.trim();
-        password = hashPassword(password);
-       
-		
-        UserDAO account = new UserDAO((DataSource) getServletContext().getAttribute("DataSource"));
-        UserBean user = null;
-		try {
-			user = account.doRetrieveByKey(email);
-		} catch (SQLException e) {		
-			e.printStackTrace();
-		}
-        
-       
-		
-		if(password.equals(user.getPassword()) && user.getEmail()!=""){
-        	request.getSession().setAttribute("utente", user);
-			response.sendRedirect("HomePage.jsp");
-		}else{
-			errors.add("Username o password non validi!");
-			request.setAttribute("errors", errors);
-			dispatcherToLoginPage.forward(request, response);
-		}
+		doGet(request, response);
 	}
 	// Metodo per creare l'hash della password con il salt
 	public static String hashPassword(String password) {

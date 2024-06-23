@@ -22,7 +22,7 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
         PreparedStatement preparedStatement = null;
 
         String insertSQL = "INSERT INTO " + TABLE_NAME
-                + " (ID_prodotto, ID_ordine, prezzoAllAcquisto, quantita) VALUES (?, ?, ?, ?)";
+                + " (ID_prodotto, ID_ordine, prezzo_all_acquisto, quantita) VALUES (?, ?, ?, ?)";
 
         try {
             connection = dataSource.getConnection();
@@ -102,7 +102,7 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
                 bean = new ContenenteBean();
                 bean.setIdProdotto(rs.getInt("ID_prodotto"));
                 bean.setIdOrdine(rs.getInt("ID_ordine"));
-                bean.setPrezzoAllAcquisto(rs.getFloat("prezzoAllAcquisto"));
+                bean.setPrezzoAllAcquisto(rs.getFloat("prezzo_all_acquisto"));
                 bean.setQuantita(rs.getInt("quantita"));
             }
         } finally {
@@ -116,7 +116,7 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
         }
         return bean;
     }
-
+    
     @Override
     public synchronized Collection<ContenenteBean> doRetrieveAll(String order) throws SQLException {
         Connection connection = null;
@@ -138,7 +138,7 @@ public class ContenenteDAO implements BeanDAO<ContenenteBean, ContenenteCombined
                 ContenenteBean bean = new ContenenteBean();
                 bean.setIdProdotto(rs.getInt("ID_prodotto"));
                 bean.setIdOrdine(rs.getInt("ID_ordine"));
-                bean.setPrezzoAllAcquisto(rs.getFloat("prezzoAllAcquisto"));
+                bean.setPrezzoAllAcquisto(rs.getFloat("prezzo_all_acquisto"));
                 bean.setQuantita(rs.getInt("quantita"));
 
                 contenenti.add(bean);
@@ -160,20 +160,21 @@ public synchronized Collection<ContenenteBean> doRetrieveByOrderKey(int key) thr
     PreparedStatement preparedStatement = null;
     Collection<ContenenteBean> contenenti = new ArrayList<>();
 
-    String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE idProdotto = * AND idOrdine = ?";
-    preparedStatement.setInt(1, key);
+    String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE ID_ordine = ?";
+    
 
     try {
         connection = dataSource.getConnection();
         preparedStatement = connection.prepareStatement(selectSQL);
+        preparedStatement.setInt(1, key);
 
         ResultSet rs = preparedStatement.executeQuery();
 
         while (rs.next()) {
             ContenenteBean bean = new ContenenteBean();
-            bean.setIdProdotto(rs.getInt("idProdotto"));
-            bean.setIdOrdine(rs.getInt("idOrdine"));
-            bean.setPrezzoAllAcquisto(rs.getFloat("prezzoAllAcquisto"));
+            bean.setIdProdotto(rs.getInt("ID_ordine"));
+            bean.setIdOrdine(rs.getInt("ID_prodotto"));
+            bean.setPrezzoAllAcquisto(rs.getFloat("prezzo_all_acquisto"));
             bean.setQuantita(rs.getInt("quantita"));
 
             contenenti.add(bean);

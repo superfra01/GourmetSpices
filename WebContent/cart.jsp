@@ -43,8 +43,14 @@
 	                            <form action="<%= request.getContextPath() %>/UpdateQuantity" method="post">
 	                                <input type="hidden" name="updateProductId" value="<%= item.getIdProdotto() %>">
 	                                <label for="quantity<%= item.getIdProdotto() %>">Quantity:</label>
-	                                <input type="number" id="quantity<%=item.getIdProdotto()%>" name="quantity" value="<%= quantity %>" min="1" max="100">
-	                                <button type="submit">Update</button>
+	                                <input type="number" id="quantity<%=item.getIdProdotto()%>" name="quantity" value="<%= quantity %>" min="0" max="100">
+	                                <button type="submit">Aggiorna</button>
+	                            </form>
+	                            <form action="<%= request.getContextPath() %>/UpdateQuantity" method="post">
+	                                <input type="hidden" name="updateProductId" value="<%= item.getIdProdotto() %>">
+	                                <label for="quantity<%= item.getIdProdotto() %>">Quantity:</label>
+	                                <input type="hidden" id="quantity<%=item.getIdProdotto()%>" name="quantity" value="0">
+	                                <button type="submit">Rimuovi</button>
 	                            </form>
 	                            <p>Price: <b><%= product.getPrezzo() %>€</b></p>
 	                        </div>

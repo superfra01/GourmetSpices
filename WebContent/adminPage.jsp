@@ -73,7 +73,7 @@
         <!-- Button to view orders -->
         <div class="form-container">
             <h2>Visualizza Ordini</h2>
-            <form action="ordiniAdmin.jsp" method="get">
+            <form action="<%=request.getContextPath()%>/adminOrders" method="get">
                 <input type="submit" value="Visualizza Ordini">
             </form>
         </div>

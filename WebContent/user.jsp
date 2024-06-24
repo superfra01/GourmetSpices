@@ -53,13 +53,13 @@
                         <ul>
                             <% 
                                 List<ContenenteBean> contenteLista = (List<ContenenteBean>) request.getSession().getAttribute("contenente" + ordine.getIdOrdine());
-                                for (ContenenteBean contente : contenteLista) {
-                                    int quantità = contente.getQuantita();
-                                    ProdottoBean prodotto = (ProdottoBean) request.getSession().getAttribute("prodotto" + contente.getIdProdotto());
+                                for (ContenenteBean contenente : contenteLista) {
+                                    int quantità = contenente.getQuantita();
+                                    ProdottoBean prodotto = (ProdottoBean) request.getSession().getAttribute("prodotto" + contenente.getIdProdotto());
                             %>
 		                            <li>
 		                                <p><strong>Nome:</strong> <%= prodotto.getNome() %></p>
-		                                <p><strong>Prezzo:</strong> <%= prodotto.getPrezzo() %></p>
+		                                <p><strong>Prezzo:</strong> <%= contenente.getPrezzoAllAcquisto() %></p>
 		                                <p><strong>Quantità:</strong> <%= quantità %></p>
 		                            </li>
                             <% 

@@ -58,10 +58,13 @@ public class OrdiniServlet extends HttpServlet{
 				request.getSession().setAttribute("adminOrdini", OrdiniList);
 				for(OrdineBean Ordine : OrdiniList) {
 					int idOrdine = Ordine.getIdOrdine();
-					MetodoDiPagamentoBean MetodoDiPagamento = MetodiDiPagamento.doRetrieveByOrderKey(idOrdine);
-					request.getSession().setAttribute("adminMetodoDiPagamento", MetodiDiPagamento);
+					String NCarta = Ordine.getNCarta();
+					MetodoDiPagamentoBean MetodoDiPagamento = MetodiDiPagamento.doRetrieveByKey(NCarta);
+					request.getSession().setAttribute("adminMetodoDiPagamento"+idOrdine, MetodiDiPagamento);
 					List<ContenenteBean> ContenenteList = (List<ContenenteBean>) Contenenti.doRetrieveByOrderKey(idOrdine);
-					request.getSession().setAttribute("adminContenenteList", ContenenteList);
+					if(ContenenteList==null)
+						System.out.println("diomerda");
+					request.getSession().setAttribute("adminContenenteList"+idOrdine, ContenenteList);
 					for(ContenenteBean Contenente: ContenenteList) {
 						int idProdotto = Contenente.getIdProdotto();
 						ProdottoBean Prodotto = prodotti.doRetrieveByKey(idProdotto);

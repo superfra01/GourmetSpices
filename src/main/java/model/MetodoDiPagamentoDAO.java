@@ -71,27 +71,7 @@ public class MetodoDiPagamentoDAO implements BeanDAO<MetodoDiPagamentoBean, Stri
         }
         return null;
     }
-    public synchronized MetodoDiPagamentoBean doRetrieveByOrderKey(int code) throws SQLException {
-        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE ID_Ordine = ?";
-
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
-            preparedStatement.setInt(1, code);
-
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                if (rs.next()) {
-                    MetodoDiPagamentoBean bean = new MetodoDiPagamentoBean();
-                    bean.setEmail(rs.getString("email"));
-                    bean.setNCarta(rs.getString("NCarta"));
-                    bean.setCVV(rs.getString("CVV"));
-                    bean.setData(rs.getDate("data"));
-                    return bean;
-                }
-            }
-        }
-        return null;
-    }
-    
+ 
     public synchronized Collection<MetodoDiPagamentoBean> doRetrieveByUserKey(String code) throws SQLException {
     	String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email = ?";
 

@@ -67,7 +67,9 @@ function filterOrders() {
                     int idOrdine = ordine.getIdOrdine();
                     String orderDate = ordine.getData().toString();
                     String userEmail = ordine.getEmail(); // Assuming there's a method to get user's email
-                    List<ContenenteBean> contenenteList = (List<ContenenteBean>) request.getSession().getAttribute("adminContenenteList");
+                    List<ContenenteBean> contenenteList = (List<ContenenteBean>) request.getSession().getAttribute("adminContenenteList"+idOrdine);
+                    if(contenenteList==null)
+                    System.out.println("dio stegosauro");
                 %>
                 <tr class="orderRow" data-order-date="<%= orderDate %>" data-order-email="<%= userEmail %>">
                     <td><%= idOrdine %></td>

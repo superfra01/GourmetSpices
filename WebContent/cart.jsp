@@ -48,7 +48,6 @@
 	                            </form>
 	                            <form action="<%= request.getContextPath() %>/UpdateQuantity" method="post">
 	                                <input type="hidden" name="updateProductId" value="<%= item.getIdProdotto() %>">
-	                                <label for="quantity<%= item.getIdProdotto() %>">Quantity:</label>
 	                                <input type="hidden" id="quantity<%=item.getIdProdotto()%>" name="quantity" value="0">
 	                                <button type="submit">Rimuovi</button>
 	                            </form>

@@ -41,6 +41,7 @@ public class ModificaProdottoServlet extends HttpServlet{
 		
 		try {
 		int idProdotto = Integer.parseInt(request.getParameter("id"));
+		request.getSession().setAttribute("idprodottoaggiunto", idProdotto);
 		int valido = Integer.parseInt(request.getParameter("valido"));
 		int prezzo = Integer.parseInt(request.getParameter("prezzo_modifica"));
 		String Desc = request.getParameter("descrizione_modifica");

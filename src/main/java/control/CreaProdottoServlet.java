@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ import model.UserBean;
 import model.UserDAO;
 
 @WebServlet("/inserisciElemento")
+@MultipartConfig(maxFileSize = 16177215)
 public class CreaProdottoServlet extends HttpServlet{
 
 	/**
@@ -37,7 +39,7 @@ public class CreaProdottoServlet extends HttpServlet{
 		
 		ProdottoDAO Prodotti = new ProdottoDAO((DataSource)getServletContext().getAttribute("DataSource"));
 		try {
-			
+		
 			ProdottoBean prodotto = new ProdottoBean();
 			prodotto.setNome(request.getParameter("nomeprodotto"));
 			prodotto.setDescrizione(request.getParameter("descrizione"));

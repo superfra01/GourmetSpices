@@ -41,7 +41,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
     	}
     	else {
     		String insertOrUpdateSQL = "INSERT INTO " + TABLE_NAME
-                    + " (prezzo, valido, nome, descrizione) VALUES (?, ?, ?, ?, ?)";
+                    + " (prezzo, valido, nome, descrizione) VALUES (?, ?, ?, ?)";
 
 			try (Connection connection = dataSource.getConnection();
 			     PreparedStatement preparedStatement = connection.prepareStatement(insertOrUpdateSQL)) {

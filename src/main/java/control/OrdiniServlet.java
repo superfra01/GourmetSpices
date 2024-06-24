@@ -73,12 +73,7 @@ public class OrdiniServlet extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-			
-			
-			
-			
+
 		}
         		
 			dispatcherToOrdini.forward(request, response);

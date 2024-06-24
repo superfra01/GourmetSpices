@@ -15,14 +15,14 @@
     UserBean user = (UserBean) request.getSession().getAttribute("utente");
 	if(user.getTipoUtente().equals("ADMIN")){%>
     
-	    <!-- Form per inserire un nuovo elemento nel catalogo -->
+		<!-- Form per inserire un nuovo elemento nel catalogo -->
 		<div class="form-container">
 		    <h2>Inserisci Nuovo Elemento</h2>
 		    <form action="<%=request.getContextPath()%>/inserisciElemento" method="post" enctype="multipart/form-data">
 		        <label for="nome">Nome:</label>
 		        <input type="text" id="nomeprodotto" name="nomeprodotto" required><br>
 		        <label for="descrizione">Descrizione:</label>
-		        <input type="text" id="descrizione" name="descrizione" required><br>
+		        <textarea id="descrizione" name="descrizione" rows="4" cols="50" required></textarea><br>
 		        <label for="prezzo">Prezzo:</label>
 		        <input type="number" id="prezzo" name="prezzo" step="0.01" required><br>
 		        <label for="immagine">Immagine:</label>
@@ -30,7 +30,6 @@
 		        <input type="submit" value="Inserisci">
 		    </form>
 		</div>
-		
 	    <!-- Form per modificare un elemento esistente nel catalogo -->
 	    <div class="form-container">
 	        <h2>Modifica Elemento</h2>

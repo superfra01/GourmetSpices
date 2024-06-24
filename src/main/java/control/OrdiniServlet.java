@@ -79,47 +79,9 @@ public class OrdiniServlet extends HttpServlet{
 			
 			
 			
-			dispatcherToOrdini.forward(request, response);
-		}else
-			dispatcherToOrdini.forward(request, response);
-		
-		RequestDispatcher dispatcherToOrdine = request.getRequestDispatcher("/carrello");
-		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
-		String email = utente.getEmail();
-		List<String> errors = new ArrayList<>();
-		
-		if(email == null || email.trim().isEmpty()) {
-			errors.add("richiesta invalida");
 		}
-		
-        if (!errors.isEmpty()) {
-        	request.setAttribute("errors", errors);
-        	RequestDispatcher dispatcherToHome = request.getRequestDispatcher("HomePage.jsp");
-        	dispatcherToHome.forward(request, response);
-        	return;
-        }
-		CarrelloDAO carrelli = new CarrelloDAO((DataSource)getServletContext().getAttribute("DataSource"));
-		ContenenteCarrelloDAO ContenenteCarrelli = new ContenenteCarrelloDAO((DataSource)getServletContext().getAttribute("DataSource"));
-		OrdineDAO ordini = new OrdineDAO((DataSource)getServletContext().getAttribute("DataSource"));
-		ProdottoDAO prodotti = new ProdottoDAO((DataSource)getServletContext().getAttribute("DataSource"));
-		ContenenteDAO contenenti = new ContenenteDAO((DataSource)getServletContext().getAttribute("DataSource"));
-		MetodoDiPagamentoDAO MetodiDiPagamento = new MetodoDiPagamentoDAO((DataSource)getServletContext().getAttribute("DataSource"));
-		
-		
-		try {
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
         		
-        		
-        		
-        		
-        		
-        dispatcherToOrdine.forward(request, response);
+			dispatcherToOrdini.forward(request, response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

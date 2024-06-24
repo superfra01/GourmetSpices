@@ -69,8 +69,17 @@ public class UpdateQuantityServlet extends HttpServlet{
         	ContenenteCarrelloCombinedKey key = new ContenenteCarrelloCombinedKey(Integer.parseInt(idProdotto), idCarrello);
         	ContenenteCarrelloBean ContenenteCarrello = ContenenteCarrelli.doRetrieveByKey(key);
         	int quantita = Integer.parseInt(request.getParameter("quantity"));
-        	ContenenteCarrello.setQuantita(quantita);
-        	ContenenteCarrelli.doSave(ContenenteCarrello);
+        	if(quantita>=0) {
+        		if(quantita!=0) {
+            		ContenenteCarrello.setQuantita(quantita);
+                	ContenenteCarrelli.doSave(ContenenteCarrello);
+            	}else {
+            		ContenenteCarrelli.doDelete(key);
+            	}
+        	}
+        	
+        	
+        	
         	
         }catch (SQLException e) {
 			// TODO Auto-generated catch block

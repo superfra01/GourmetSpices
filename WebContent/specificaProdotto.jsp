@@ -37,7 +37,7 @@
 		            <span class="price">€ <%= prodotto.getPrezzo() %></span>
 	            <%
 	            if(user != null && prodotto.getValidoProdotto()==1){ %>
-	                <form action="<%=request.getContextPath()%>/carrello" method="post">
+	                <form action="<%=request.getContextPath()%>/carrelloaggiungi" method="post">
 	                    <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
 	                    <label for="quantity">Quantità:</label>
 	                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="100">
@@ -45,10 +45,9 @@
 	                </form>
 	            <% }
 	            else if(user != null && prodotto.getValidoProdotto()==0){%>
-	            	<form action="<%=request.getContextPath()%>/carrello" method="post">
-	                    <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
-	                    <h2><%= prodotto.getNome()%>Non disponibile</h2>
-	                </form>
+
+                    <h2><%= prodotto.getNome()%>Non disponibile</h2>
+	                
 	            <%	
 	            }
 	            %>

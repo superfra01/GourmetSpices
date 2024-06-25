@@ -20,15 +20,6 @@
     
     <section id="product1" class="section-p1">
         <h2>Featured Products</h2>
-        <div class="pro-container">
-            <div class="pro">
-                <img src="" alt="Product 1">
-                <div class="des">
-                    <span>Gourmet Spices</span>
-                    <h5>Exotic Spice Blend</h5>
-                </div>
-            </div>
-        </div>
     </section>
     
     <jsp:include page="footer.jsp" />

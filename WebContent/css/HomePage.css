@@ -104,16 +104,3 @@ nav ul li a.selected {
 .des .star i {
     color: #E0AA77;
 }
-
-footer {
-    background-color: #E0C677;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-footer a i {
-    color:white;
-}
-footer a:hover i{
-    color: #E07363;
-}

@@ -5,6 +5,7 @@
 <meta charset="ISO-8859-1">
 <title>Admin Page</title>
 <link href="<%= request.getContextPath() %>/css/admin.css" rel="stylesheet">
+<script src="<%= request.getContextPath() %>/scripts/admin.js"></script>
 </head>
 <body>
     <jsp:include page="header.jsp" />
@@ -26,7 +27,7 @@
                 <label for="prezzo">Prezzo:</label>
                 <input type="number" id="prezzo" name="prezzo" step="0.01" required><br>
                 <label for="immagine">Immagine:</label>
-                <input type="file" id="immagine" name="immagine" accept="image/*" required><br>
+                <input type="file" id="immagine" name="immagine" accept="image/jpeg, image/png" required><br>
                 <input type="submit" value="Inserisci">
             </form>
         </div>

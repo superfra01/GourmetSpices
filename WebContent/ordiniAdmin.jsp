@@ -6,7 +6,6 @@
 <title>Admin Page</title>
 <link href="<%= request.getContextPath() %>/css/admin.css" rel="stylesheet">
 <script src="<%= request.getContextPath() %>/scripts/filtraOrdini.js"></script>
-
 </head>
 <body>
     <jsp:include page="header.jsp" />
@@ -22,8 +21,10 @@
     <div class="filter-section">
         <h2>Filter Orders</h2>
         <form onsubmit="event.preventDefault(); filterOrders();">
-            <label for="filterDate">Order Date:</label>
-            <input type="date" id="filterDate" name="filterDate">
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate">
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" name="endDate">
             <label for="filterEmail">User Email:</label>
             <input type="text" id="filterEmail" name="filterEmail" placeholder="Enter user email">
             <button type="submit">Filter</button>
@@ -49,8 +50,6 @@
                     String orderDate = ordine.getData().toString();
                     String userEmail = ordine.getEmail(); // Assuming there's a method to get user's email
                     List<ContenenteBean> contenenteList = (List<ContenenteBean>) request.getSession().getAttribute("adminContenenteList"+idOrdine);
-                    if(contenenteList==null)
-                    System.out.println("dio stegosauro");
                 %>
                 <tr class="orderRow" data-order-date="<%= orderDate %>" data-order-email="<%= userEmail %>">
                     <td><%= idOrdine %></td>

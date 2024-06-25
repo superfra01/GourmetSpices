@@ -1,5 +1,6 @@
 function filterOrders() {
-    let filterDate = document.getElementById("filterDate").value;
+    let startDate = document.getElementById("startDate").value;
+    let endDate = document.getElementById("endDate").value;
     let filterEmail = document.getElementById("filterEmail").value.toLowerCase();
     
     let orders = document.getElementsByClassName("orderRow");
@@ -7,7 +8,16 @@ function filterOrders() {
         let orderDate = orders[i].getAttribute("data-order-date");
         let orderEmail = orders[i].getAttribute("data-order-email").toLowerCase();
         
-        let dateMatch = !filterDate || orderDate === filterDate;
+        let dateMatch = true;
+        
+        if (startDate) {
+            dateMatch = dateMatch && (orderDate >= startDate);
+        }
+        
+        if (endDate) {
+            dateMatch = dateMatch && (orderDate <= endDate);
+        }
+
         let emailMatch = !filterEmail || orderEmail.includes(filterEmail);
         
         if (dateMatch && emailMatch) {

@@ -175,7 +175,7 @@ VALUES
 (4, 'cloves.jpg'),
 (5, 'nutmeg.jpg'),
 (6, 'cumino.jpg'),
-(7, 'coriandolo.jpg'),
+(7, 'coriandolo.jpg');
 
 
 

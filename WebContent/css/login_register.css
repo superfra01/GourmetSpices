@@ -40,6 +40,7 @@ input[type="password"] {
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    outline: none; /* Rimuove il contorno predefinito */
 }
 
 button {
@@ -53,4 +54,18 @@ button {
 
 button:hover {
     background-color: #E07363;
+}
+
+/* Stile per il campo di input con focus */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #E07363;
+    box-shadow: 0 0 5px rgba(224, 115, 99, 0.5);
+}
+
+/* Stile per il campo di input con errore */
+input[type="text"].error,
+input[type="password"].error {
+    border-color: red;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }

@@ -29,9 +29,7 @@
 
             <form id="loginForm" action="<%= request.getContextPath() %>/login" method="post">
                 <input type="text" id="email" name="email" placeholder="Email" required>
-                <span id="errorEmail"></span>
                 <input type="password" id="password" name="password" placeholder="Password" required>
-                <span id="errorPassword"></span>
                 <button type="submit">Login</button>
             </form>
             

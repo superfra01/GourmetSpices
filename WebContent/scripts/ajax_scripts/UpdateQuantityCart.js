@@ -13,7 +13,17 @@ function updateQuantity(productId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            document.getElementById('total-cost').innerHTML = `Total Cost: <b>${totalCost()}</b>€`;
+            // Calculate the new total cost
+            let totalCost = 0;
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const price = parseFloat(item.querySelector('.cart-item-details p b').innerText.replace('€', ''));
+                const qty = item.querySelector('input[name="quantity"]').value;
+                totalCost += price * qty;
+            });
+
+            // Update total cost display
+            document.getElementById('total-cost').innerHTML = `Total Cost: <b>${totalCost.toFixed(2)}</b>€`;
+
             if (quantity == 0) {
                 document.getElementById('cart-item-' + productId).remove();
             }
@@ -41,8 +51,18 @@ function removeItem(productId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            document.getElementById('total-cost').innerHTML = `Total Cost: <b>${totalCost()}</b>€`;
             document.getElementById('cart-item-' + productId).remove();
+            
+            // Calculate the new total cost
+            let totalCost = 0;
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const price = parseFloat(item.querySelector('.cart-item-details p b').innerText.replace('€', ''));
+                const qty = item.querySelector('input[name="quantity"]').value;
+                totalCost += price * qty;
+            });
+
+            // Update total cost display
+            document.getElementById('total-cost').innerHTML = `Total Cost: <b>${totalCost.toFixed(2)}</b>€`;
         } else {
             alert('Failed to remove item.');
         }
@@ -53,19 +73,7 @@ function removeItem(productId) {
     });
 }
 
-function totalCost(){
-	UserBean user = (UserBean) request.getSession().getAttribute("utente");
-	if (user != null) {
-		float totalCost = 0;
-		Integer idCarrello = (Integer) request.getSession().getAttribute("idCarrello");
-		List<ContenenteCarrelloBean> cartItems = (List<ContenenteCarrelloBean>) request.getSession().getAttribute("ContenenteCarrelloBeanList"+idCarrello.toString());
-		if (cartItems != null && !cartItems.isEmpty()) {
-		    for (ContenenteCarrelloBean item : cartItems) {
-		        ProdottoBean product = (ProdottoBean) request.getSession().getAttribute("ProdottoCarrello"+item.getIdProdotto());
-		        int quantity = item.getQuantita();
-		        totalCost += quantity * product.getPrezzo();
-		    }
-		}
-		return totalCost;
-	}
-}
+
+
+
+

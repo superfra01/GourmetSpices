@@ -21,5 +21,6 @@
 			<attribute name="owner.project.facets" value="jst.web;#system#"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/raofr/Documents/GitHub/GourmetSpices/WebContent/WEB-INF/lib/json-20240303.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

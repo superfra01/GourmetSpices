@@ -22,6 +22,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import model.ImmagineProdottoBean;
 import model.ImmagineProdottoDAO;
+import model.UserBean; 
 
 @WebServlet("/AggiungiImagine")
 @MultipartConfig(maxFileSize = 16177215)
@@ -30,6 +31,15 @@ public class AggiungiImmagineServlet extends HttpServlet {
    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Recupero dell'utente dalla sessione
+        UserBean user = (UserBean) request.getSession().getAttribute("utente");
+        
+        // Verifica se l'utente è un amministratore
+        if (user == null || !user.getTipoUtente().equals("ADMIN")) {
+            response.getWriter().println("Access Denied: You do not have permission to perform this action.");
+            return;
+        }
+
         RequestDispatcher dispatcherToAdminPage = request.getRequestDispatcher("adminPage.jsp");
 
         if (!ServletFileUpload.isMultipartContent(request)) {
@@ -84,7 +94,7 @@ public class AggiungiImmagineServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);	
+        doGet(request, response);    
     }
 
     private String getFileName(Part part) {

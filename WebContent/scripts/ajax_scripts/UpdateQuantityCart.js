@@ -41,7 +41,7 @@ function removeItem(productId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            document.getElementById('total-cost').innerHTML = `Total Cost: <b>${data.totalCost}</b>€`;
+            document.getElementById('total-cost').innerHTML = `Total Cost: <b>${totalCost()}</b>€`;
             document.getElementById('cart-item-' + productId).remove();
         } else {
             alert('Failed to remove item.');

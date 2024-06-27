@@ -5,10 +5,7 @@ function updateQuantity(productId) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: new URLSearchParams({
-            updateProductId: productId,
-            quantity: quantity
-        })
+        body: 'updateProductId=' + encodeURIComponent(productId) + '&quantity=' + encodeURIComponent(quantity)
     })
     .then(response => response.json())
     .then(data => {
@@ -16,16 +13,22 @@ function updateQuantity(productId) {
             // Calculate the new total cost
             let totalCost = 0;
             document.querySelectorAll('.cart-item').forEach(item => {
-                const price = parseFloat(item.querySelector('.cart-item-details p b').innerText.replace('€', ''));
-                const qty = item.querySelector('input[name="quantity"]').value;
+                const price = parseFloat(item.querySelector('.cart-item-details p b').textContent.replace('€', ''));
+                const qty = parseInt(item.querySelector('input[name="quantity"]').value);
                 totalCost += price * qty;
             });
 
             // Update total cost display
-            document.getElementById('total-cost').innerHTML = `Total Cost: <b>${totalCost.toFixed(2)}</b>€`;
+            const totalCostElement = document.getElementById('total-cost');
+            if (totalCostElement) {
+                totalCostElement.innerHTML = '<p>Total Cost: <b>' + totalCost.toFixed(2) + '</b>€</p>';
+            }
 
-            if (quantity == 0) {
-                document.getElementById('cart-item-' + productId).remove();
+            if (parseInt(quantity) === 0) {
+                const cartItem = document.getElementById('cart-item-' + productId);
+                if (cartItem) {
+                    cartItem.remove();
+                }
             }
         } else {
             alert('Failed to update quantity.');
@@ -43,26 +46,29 @@ function removeItem(productId) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: new URLSearchParams({
-            updateProductId: productId,
-            quantity: 0
-        })
+        body: 'updateProductId=' + encodeURIComponent(productId) + '&quantity=0'
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            document.getElementById('cart-item-' + productId).remove();
-            
+            const cartItem = document.getElementById('cart-item-' + productId);
+            if (cartItem) {
+                cartItem.remove();
+            }
+
             // Calculate the new total cost
             let totalCost = 0;
             document.querySelectorAll('.cart-item').forEach(item => {
-                const price = parseFloat(item.querySelector('.cart-item-details p b').innerText.replace('€', ''));
-                const qty = item.querySelector('input[name="quantity"]').value;
+                const price = parseFloat(item.querySelector('.cart-item-details p b').textContent.replace('€', ''));
+                const qty = parseInt(item.querySelector('input[name="quantity"]').value);
                 totalCost += price * qty;
             });
 
             // Update total cost display
-            document.getElementById('total-cost').innerHTML = `Total Cost: <b>${totalCost.toFixed(2)}</b>€`;
+            const totalCostElement = document.getElementById('total-cost');
+            if (totalCostElement) {
+                totalCostElement.innerHTML = '<p>Total Cost: <b>' + totalCost.toFixed(2) + '</b>€</p>';
+            }
         } else {
             alert('Failed to remove item.');
         }
@@ -72,8 +78,3 @@ function removeItem(productId) {
         alert('An error occurred while removing the item.');
     });
 }
-
-
-
-
-

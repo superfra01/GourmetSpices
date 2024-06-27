@@ -8,7 +8,7 @@
 	    <link rel="shortcut icon" href="<%= request.getContextPath() %>/images/logo.png">
 	    <link href="<%= request.getContextPath() %>/css/user.css" rel="stylesheet">
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<script src="<%= request.getContextPath() %>/scripts/ajax_scripts/UpdateQuantityCart.js" defer></script>
+		<script src="<%= request.getContextPath() %>/scripts/ajax_scripts/UpdateQuantityCart.js"></script>
 	</head>
 	<body>
 	    <jsp:include page="header.jsp" />
@@ -45,7 +45,7 @@
 	                                    <input type="hidden" name="updateProductId" value="<%= item.getIdProdotto() %>">
 	                                    <label for="quantity<%= item.getIdProdotto() %>">Quantity:</label>
 	                                    <input type="number" id="quantity<%=item.getIdProdotto()%>" name="quantity" value="<%= quantity %>" min="0" max="100">
-	                                    <button type="button" onclick="updateQuantity(<%= item.getIdProdotto() %>)">Aggiorna</button>
+	                                    <button type="button" onclick="updateQuantity(<%= item.getIdProdotto() %>)" >Aggiorna</button>
 	                                </form>
 	                                <button type="button" onclick="removeItem(<%= item.getIdProdotto() %>)">Rimuovi</button>
 	                                <p>Price: <b><%= product.getPrezzo() %>€</b></p>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/shop.css">
+    <script src="<%=request.getContextPath()%>/scripts/shop.js" defer></script>
 </head>
 <body>
     <jsp:include page="header.jsp" />
@@ -28,16 +29,18 @@
 	                                break;
 	                                } 
 	                            %>
-	                            <h2>
-	                                <a href="<%=request.getContextPath()%>/ProdottoSpecificato?id=<%= prodotto.getIdProdotto() %>">
-	                                    <%= prodotto.getNome() %>
-	                                </a>
-	                            </h2>
+	                            <div class="product-item-name">
+	                                <h2>
+	                                    <a href="<%=request.getContextPath()%>/ProdottoSpecificato?id=<%= prodotto.getIdProdotto() %>">
+	                                        <%= prodotto.getNome() %>
+	                                    </a>
+	                                </h2>
+	                            </div>
 	                            <p><%= prodotto.getDescrizione() %></p>
 	                            <span>€ <%= prodotto.getPrezzo() %></span>
 	                            <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
 	                            if(user!=null){%>
-	                                <form action="<%=request.getContextPath()%>/carrelloaggiungi" method="post">
+	                                <form action="<%=request.getContextPath()%>/carrelloaggiungi" method="post" onClick="event.stopPropagation();">
 	                                    <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
 	                                    <button type="submit">Aggiungi al carrello</button>
 	                                </form>

@@ -1,63 +1,48 @@
-/* Reset some basic elements */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@charset "ISO-8859-1";
 
-/* Base styles for header and navigation */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #f8f9fa; /* Adjust as needed */
+    background-color: #E09777;
 }
 
-header .logo {
-    max-width: 150px;
+.logo {
+    max-height: 100px;/*provvsorio*/
 }
 
-.main-nav ul {
-    list-style: none;
+nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    gap: 20px;
 }
 
-.main-nav ul li a {
+nav ul{
+    display: flex;
+    list-style: none;
+    
+    margin-left: auto;
+    padding: 0;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
     text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    padding: 10px;
+    color: white;
+    /*font-weight: bold;/*da togliere*/
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
-.main-nav ul li a.selected {
-    color: #007bff; /* Highlight color for selected item */
+nav a i {
+    margin-left: 5px;
 }
-
-/* Responsive design */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .main-nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .main-nav ul li a {
-        padding: 10px 0;
-    }
-}
-
-@media (max-width: 480px) {
-    header .logo {
-        max-width: 100px;
-    }
-
-    .main-nav ul li a {
-        font-size: 14px;
-    }
+nav ul li a.selected {
+    font-weight: bold;
 }

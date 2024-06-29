@@ -7,52 +7,6 @@ body {
     color: #333; /* Testo principale */
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #E09777;
-}
-
-.logo {
-    max-height: 50px;/*provvsorio*/
-}
-
-nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-nav ul{
-    display: flex;
-    list-style: none;
-    
-    margin-left: auto;
-    padding: 0;
-}
-
-nav li {
-    margin: 0 10px;
-}
-
-nav a {
-    text-decoration: none;
-    color: white;
-    /*font-weight: bold;/*da togliere*/
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-nav a i {
-    margin-left: 5px;
-}
-nav ul li a.selected {
-    font-weight: bold;
-}
 
 #hero {
     text-align: center;
@@ -63,79 +17,6 @@ nav ul li a.selected {
 }
 
 #hero button {
-    background-color: #E07363;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.section-p1 {
-    padding: 20px;
-    text-align: center;
-}
-
-.pro-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.pro {
-    flex: 1 1 calc(33.333% - 20px);
-    margin: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: white;
-}
-
-.pro img {
-    width: 100%;
-}
-
-.des {
-    padding: 10px;
-}
-
-.des span, .des h5, .des h4 {
-    display: block;
-}
-
-.des .star i {
-    color: #E0AA77;
-}
-
-
---Error.html css
-
-#error {
-    text-align: center;
-    padding: 100px 20px;
-    color: #333;
-    background-color: #f2f2f2;
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#error h1 {
-    font-size: 80px;
-    margin: 0;
-}
-
-#error h2 {
-    font-size: 36px;
-    margin: 10px 0;
-}
-
-#error p {
-    font-size: 18px;
-    margin: 20px 0;
-}
-
-#error button {
     background-color: #E07363;
     color: white;
     border: none;

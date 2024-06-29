@@ -16,7 +16,7 @@
         <button type="button" onclick="window.location.href='<%= request.getContextPath() %>/shop'">Acquista Ora</button>
     </section>
     
-    <section id="product1" class="section-p1">
+    <section id="prodotti">
         <h2>Prodotti in evidenza</h2>
     </section>
     

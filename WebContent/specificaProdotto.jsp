@@ -46,11 +46,16 @@
 	            <% }
 	            else if(user != null && prodotto.getValidoProdotto()==0){%>
 
-                    <h2><%= prodotto.getNome()%>Non disponibile</h2>
+                    <h2><%= prodotto.getNome()%> Non disponibile</h2>
 	                
 	            <%	
 	            }
-	            %>
+	            else if(user==null && prodotto.getValidoProdotto()==0){%>
+	            	<h2><%= prodotto.getNome()%> Non disponibile</h2>
+	            <%}
+	            else if(user==null && prodotto.getValidoProdotto()==1){%>
+	            	<h3>Devi essere loggato per poter aggiungere prodotti al carrello</h3>
+	            <%}%>      
 	        </div>
 	      <%
             }

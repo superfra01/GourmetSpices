@@ -29,6 +29,7 @@
 			    <span id="errorPassword" aria-live="polite"></span>
 			    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
 			    <span id="errorConfirmPassword" aria-live="polite"></span>
+			    <br>
 			    <button type="submit">Register</button>
 			</form>
             <p>Already have an account? <a href="<%= request.getContextPath() %>/login.jsp" class="login-now">Login</a></p>

@@ -12,14 +12,13 @@
     <jsp:include page="header.jsp" />
     
     <section id="hero">
-        <h4>Quality Guaranteed</h4>
-        <h2>Super Value Deals</h2>
-        <h1>On all products</h1>
-        <button type="button" onclick="window.location.href='shop.jsp'">Shop Now</button>
+        <h2>Qualità Garantita</h2>
+        <h3>Prezzi convenienti su ogni prodotto</h3>
+        <button type="button" onclick="window.location.href='<%= request.getContextPath() %>/shop'">Acquista Ora</button>
     </section>
     
     <section id="product1" class="section-p1">
-        <h2>Featured Products</h2>
+        <h2>Prodotti in evidenza</h2>
     </section>
     
     <jsp:include page="footer.jsp" />

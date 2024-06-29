@@ -150,11 +150,9 @@ VALUES
 (4, 1, 9.00, 2),
 (5, 1, 4.00, 3);
 
--- Inserimento dei carrelli
+-- Inserimento dei carrelli per ogni utente
 INSERT INTO Carrello (email)
-VALUES
-('giulia.fiori@email.com'),
-('antonio.verdi@email.com');
+SELECT email FROM Utente;
 
 -- Inserimento dei prodotti nei vari carrelli (Contenente_Carrello)
 INSERT INTO Contenente_Carrello (ID_carrello, ID_prodotto, quantita)
@@ -176,10 +174,3 @@ VALUES
 (5, 'nutmeg.jpg'),
 (6, 'cumino.jpg'),
 (7, 'coriandolo.jpg');
-
-
-
-
-
-
-

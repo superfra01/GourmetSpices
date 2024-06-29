@@ -25,7 +25,7 @@
 	        <div class="product-info">
 	       		<%
 	       		UserBean user = (UserBean) request.getSession().getAttribute("utente");
-	       		if(user.getTipoUtente().equals("ADMIN")){
+	       		if(user!=null && user.getTipoUtente().equals("ADMIN")){
 	       		%> 	
 		            <h1><%= prodotto.getNome() %> ID: <%= prodotto.getIdProdotto() %> </h1>
 		        <%

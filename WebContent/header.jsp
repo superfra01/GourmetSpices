@@ -11,9 +11,9 @@
     <nav>
         <ul>
             <li><a class="selected" href="<%= request.getContextPath() %>/HomePage.jsp">Home</a></li>
-            <li><a href="<%= request.getContextPath() %>/shop">Shop</a></li>
+            <li><a href="<%= request.getContextPath() %>/shop">Negozio</a></li>
             <li><a href="<%= request.getContextPath() %>/about">About</a></li>
-            <li><a href="<%= request.getContextPath() %>/contact">Contact</a></li>
+            <li><a href="<%= request.getContextPath() %>/contact">Contatti</a></li>
             <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
             	if(user!=null){%>
             		<li><a href="<%= request.getContextPath() %>/carrello"><i class="fa fa-shopping-cart fa-lg"></i></a></li>

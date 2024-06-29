@@ -5,6 +5,10 @@ body {
     padding: 0;
 }
 
+h2{
+	color: #b12704;
+}
+
 .product-details-container {
     display: flex;
     justify-content: center;

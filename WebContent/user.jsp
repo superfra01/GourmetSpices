@@ -18,12 +18,11 @@
                 List<OrdineBean> ordini = (List<OrdineBean>) request.getSession().getAttribute("ordini");
         %>
         <div class="user-info">
-            <h2>User Information</h2>
+            <h2>Informazioni dell'account</h2>
             <p>Username: <%= user.getUsername() %></p>
             <p>Email: <%= user.getEmail() %></p>
             <p>Nome: <%= user.getNome() %></p>
             <p>Cognome: <%= user.getCognome() %></p>
-            <p>Password: ******</p>
             <%if (user.getTipoUtente().equals("ADMIN")){%>
             	<button type="button" onclick="window.location.href='adminPage.jsp'">Admin Page</button>
             <%}%>
@@ -36,7 +35,7 @@
         </div>
 
         <div class="purchase-history">
-            <h2>Purchase History</h2>
+            <h2>Cronologia acquisti</h2>
             <div class="orders">
                 <% 
                     if (ordini != null) {

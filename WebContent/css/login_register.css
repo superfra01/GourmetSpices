@@ -69,3 +69,12 @@ input[type="password"].error {
     border-color: red;
     box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }
+
+.error-messages {
+    color: red;
+    font-weight: bold;
+}
+.error-messages ul {
+    list-style-type: none;
+    padding: 0;
+}

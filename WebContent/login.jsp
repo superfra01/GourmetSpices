@@ -8,16 +8,6 @@
     <link rel="shortcut icon" href="<%= request.getContextPath() %>/images/logo.png">
     <link href="<%= request.getContextPath() %>/css/login_register.css" rel="stylesheet">
     <script src="<%= request.getContextPath() %>/scripts/loginValidation.js"></script>
-    <style>
-        .error-messages {
-            color: red;
-            font-weight: bold;
-        }
-        .error-messages ul {
-            list-style-type: none;
-            padding: 0;
-        }
-    </style>
 </head>
 <body>
     <jsp:include page="header.jsp" />
@@ -46,7 +36,7 @@
                 </div>
             <% } %>
             
-            <p>Don't have an account? <a href="<%= request.getContextPath() %>/register.jsp">Register</a></p>
+            <p>Non ti sei ancora registrato? <a href="<%= request.getContextPath() %>/register.jsp">Registrati ora!</a></p>
         </div>
     </main>
 

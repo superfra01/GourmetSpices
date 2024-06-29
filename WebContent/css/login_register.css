@@ -44,7 +44,7 @@ input[type="password"] {
 }
 
 button {
-    background-color: #E0AA77;
+    background-color: #E07363;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -61,7 +61,7 @@ a.login-now {
 }
 
 button:hover {
-    background-color: #E07363;
+    background-color: #E09777;
 }
 
 /* Stile per il campo di input con focus */

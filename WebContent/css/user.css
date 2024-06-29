@@ -54,7 +54,7 @@ main {
 .logout-button button {
     padding: 12px 20px;
     font-size: 16px;
-    background-color: #e74c3c;
+    background-color: #E07363;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -63,7 +63,7 @@ main {
 }
 
 .logout-button button:hover {
-    background-color: #c0392b;
+    background-color: #E09777;
 }
 
 .purchase-history .orders {

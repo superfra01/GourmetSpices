@@ -66,7 +66,7 @@ main {
     padding: 5px 10px;
     border: none;
     border-radius: 4px;
-    background-color: #E09777;
+    background-color: #E07363;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -74,7 +74,7 @@ main {
 
 .update-quantity-form button:hover,
 .cart-item-details button:hover {
-    background-color: #E07363;
+    background-color: #E09777;
 }
 
 .total-cost {
@@ -95,7 +95,7 @@ main {
     font-size: 1.2em;
     border: none;
     border-radius: 4px;
-    background-color: #E09777;
+    background-color: #E07363;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -103,7 +103,7 @@ main {
 
 .checkout-button button:hover,
 .empty-button button:hover {
-    background-color: #E07363;
+    background-color: #E09777;
 }
 
 .error-message {

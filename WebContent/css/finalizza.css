@@ -1,19 +1,16 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #E0D0C1;
-    margin: 0;
-    padding: 0;
     color: #333;
 }
 
 main {
-    width: 90%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cart-item {
@@ -29,8 +26,8 @@ main {
 }
 
 .cart-item-image img {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -81,7 +78,6 @@ main {
     border-radius: 4px;
     font-size: 16px;
     transition: border-color 0.3s ease;
-    width: 400px;  
 }
 
 .payment-method input:focus {
@@ -97,7 +93,6 @@ main {
     cursor: pointer;
     font-size: 18px;
     border-radius: 4px;
-    width: 350px;  
     transition: background-color 0.3s ease;
 }
 

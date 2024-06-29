@@ -1,4 +1,7 @@
 function AddToCart(productId, quantity = 1) {
+	
+	
+	
     const quantity = document.getElementById('quantity' + productId).value;
     fetch('carrelloaggiungi', {
         method: 'POST',

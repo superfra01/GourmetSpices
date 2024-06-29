@@ -42,13 +42,14 @@
                         for (OrdineBean ordine : ordini) {
                 %>
                 <div class="order">
+                	<h3>Ordine</h3>
                     <div class="order-info">
                         <p><strong>Date:</strong> <%= ordine.getData() %></p>
                         <p><strong>Spesa:</strong> <%= ordine.getSpesa() %></p>
                         <p><strong>Indirizzo:</strong> <%= ordine.getIndirizzo() %></p>
                     </div>
                     <div class="order-products">
-                        <h3>Products:</h3>
+                        <h3>Prodotti:</h3>
                         <ul>
                             <% 
                                 List<ContenenteBean> contenteLista = (List<ContenenteBean>) request.getSession().getAttribute("contenente" + ordine.getIdOrdine());

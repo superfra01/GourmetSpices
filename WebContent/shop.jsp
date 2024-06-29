@@ -40,9 +40,9 @@
 	                            <span>€ <%= prodotto.getPrezzo() %></span>
 	                            <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
 	                            if(user!=null){%>
-	                                <form action="<%=request.getContextPath()%>/carrelloaggiungi" method="post" onClick="event.stopPropagation();">
+	                                <form onClick="event.stopPropagation();">
 	                                    <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
-	                                    <button type="submit">Aggiungi al carrello</button>
+	                                    <button type="submit" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Aggiungi al carrello</button>
 	                                </form>
 	                            <%}%>
 	                        </div>

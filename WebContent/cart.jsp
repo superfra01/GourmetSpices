@@ -41,7 +41,7 @@
 	                            </div>
 	                            <div class="cart-item-details">
 	                                <p><%= product.getNome() %></p>
-	                                <form class="update-quantity-form">
+	                                <form class="update-quantity-form" onsubmit=" event.preventDefault()">
 	                                    <input type="hidden" name="updateProductId" value="<%= item.getIdProdotto() %>">
 	                                    <label for="quantity<%= item.getIdProdotto() %>">Quantità:</label>
 	                                    <input type="number" id="quantity<%=item.getIdProdotto()%>" name="quantity" value="<%= quantity %>" min="0" max="100">

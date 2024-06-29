@@ -17,7 +17,7 @@ body {
 }
 
 #hero button {
-    background-color: #E09777;
+    background-color: #E07363;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -26,7 +26,7 @@ body {
 }
 
 #hero button:hover{
-	 background-color: #E07363; 
+	 background-color: #E09777; 
 }
 
 #prodotti h2{

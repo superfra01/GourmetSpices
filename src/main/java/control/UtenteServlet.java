@@ -25,7 +25,6 @@ import model.OrdineDAO;
 import model.ProdottoDAO;
 import model.UserBean;
 import model.UserDAO;
-
 @WebServlet("/utente")
 public class UtenteServlet extends HttpServlet{
 	private static final long serialVersionUID = -8697651045570564505L;
@@ -38,6 +37,18 @@ public class UtenteServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
 		String email = utente.getEmail();
+		UserDAO UserInDB = new UserDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
+		try {
+			UserBean check = UserInDB.doRetrieveByKey(email);
+			if(!utente.getPassword().equals(check.getPassword()));
+			RequestDispatcher dispatcherToHome = request.getRequestDispatcher("HomePage.jsp");
+			dispatcherToHome.forward(request, response);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
 		OrdineDAO ordini = new OrdineDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
 		try {

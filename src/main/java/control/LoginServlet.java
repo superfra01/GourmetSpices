@@ -73,6 +73,9 @@ public class LoginServlet extends HttpServlet{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			errors.add("email non esistente nel database");
+			request.setAttribute("errors", errors);
+			dispatcherToLoginPage.forward(request, response);
 		}
         
 		

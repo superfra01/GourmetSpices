@@ -61,7 +61,7 @@ public class SingInServlet extends HttpServlet{
         if(cognome == null || cognome.trim().isEmpty()) {
         	errors.add("Il campo cognome non può essere vuoto!");
 		}
-        if(username == null || username.trim().isEmpty()) {
+        if(username == null || username.trim().isEmpty()|| !isValid(password.trim())) {
         	errors.add("Il campo username non può essere vuoto!");
         }
         if (!errors.isEmpty()) {
@@ -141,6 +141,24 @@ public class SingInServlet extends HttpServlet{
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Errore durante la creazione dell'hash: " + e.getMessage());
         }
+        
+        
+    }
+    public static boolean isValid(String input) {
+        if (input == null || input.length() < 8) {
+            return false;
+        }
+
+        boolean hasNumber = false;
+
+        for (char c : input.toCharArray()) {
+            if (Character.isDigit(c)) {
+                hasNumber = true;
+                break;
+            }
+        }
+
+        return hasNumber;
     }
 
 }

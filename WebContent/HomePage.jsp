@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GourmetSpices</title>
-    <link rel="shortcut icon" href="<%= request.getContextPath() %>/images/logo.png">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/HomePage.css">
 </head>
 <body>

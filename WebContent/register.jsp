@@ -31,7 +31,7 @@
 			    <span id="errorConfirmPassword" aria-live="polite"></span>
 			    <button type="submit">Register</button>
 			</form>
-            <p>Already have an account? <a href="<%= request.getContextPath() %>/login.jsp">Login</a></p>
+            <p>Already have an account? <a href="<%= request.getContextPath() %>/login.jsp" class="login-now">Login</a></p>
         </div>
     </main>
 

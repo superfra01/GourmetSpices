@@ -36,7 +36,7 @@
                 </div>
             <% } %>
             
-            <p>Non ti sei ancora registrato? <a href="<%= request.getContextPath() %>/register.jsp">Registrati ora!</a></p>
+            <p>Non ti sei ancora registrato? <a href="<%= request.getContextPath() %>/register.jsp" class="register-now">Registrati ora!</a></p>
         </div>
     </main>
 

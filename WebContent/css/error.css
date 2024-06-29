@@ -1,10 +1,23 @@
 @charset "ISO-8859-1";
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #E0D0C1;
+    color: #333; /* Testo principale */
+}
+
 #error button{
-	background-color: #E07363;
+	background-color: #E09777;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
+}
+
+#error button:hover{
+	background-color: #E07363;
 }

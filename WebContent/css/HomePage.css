@@ -17,10 +17,18 @@ body {
 }
 
 #hero button {
-    background-color: #E07363;
+    background-color: #E09777;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
+}
+
+#hero button:hover{
+	 background-color: #E07363; 
+}
+
+#prodotti h2{
+	text-align:center
 }

@@ -18,7 +18,7 @@
     
         <!-- Form per inserire un nuovo elemento nel catalogo -->
         <div class="form-container">
-            <h2>Inserisci Nuovo Elemento</h2>
+            <h2>Inserisci Nuovo Prodotto nel Negozio</h2>
             <form action="<%=request.getContextPath()%>/inserisciElemento" method="post" enctype="multipart/form-data">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nomeprodotto" name="nomeprodotto" required><br>
@@ -33,7 +33,7 @@
         </div>
         <!-- Form per modificare un elemento esistente nel catalogo -->
         <div class="form-container">
-            <h2>Modifica Elemento</h2>
+            <h2>Modifica Einformazioni Prodotto</h2>
             <form action="<%=request.getContextPath()%>/ModificaProdotto" method="post">
                 <label for="id_modifica">ID Elemento:</label>
                 <input type="text" id="id_modifica" name="id" required><br>
@@ -51,7 +51,7 @@
     
         <!-- Form per visualizzare un elemento del catalogo -->
         <div class="form-container">
-            <h2>Visualizza Elemento</h2>
+            <h2>Visualizza Prodotto</h2>
             <form action="<%=request.getContextPath()%>/ProdottoSpecificato" method="get">
                 <label for="id_visualizza">ID Elemento:</label>
                 <input type="text" id="id_visualizza" name="id" required><br>
@@ -61,7 +61,7 @@
     
         <!-- Form per cancellare un elemento del catalogo -->
         <div class="form-container">
-            <h2>Cancella/abilita Elemento</h2>
+            <h2>Cancella o Modifica visibilità Prodotto</h2>
             <form action="InvalidaProdotto" method="post">
                 <label for="id_cancella">ID Elemento:</label>
                 <input type="text" id="id_cancella" name="id" required><br>

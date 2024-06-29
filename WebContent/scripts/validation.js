@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     break;
                 case "confirm_password":
                     if (input.value !== document.getElementById("regForm").password.value) {
-                        span.innerHTML = confirmPasswordErrorMessage;
+                        span.innerHTML = confirmPasswordErrorMessage+"</br>";
                         span.style.color = "red";
                         input.classList.add("error");
                         return;

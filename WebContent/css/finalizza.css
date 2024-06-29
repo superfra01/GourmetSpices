@@ -1,32 +1,38 @@
-@charset "ISO-8859-1";
-
 body {
     font-family: Arial, sans-serif;
     background-color: #E0D0C1;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
 main {
-    padding: 20px;
+    padding: 30px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cart-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+    padding: 15px 0;
+    transition: background-color 0.3s ease;
+}
+
+.cart-item:hover {
+    background-color: #f9f9f9;
 }
 
 .cart-item-image img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cart-item-details {
@@ -36,22 +42,77 @@ main {
 
 .cart-item-details p {
     margin: 5px 0;
-}
-
-.total-cost, .error-message, .checkout-button, .empty-button {
-    text-align: right;
-    padding: 10px 0;
-}
-
-.checkout-button button, .empty-button button {
-    background-color: #E0AA77;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
     font-size: 16px;
 }
 
-.checkout-button button:hover, .empty-button button:hover {
+.total-cost {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+}
+
+.payment-method {
+    margin-top: 30px;
+}
+
+.payment-method h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.payment-method form {
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-method label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.payment-method input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.payment-method input:focus {
+    border-color: #E0AA77;
+    outline: none;
+}
+
+.payment-method button {
+    background-color: #E0AA77;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.payment-method button:hover {
     background-color: #E07363;
+}
+
+.error-message {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.error-message p {
+    margin: 0;
+    font-size: 16px;
 }

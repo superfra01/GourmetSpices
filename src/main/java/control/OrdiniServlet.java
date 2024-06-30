@@ -45,6 +45,7 @@ public class OrdiniServlet extends HttpServlet{
 	private static final long serialVersionUID = 137981767037505776L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		RequestDispatcher dispatcherToOrdini = request.getRequestDispatcher("ordiniAdmin.jsp");
 		UserBean user = (UserBean) request.getSession().getAttribute("utente");
 		if(user!=null && user.getTipoUtente().equals("ADMIN")) {

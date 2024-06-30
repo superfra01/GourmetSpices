@@ -1,9 +1,7 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const items = document.querySelectorAll('.product-item');
-    items.forEach(item => {
-        item.addEventListener('click', function() {
-            const link = this.querySelector('a').getAttribute('href');
-            window.location.href = link;
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.product-item button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
         });
     });
 });

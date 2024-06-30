@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dettagli Prodotto</title>
     <link rel="stylesheet" href="./css/specificaProdotto.css">
+    <script src="<%=request.getContextPath()%>/scripts/ajax_scripts/AddToCart.js" defer></script>
 </head>
 <body>
     <jsp:include page="header.jsp" />
@@ -37,11 +38,11 @@
             <span class="price">€ <%= prodotto.getPrezzo() %></span>
             <%
             if(user != null && prodotto.getValidoProdotto()==1){ %>
-                <form action="<%=request.getContextPath()%>/carrelloaggiungi" method="post">
+                <form onsubmit=" event.preventDefault()">
                     <input type="hidden" name="AddProdottoId" value="<%= prodotto.getIdProdotto() %>">
                     <label for="quantity">Quantità:</label>
                     <input type="number" id="quantity" name="quantity" value="1" min="1" max="100">
-                    <button type="submit">Aggiungi al carrello</button>
+                    <button type="submit" onclick="AddToCart(<%= prodotto.getIdProdotto() %>)">Aggiungi al carrello</button>
                 </form>
             <% }
             else if(user != null && prodotto.getValidoProdotto()==0){%>

@@ -47,7 +47,9 @@ public class SingInServlet extends HttpServlet{
 		List<String> errors = new ArrayList<>();
     	RequestDispatcher dispatcherToRegister = request.getRequestDispatcher("signIn.jsp");
 		
-    	
+    	UserDAO utente =  (UserDAO) request.getSession().getAttribute("utente");
+    	if(utente!=null)
+			errors.add("sei già loggato");
     	
 		if(email == null || email.trim().isEmpty()) {
 			errors.add("Il campo email non può essere vuoto!");

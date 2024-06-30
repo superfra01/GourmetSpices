@@ -30,7 +30,6 @@ public class CarrelloAggiungiServlet extends HttpServlet {
         else
         	quantity = Integer.parseInt(request.getParameter("quantity"));
         UserBean utente = (UserBean) request.getSession().getAttribute("utente");
-
         if (utente == null) {
             jsonResponse.put("success", false);
             jsonResponse.put("message", "User not logged in");

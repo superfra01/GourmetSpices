@@ -41,13 +41,16 @@ public class LoginServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		
+		UserDAO utente =  (UserDAO) request.getSession().getAttribute("utente");
 		
 		List<String> errors = new ArrayList<>();
 		
 		RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("login.jsp");
 
 		
+		
+		if(utente!=null)
+			errors.add("sei già loggato");
 		if(email == null || email.trim().isEmpty()) {
 			errors.add("Il campo username non può essere vuoto!");
 		}

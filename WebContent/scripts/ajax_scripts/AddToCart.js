@@ -1,8 +1,17 @@
-function AddToCart(productId, quantity = 1) {
-	
-	
-	
-    const quantity = document.getElementById('quantity' + productId).value;
+function AddToCart(productId) {
+    let quantityElement = document.getElementById('quantity');
+    let quantity;
+	if (quantityElement) {
+	    quantity = quantityElement.value;
+	    // Continua con il resto del tuo codice...
+	} else {
+	    console.error('L\'elemento con id "quantity" non è presente nel documento.');
+	}
+
+    if (quantity == null) {
+        quantity = 1;
+        
+    }
     fetch('carrelloaggiungi', {
         method: 'POST',
         headers: {
@@ -12,33 +21,11 @@ function AddToCart(productId, quantity = 1) {
     })
     .then(response => response.json())
     .then(data => {
-        if (data.success) {
-            // Calculate the new total cost
-            let totalCost = 0;
-            document.querySelectorAll('.cart-item').forEach(item => {
-                const price = parseFloat(item.querySelector('.cart-item-details p b').textContent.replace('€', ''));
-                const qty = parseInt(item.querySelector('input[name="quantity"]').value);
-                totalCost += price * qty;
-            });
-
-            // Update total cost display
-            const totalCostElement = document.getElementById('total-cost');
-            if (totalCostElement) {
-                totalCostElement.innerHTML = '<p>Total Cost: <b>' + totalCost.toFixed(2) + '</b>€</p>';
-            }
-
-            if (parseInt(quantity) === 0) {
-                const cartItem = document.getElementById('cart-item-' + productId);
-                if (cartItem) {
-                    cartItem.remove();
-                }
-            }
-        } else {
-            alert('Failed to update quantity.');
-        }
+        // Gestisci la risposta del server qui
+        alert("aggiunto al carrello");
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while updating the quantity.');
+        console.error('Errore:', error);
+        alert('Si è verificato un errore durante l\'aggiornamento della quantità.');
     });
 }

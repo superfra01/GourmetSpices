@@ -10,9 +10,13 @@ h1 {
     margin: 20px 0;
 }
 
+h2{
+	color: #E07363;
+}
+
 .form-container {
     background-color: white;
-    border: 1px solid #dddddd;
+    border-radius: 10px;
     padding: 20px;
     margin: 20px auto;
     width: 300px;
@@ -43,7 +47,7 @@ h1 {
 
 .form-container input[type="submit"] {
     padding: 10px;
-    background-color: #E0AA77;
+    background-color: #E07363;
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -51,5 +55,5 @@ h1 {
 }
 
 .form-container input[type="submit"]:hover {
-    background-color: #E07363;
+    background-color: #E09777;
 }

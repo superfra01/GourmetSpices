@@ -1,7 +1,7 @@
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const passwordPattern = /^[A-Za-z\d]*$/;
 const cardNumberPattern = /^\d{16}$/;
-const cvvPattern = /^\d{3,4}$/;
+const cvvPattern = /^\d{3,4}$/; //American express usa cvv a 4 cifre
 const namePattern = /^[A-Za-z\s]+$/;
 
 const emailErrorMessage = "Inserisci una email valida";

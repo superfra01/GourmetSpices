@@ -5,7 +5,7 @@
 <meta charset="ISO-8859-1">
 <title>Admin Page</title>
 <link href="<%= request.getContextPath() %>/css/admin.css" rel="stylesheet">
-<script src="<%= request.getContextPath() %>/scripts/admin.js"></script>
+<script src="<%= request.getContextPath() %>/scripts/adminValidation.js"></script>
 </head>
 <body>
     <jsp:include page="header.jsp" />

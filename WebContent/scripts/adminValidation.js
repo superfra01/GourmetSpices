@@ -4,13 +4,15 @@ const prezzoPattern = /^\d+(\.\d{1,2})?$/;
 const idPattern = /^\d+$/;
 const immaginePattern = /\.(jpe?g|png)$/i;
 const validoPattern = /^[01]$/;
+const inEvidenzaPattern = /^[01]$/;
 
 const nomeErrorMessage = "Inserisci un nome valido (solo lettere e spazi, max 50 caratteri)";
 const descrizioneErrorMessage = "Inserisci una descrizione valida (max 500 caratteri)";
 const prezzoErrorMessage = "Inserisci un prezzo valido (es. 10.00)";
-const idErrorMessage = "Inserisci un ID valido (solo numeri)";
+const idErrorMessage = "Inserisci un ID valido (solo numeri positivi)";
 const immagineErrorMessage = "Inserisci un file immagine valido (JPEG o PNG)";
 const validoErrorMessage = "Il campo 'Valido' deve essere 0 o 1";
+const evidenzaErrorMessage = "Il campo 'In evidenza' deve essere 0 o 1";
 
 function validateInserisciElemento() {
     let valid = true;
@@ -20,6 +22,7 @@ function validateInserisciElemento() {
     valid = validateFormElem(form.descrizione, descrizionePattern, document.getElementById("errorDescrizione"), descrizioneErrorMessage) && valid;
     valid = validateFormElem(form.prezzo, prezzoPattern, document.getElementById("errorPrezzo"), prezzoErrorMessage) && valid;
     valid = validateFormElem(form.immagine, immaginePattern, document.getElementById("errorImmagine"), immagineErrorMessage) && valid;
+    valid = validateFormElem(form.evidenza, inEvidenzaPattern, document.getElementById("errorEvidenza"), evidenzaErrorMessage) && valid;
 
     return valid;
 }
@@ -33,7 +36,7 @@ function validateModificaProdotto() {
     valid = validateFormElem(form.descrizione_modifica, descrizionePattern, document.getElementById("errorDescrizioneModifica"), descrizioneErrorMessage) && valid;
     valid = validateFormElem(form.prezzo_modifica, prezzoPattern, document.getElementById("errorPrezzoModifica"), prezzoErrorMessage) && valid;
     valid = validateFormElem(form.valido, validoPattern, document.getElementById("errorValidoModifica"), validoErrorMessage) && valid;
-
+	valid = validateFormElem(form.evidenza_modifica, inEvidenzaPattern, document.getElementById("errorEvidenzaModifica"), evidenzaErrorMessage) && valid;
     return valid;
 }
 
@@ -52,7 +55,7 @@ function validateInvalidaProdotto() {
 
     valid = validateFormElem(form.id, idPattern, document.getElementById("errorIdCancella"), idErrorMessage) && valid;
     valid = validateFormElem(form.valido, validoPattern, document.getElementById("errorValidoCancella"), validoErrorMessage) && valid;
-
+	valid = validateFormElem(form.evidenza, inEvidenzaPattern, document.getElementById("errorEvidenzaVisibilita"), evidenzaErrorMessage) && valid;
     return valid;
 }
 

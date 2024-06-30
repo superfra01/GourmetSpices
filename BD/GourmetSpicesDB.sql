@@ -40,6 +40,7 @@ CREATE TABLE Prodotto (
     valido INT NOT NULL DEFAULT 1,
     nome VARCHAR(50) NOT NULL,
     descrizione VARCHAR(50) NOT NULL
+    In_Evidenza INT NOT NULL DEFAULT 0;
 );
 
 -- Creazione della tabella Immagine_Prodotto

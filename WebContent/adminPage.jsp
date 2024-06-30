@@ -46,7 +46,7 @@
                 <input type="text" id="nome_modifica" name="nome_modifica">
                 <span id="errorNomeModifica" class="error-message"></span><br>
                 <label for="descrizione_modifica">Descrizione:</label>
-                <textarea id="descrizione" name="descrizione" rows="4" cols="50"></textarea>
+                <textarea id="descrizione" name="descrizione_modifica" rows="4" cols="50"></textarea>
                 <span id="errorDescrizioneModifica" class="error-message"></span><br>
                 <label for="prezzo_modifica">Prezzo:</label>
                 <input type="number" id="prezzo_modifica" name="prezzo_modifica">

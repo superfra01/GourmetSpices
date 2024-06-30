@@ -39,8 +39,14 @@ public class ModificaProdottoServlet extends HttpServlet{
         ProdottoDAO Prodotti = new ProdottoDAO((DataSource) getServletContext().getAttribute("DataSource"));
         ImmagineProdottoDAO Immagini = new ImmagineProdottoDAO((DataSource) getServletContext().getAttribute("DataSource"));
         
+        
         try {
             int idProdotto = Integer.parseInt(request.getParameter("id"));
+            if(idProdotto<=0) {
+            	dispatcher = request.getRequestDispatcher("adminPage.jsp");
+            	dispatcher.forward(request, response);
+            	return;
+            }
             request.getSession().setAttribute("idprodottoaggiunto", idProdotto);
             int valido = Integer.parseInt(request.getParameter("valido"));
             int prezzo = Integer.parseInt(request.getParameter("prezzo_modifica"));

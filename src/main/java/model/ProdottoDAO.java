@@ -21,8 +21,9 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
     public synchronized void doSave(ProdottoBean data) throws SQLException {
     	if(data.getIdProdotto()!=-1) {
     		String insertSQL = "INSERT INTO " + TABLE_NAME
-                    + " (ID_prodotto, prezzo, valido, nome, descrizione) VALUES (?, ?, ?, ?, ?)"
+                    + " (ID_prodotto, In_Evidenza, prezzo, valido, nome, descrizione) VALUES (?, ?, ?, ?, ?, ?)"
                     + " ON DUPLICATE KEY UPDATE "
+                    + "In_Evidenza = VALUES(In_Evidenza),"
                     + "prezzo = VALUES(prezzo), "
                     + "valido = VALUES(valido), "
                     + "nome = VALUES(nome), "
@@ -31,24 +32,26 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
             try (Connection connection = dataSource.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
             	 preparedStatement.setInt(1, data.getIdProdotto());
-            	 preparedStatement.setFloat(2, data.getPrezzo());
-            	 preparedStatement.setInt(3, data.getValidoProdotto());
-            	 preparedStatement.setString(4, data.getNome());
-            	 preparedStatement.setString(5, data.getDescrizione());
+            	 preparedStatement.setInt(2, data.getInEvidenza());
+            	 preparedStatement.setFloat(3, data.getPrezzo());
+            	 preparedStatement.setInt(4, data.getValidoProdotto());
+            	 preparedStatement.setString(5, data.getNome());
+            	 preparedStatement.setString(6, data.getDescrizione());
 
             	 preparedStatement.executeUpdate();
             }
     	}
     	else {
     		String insertOrUpdateSQL = "INSERT INTO " + TABLE_NAME
-                    + " (prezzo, valido, nome, descrizione) VALUES (?, ?, ?, ?)";
+                    + " (prezzo, In_Evidenza, valido, nome, descrizione) VALUES (?, ?, ?, ?, ?)";
 
 			try (Connection connection = dataSource.getConnection();
 			     PreparedStatement preparedStatement = connection.prepareStatement(insertOrUpdateSQL)) {
 			    preparedStatement.setFloat(1, data.getPrezzo());
-			    preparedStatement.setInt(2, data.getValidoProdotto());
-			    preparedStatement.setString(3, data.getNome());
-			    preparedStatement.setString(4, data.getDescrizione());
+			    preparedStatement.setInt(2, data.getInEvidenza());
+			    preparedStatement.setInt(3, data.getValidoProdotto());
+			    preparedStatement.setString(4, data.getNome());
+			    preparedStatement.setString(5, data.getDescrizione());
 			
 			    preparedStatement.executeUpdate();
 			}
@@ -83,6 +86,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
                 if (rs.next()) {
                     ProdottoBean bean = new ProdottoBean();
                     bean.setIdProdotto(rs.getInt("ID_prodotto"));
+                    bean.setValidoProdotto(rs.getInt("In_Evidenza"));
                     bean.setPrezzo(rs.getFloat("prezzo"));
                     bean.setValidoProdotto(rs.getInt("valido"));
                     bean.setNome(rs.getString("nome"));
@@ -110,6 +114,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
             while (rs.next()) {
                 ProdottoBean bean = new ProdottoBean();
                 bean.setIdProdotto(rs.getInt("ID_prodotto"));
+                bean.setValidoProdotto(rs.getInt("In_Evidenza"));
                 bean.setPrezzo(rs.getFloat("prezzo"));
                 bean.setValidoProdotto(rs.getInt("valido"));
                 bean.setNome(rs.getString("nome"));

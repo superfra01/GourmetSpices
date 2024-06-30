@@ -6,6 +6,7 @@ public class ProdottoBean implements Serializable {
     private static final long serialVersionUID = 2856723757650934256L;
     
     private int idProdotto;
+    private int inEvidenza;
     private float prezzo;
     private int valido;
     private String nome;
@@ -17,7 +18,9 @@ public class ProdottoBean implements Serializable {
         this.valido = 1;
         this.nome = "";
         this.descrizione = "";
+        this.inEvidenza=0;
     }
+    
     
     public ProdottoBean(int idProdotto, float prezzo, int valido, String nome, String descrizione) {
         this.idProdotto = idProdotto;
@@ -69,4 +72,12 @@ public class ProdottoBean implements Serializable {
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
+
+	public int getInEvidenza() {
+		return inEvidenza;
+	}
+
+	public void setInEvidenza(int inEvidenza) {
+		this.inEvidenza = inEvidenza;
+	}
 }

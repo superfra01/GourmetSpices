@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" charset="text/html; ISO-8859-1">
     <link href="${pageContext.request.contextPath}/css/Header.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="<%= request.getContextPath() %>/scripts/contatti.js"></script>
 </head>
 <body>
 <header>
@@ -15,7 +16,7 @@
             <li><a class="selected" href="<%= request.getContextPath() %>/LoadProdotti?mode=home">Home</a></li>
             <li><a href="<%= request.getContextPath() %>/LoadProdotti?mode=shop">Negozio</a></li>
             <li><a href="<%= request.getContextPath() %>/about">About</a></li>
-            <li><a href="<%= request.getContextPath() %>/contact">Contatti</a></li>
+            <li><a id="contactLink" href="#">Contatti</a></li>
             <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
             if (user != null) { %>
                 <li><a href="<%= request.getContextPath() %>/carrello"><i class="fa fa-shopping-cart fa-lg"></i></a></li>

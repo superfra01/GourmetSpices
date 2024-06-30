@@ -42,8 +42,10 @@ public class InvalidaProdottoServlet extends HttpServlet{
         try {
             int idProdotto = Integer.parseInt(request.getParameter("id"));
             int valido = Integer.parseInt(request.getParameter("valido"));
+            int inEvidenza = Integer.parseInt(request.getParameter("evidenza"));
             ProdottoBean prodotto = Prodotti.doRetrieveByKey(idProdotto);
             prodotto.setValidoProdotto(valido);
+            prodotto.setInEvidenza(inEvidenza);
             Prodotti.doSave(prodotto);
             request.getSession().setAttribute("ProdottoRichiesto", prodotto);
             List<ImmagineProdottoBean> ImmaginiProdotto = (List<ImmagineProdottoBean>) Immagini.doRetrieveByProductKey(idProdotto);

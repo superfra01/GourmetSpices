@@ -21,11 +21,18 @@
         <h2>Prodotti in evidenza</h2>
         <div class="product-list">
             <%
+            	
                 List<ProdottoBean> prodottiList = (List<ProdottoBean>) request.getSession().getAttribute("ProdottiList");
                 if (prodottiList != null) {
+                	
                     for (ProdottoBean prodotto : prodottiList) {
+                    	
                         List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("ImmagineProdotto" + Integer.toString(prodotto.getIdProdotto()));
+                        System.out.println("sabbia");
+                        System.out.println(prodotto.getValidoProdotto());
+                        System.out.println(prodotto.getInEvidenza());
                         if(prodotto.getValidoProdotto()==1 && prodotto.getInEvidenza()==1){
+                        	System.out.println("diodiwod");
             %>
                         <div class="product-item" onclick="window.location.href='<%=request.getContextPath()%>/ProdottoSpecificato?id=<%= prodotto.getIdProdotto() %>'">
                             <% for (ImmagineProdottoBean immagine : immagini) { %>

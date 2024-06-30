@@ -114,7 +114,7 @@ public class ProdottoDAO implements BeanDAO<ProdottoBean, Integer> {
             while (rs.next()) {
                 ProdottoBean bean = new ProdottoBean();
                 bean.setIdProdotto(rs.getInt("ID_prodotto"));
-                bean.setValidoProdotto(rs.getInt("In_Evidenza"));
+                bean.setInEvidenza(rs.getInt("In_Evidenza"));
                 bean.setPrezzo(rs.getFloat("prezzo"));
                 bean.setValidoProdotto(rs.getInt("valido"));
                 bean.setNome(rs.getString("nome"));

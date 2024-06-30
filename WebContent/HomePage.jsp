@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GourmetSpices</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/HomePage.css">
+    <script src="<%=request.getContextPath()%>/scripts/shop.js" defer></script>
+    <script src="<%=request.getContextPath()%>/scripts/ajax_scripts/AddToCart.js" defer></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 </head>
 <body>
@@ -14,7 +19,7 @@
     <section id="hero">
         <h2>Qualità Garantita</h2>
         <h3>Prezzi convenienti su ogni prodotto</h3>
-        <button type="button" onclick="window.location.href='<%= request.getContextPath() %>/shop'">Acquista Ora</button>
+        <button type="button" onclick="window.location.href='<%= request.getContextPath() %>/LoadProdotti?mode=shop'">Acquista Ora</button>
     </section>
     
     <section id="prodotti">
@@ -28,11 +33,8 @@
                     for (ProdottoBean prodotto : prodottiList) {
                     	
                         List<ImmagineProdottoBean> immagini = (List<ImmagineProdottoBean>) request.getSession().getAttribute("ImmagineProdotto" + Integer.toString(prodotto.getIdProdotto()));
-                        System.out.println("sabbia");
-                        System.out.println(prodotto.getValidoProdotto());
-                        System.out.println(prodotto.getInEvidenza());
                         if(prodotto.getValidoProdotto()==1 && prodotto.getInEvidenza()==1){
-                        	System.out.println("diodiwod");
+                        	
             %>
                         <div class="product-item" onclick="window.location.href='<%=request.getContextPath()%>/ProdottoSpecificato?id=<%= prodotto.getIdProdotto() %>'">
                             <% for (ImmagineProdottoBean immagine : immagini) { %>

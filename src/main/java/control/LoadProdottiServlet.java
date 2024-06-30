@@ -42,9 +42,9 @@ public class LoadProdottiServlet extends HttpServlet{
 		String mode = request.getParameter("mode");
 		RequestDispatcher dispatcherToShop;
 		if(mode!=null && mode.equals("home"))
-			dispatcherToShop = request.getRequestDispatcher("HomePage.jsp");
+			response.sendRedirect("HomePage.jsp");
 		else
-			dispatcherToShop = request.getRequestDispatcher("shop.jsp");
+			response.sendRedirect("shop.jsp");
 		ProdottoDAO Prodotti = new ProdottoDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
 		ImmagineProdottoDAO ImmagineProdotti = new ImmagineProdottoDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
 		try {
@@ -64,7 +64,7 @@ public class LoadProdottiServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 		
-		dispatcherToShop.forward(request, response);
+		return;
 	}
 		 
 		

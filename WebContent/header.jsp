@@ -9,10 +9,10 @@
 </head>
 <body>
 <header>
-    <a href="<%= request.getContextPath() %>/HomePage.jsp"><img src="<%= request.getContextPath() %>/images/logo.webp" alt="logo" class="logo"></a>
+    <a href="<%= request.getContextPath() %>/LoadProdotti?mode=home"><img src="<%= request.getContextPath() %>/images/logo.webp" alt="logo" class="logo"></a>
     <nav class="main-nav">
         <ul>
-            <li><a class="selected" href="<%= request.getContextPath() %>/HomePage.jsp">Home</a></li>
+            <li><a class="selected" href="<%= request.getContextPath() %>/LoadProdotti?mode=home">Home</a></li>
             <li><a href="<%= request.getContextPath() %>/LoadProdotti?mode=shop">Negozio</a></li>
             <li><a href="<%= request.getContextPath() %>/about">About</a></li>
             <li><a href="<%= request.getContextPath() %>/contact">Contatti</a></li>

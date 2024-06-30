@@ -1,17 +1,14 @@
 function AddToCart(productId) {
     let quantityElement = document.getElementById('quantity');
     let quantity;
-	if (quantityElement) {
-	    quantity = quantityElement.value;
-	    // Continua con il resto del tuo codice...
-	} else {
-	    console.error('L\'elemento con id "quantity" non è presente nel documento.');
-	}
-
+    if (quantityElement) {
+        quantity = quantityElement.value;
+    }
+    
     if (quantity == null) {
         quantity = 1;
-        
     }
+
     fetch('carrelloaggiungi', {
         method: 'POST',
         headers: {
@@ -22,10 +19,20 @@ function AddToCart(productId) {
     .then(response => response.json())
     .then(data => {
         // Gestisci la risposta del server qui
-        alert("aggiunto al carrello");
+        Swal.fire({
+            icon: 'success',
+            title: 'Successo',
+            text: 'Prodotto aggiunto al carrello!',
+            confirmButtonColor: '#E09777' // Questo colore verrà applicato dal CSS globale
+        });
     })
     .catch(error => {
         console.error('Errore:', error);
-        alert('Si è verificato un errore durante l\'aggiornamento della quantità.');
+        Swal.fire({
+            icon: 'error',
+            title: 'Errore',
+            text: 'Si è verificato un errore durante l\'aggiornamento della quantità.',
+            confirmButtonColor: '#E09777' // Questo colore verrà applicato dal CSS globale
+        });
     });
 }

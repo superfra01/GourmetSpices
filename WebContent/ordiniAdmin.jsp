@@ -32,7 +32,6 @@
             
             <label for="filterEmail">User Email:</label>
             <input type="text" id="filterEmail" name="filterEmail" placeholder="Enter user email">
-            <span id="errorFilterEmail" class="error-message"></span><br>
             
             <button type="submit">Filter</button>
         </form>

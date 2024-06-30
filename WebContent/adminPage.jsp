@@ -27,7 +27,7 @@
                 <textarea id="descrizione" name="descrizione" rows="4" cols="50" required></textarea>
                 <span id="errorDescrizione" class="error-message"></span><br>
                 <label for="prezzo">Prezzo:</label>
-                <input type="number" id="prezzo" name="prezzo" step="0.01" required>
+                <input type="number" id="prezzo" name="prezzo" required>
                 <span id="errorPrezzo" class="error-message"></span><br>
                 <label for="immagine">Immagine:</label>
                 <input type="file" id="immagine" name="immagine" accept="image/jpeg, image/png" required>
@@ -46,13 +46,13 @@
                 <input type="text" id="nome_modifica" name="nome_modifica">
                 <span id="errorNomeModifica" class="error-message"></span><br>
                 <label for="descrizione_modifica">Descrizione:</label>
-                <input type="text" id="descrizione_modifica" name="descrizione_modifica">
+                <textarea id="descrizione" name="descrizione" rows="4" cols="50"></textarea>
                 <span id="errorDescrizioneModifica" class="error-message"></span><br>
                 <label for="prezzo_modifica">Prezzo:</label>
-                <input type="number" id="prezzo_modifica" name="prezzo_modifica" step="0.01">
+                <input type="number" id="prezzo_modifica" name="prezzo_modifica">
                 <span id="errorPrezzoModifica" class="error-message"></span><br>
                 <label for="valido">Valido:</label>
-                <input type="text" name="valido" value="0" required>
+                <input type="text" name="valido" value="1" required>
                 <span id="errorValidoModifica" class="error-message"></span><br>
                 <input type="submit" value="Modifica">
             </form>

@@ -46,6 +46,11 @@ form input[type="text"] {
     border-radius: 4px;
 }
 
+form input[type="date"]:focus,
+form input[type="text"]:focus {
+    outline-color: #E07363;
+}
+
 form button {
     padding: 10px 15px;
     background-color: #E07363;

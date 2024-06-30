@@ -1,5 +1,4 @@
-const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const emailErrorMessage = "Inserisci un'email valida";
+
 const dateErrorMessage = "La data di fine non può essere precedente alla data di inizio.";
 
 function validateFilterOrders() {
@@ -31,16 +30,6 @@ function validateFilterOrders() {
         }
     }
 
-    if (filterEmail.value && !filterEmail.value.match(emailPattern)) {
-        filterEmail.classList.add("error");
-        errorFilterEmail.innerHTML = emailErrorMessage;
-        errorFilterEmail.style.color = "red";
-        valid = false;
-    } else {
-        filterEmail.classList.remove("error");
-        errorFilterEmail.style.color = "black";
-        errorFilterEmail.innerHTML = "";
-    }
 
     return valid;
 }

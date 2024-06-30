@@ -61,7 +61,7 @@ public class OrdiniServlet extends HttpServlet{
 					int idOrdine = Ordine.getIdOrdine();
 					String NCarta = Ordine.getNCarta();
 					MetodoDiPagamentoBean MetodoDiPagamento = MetodiDiPagamento.doRetrieveByKey(NCarta);
-					request.getSession().setAttribute("adminMetodoDiPagamento"+idOrdine, MetodiDiPagamento);
+					request.getSession().setAttribute("adminMetodoDiPagamento"+idOrdine, MetodoDiPagamento);
 					List<ContenenteBean> ContenenteList = (List<ContenenteBean>) Contenenti.doRetrieveByOrderKey(idOrdine);
 					if(ContenenteList==null)
 						System.out.println("diomerda");

@@ -57,6 +57,7 @@
                     String orderDate = ordine.getData().toString();
                     String userEmail = ordine.getEmail(); 
                     List<ContenenteBean> contenenteList = (List<ContenenteBean>) request.getSession().getAttribute("adminContenenteList"+idOrdine);
+                    MetodoDiPagamentoBean Metodo = (MetodoDiPagamentoBean) request.getSession().getAttribute("adminMetodoDiPagamento"+idOrdine);
                 %>
                 <tr class="orderRow" data-order-date="<%= orderDate %>" data-order-email="<%= userEmail %>">
                     <td><%= idOrdine %></td>
@@ -77,6 +78,9 @@
                             }
                             %>
                         </ul>
+                    </td>
+                    <td>
+                    Carta:<%= Metodo.getNCarta()%>
                     </td>
                 </tr>
                 <% } %>

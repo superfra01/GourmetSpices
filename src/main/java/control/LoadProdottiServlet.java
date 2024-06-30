@@ -29,17 +29,22 @@ import model.ProdottoBean;
 import model.ProdottoDAO;
 import model.UserBean;
 import model.UserDAO;
-@WebServlet("/HomePage")
-public class HomePageServlet extends HttpServlet{
+@WebServlet("/LoadProdotti")
+public class LoadProdottiServlet extends HttpServlet{
 	private static final long serialVersionUID = -86976045570564505L;
 
-	public HomePageServlet(){
+	public LoadProdottiServlet(){
 		super();
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		RequestDispatcher dispatcherToShop = request.getRequestDispatcher("HomePage.jsp");
+		String mode = request.getParameter("mode");
+		RequestDispatcher dispatcherToShop;
+		if(mode!=null && mode.equals("home"))
+			dispatcherToShop = request.getRequestDispatcher("HomePage.jsp");
+		else
+			dispatcherToShop = request.getRequestDispatcher("shop.jsp");
 		ProdottoDAO Prodotti = new ProdottoDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
 		ImmagineProdottoDAO ImmagineProdotti = new ImmagineProdottoDAO((DataSource) this.getServletContext().getAttribute("DataSource"));
 		try {

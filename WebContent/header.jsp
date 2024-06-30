@@ -13,7 +13,7 @@
     <nav class="main-nav">
         <ul>
             <li><a class="selected" href="<%= request.getContextPath() %>/HomePage.jsp">Home</a></li>
-            <li><a href="<%= request.getContextPath() %>/shop">Negozio</a></li>
+            <li><a href="<%= request.getContextPath() %>/LoadProdotti?mode=shop">Negozio</a></li>
             <li><a href="<%= request.getContextPath() %>/about">About</a></li>
             <li><a href="<%= request.getContextPath() %>/contact">Contatti</a></li>
             <% UserBean user = (UserBean) request.getSession().getAttribute("utente");

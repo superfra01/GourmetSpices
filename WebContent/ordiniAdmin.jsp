@@ -4,8 +4,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin Page</title>
-<link href="<%= request.getContextPath() %>/css/admin.css" rel="stylesheet">
+<link href="<%= request.getContextPath() %>/css/ordiniAdmin.css" rel="stylesheet">
 <script src="<%= request.getContextPath() %>/scripts/filtraOrdini.js"></script>
+<script src="<%= request.getContextPath() %>/scripts/ordiniAdminValidation.js"></script>
 </head>
 <body>
     <jsp:include page="header.jsp" />
@@ -20,13 +21,19 @@
     
     <div class="filter-section">
         <h2>Filter Orders</h2>
-        <form onsubmit="event.preventDefault(); filterOrders();">
+        <form id="filterOrdersForm">
             <label for="startDate">Start Date:</label>
             <input type="date" id="startDate" name="startDate">
+            <span id="errorStartDate" class="error-message"></span><br>
+            
             <label for="endDate">End Date:</label>
             <input type="date" id="endDate" name="endDate">
+            <span id="errorEndDate" class="error-message"></span><br>
+            
             <label for="filterEmail">User Email:</label>
             <input type="text" id="filterEmail" name="filterEmail" placeholder="Enter user email">
+            <span id="errorFilterEmail" class="error-message"></span><br>
+            
             <button type="submit">Filter</button>
         </form>
     </div>
@@ -48,7 +55,7 @@
                 for (OrdineBean ordine : adminOrdini) {
                     int idOrdine = ordine.getIdOrdine();
                     String orderDate = ordine.getData().toString();
-                    String userEmail = ordine.getEmail(); // Assuming there's a method to get user's email
+                    String userEmail = ordine.getEmail(); 
                     List<ContenenteBean> contenenteList = (List<ContenenteBean>) request.getSession().getAttribute("adminContenenteList"+idOrdine);
                 %>
                 <tr class="orderRow" data-order-date="<%= orderDate %>" data-order-email="<%= userEmail %>">

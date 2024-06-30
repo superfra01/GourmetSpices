@@ -17,9 +17,11 @@
             <h3>Un mondo ricco di spezie e di sapori travolgenti ti aspetta</h3>
             <h4>Login</h4>
 
-            <form id="loginForm" action="<%= request.getContextPath() %>/login" method="post">
+            <form id="loginForm" action="<%= request.getContextPath() %>/login" method="post" novalidate>
                 <input type="text" id="email" name="email" placeholder="Email" required>
+                <span id="errorEmail" aria-live="polite"></span>
                 <input type="password" id="password" name="password" placeholder="Password" required>
+                <span id="errorPassword" aria-live="polite"></span>
                 <button type="submit">Login</button>
             </form>
             

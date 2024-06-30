@@ -7,7 +7,6 @@ body {
     color: #333; /* Testo principale */
 }
 
-
 #hero {
     text-align: center;
     padding: 100px 20px;
@@ -25,10 +24,110 @@ body {
     font-size: 16px;
 }
 
-#hero button:hover{
-	 background-color: #E09777; 
+#hero button:hover {
+    background-color: #E09777;
 }
 
-#prodotti h2{
-	text-align:center
+/* Product section styles */
+#prodotti {
+    padding: 20px;
+}
+
+#prodotti h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+/* Product item styles */
+.product-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: calc(25% - 20px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.product-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect for product name */
+.product-item:hover .product-item-name a {
+    color: #E07363;
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-item .product-item-name a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.product-item p {
+    color: #666;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.product-item span {
+    display: block;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-item form {
+    margin: 10px 0;
+}
+
+.product-item button {
+    background-color: #E09777;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product-item button:hover {
+    background-color: #E07363;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .product-item {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .product-item {
+        width: 100%;
+    }
 }

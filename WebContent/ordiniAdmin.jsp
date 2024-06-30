@@ -21,7 +21,7 @@
     
     <div class="filter-section">
         <h2>Filter Orders</h2>
-        <form id="filterOrdersForm">
+        <form id="filterOrdersForm" onsubmit=" event.preventDefault()">
             <label for="startDate">Start Date:</label>
             <input type="date" id="startDate" name="startDate">
             <span id="errorStartDate" class="error-message"></span><br>

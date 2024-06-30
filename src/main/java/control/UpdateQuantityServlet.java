@@ -71,16 +71,11 @@ public class UpdateQuantityServlet extends HttpServlet {
                     contenenteCarrelli.doDelete(key);
                 }
             }
-
-            // Calculate the new total cost
-            List<ContenenteCarrelloBean> cartItems = (List<ContenenteCarrelloBean>) contenenteCarrelli.doRetrieveByCarrelloKey(idCarrello);
-            float totalCost = 0;
-            ProdottoDAO prodottoDAO = new ProdottoDAO((DataSource) getServletContext().getAttribute("DataSource"));
-            for (ContenenteCarrelloBean item : cartItems) {
-                ProdottoBean product = prodottoDAO.doRetrieveByKey(item.getIdProdotto());
-                totalCost += item.getQuantita() * product.getPrezzo();
-            }
-
+            
+            ContenenteCarrelloDAO Contenente = new ContenenteCarrelloDAO((DataSource)getServletContext().getAttribute("DataSource"));
+            List<ContenenteCarrelloBean> ContenenteCarrelloBeanList = (List<ContenenteCarrelloBean>) Contenente.doRetrieveByCarrelloKey(idCarrello);
+			request.getSession().setAttribute("ContenenteCarrelloBeanList"+Integer.toString(idCarrello), ContenenteCarrelloBeanList);
+            
             jsonResponse.put("success", true);
 
         } catch (SQLException e) {

@@ -44,8 +44,8 @@
 	                                <form class="update-quantity-form" onsubmit=" event.preventDefault()">
 	                                    <input type="hidden" name="updateProductId" value="<%= item.getIdProdotto() %>">
 	                                    <label for="quantity<%= item.getIdProdotto() %>">Quantità:</label>
-	                                    <input type="number" id="quantity<%=item.getIdProdotto()%>" name="quantity" value="<%= quantity %>" min="0" max="100">
-	                                    <button type="button" onclick="updateQuantity(<%= item.getIdProdotto() %>)" >Aggiorna</button>
+	                                    <input type="number" id="quantity<%=item.getIdProdotto()%>" name="quantity"  onchange="updateQuantity(<%= item.getIdProdotto() %>)" value="<%= quantity %>" min="0" max="100">
+	                                    
 	                                </form>
 	                                <button type="button" onclick="removeItem(<%= item.getIdProdotto() %>)">Rimuovi</button>
 	                                <p>Prezzo: <b><%= product.getPrezzo() %>€</b></p>

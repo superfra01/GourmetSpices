@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Admin Page</title>
-<link href="<%= request.getContextPath() %>/css/admin.css" rel="stylesheet">
-<script src="<%= request.getContextPath() %>/scripts/adminValidation.js"></script>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin Page</title>
+	<link href="<%= request.getContextPath() %>/css/admin.css" rel="stylesheet">
+	<script src="<%= request.getContextPath() %>/scripts/adminValidation.js"></script>
 </head>
 <body>
     <jsp:include page="header.jsp" />

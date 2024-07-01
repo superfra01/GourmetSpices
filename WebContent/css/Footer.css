@@ -6,9 +6,38 @@ footer {
     padding: 20px;
     text-align: center;
 }
+
+/* Styling for social media icons */
 footer a i {
-    color:white;
+    color: white;
+    margin: 0 10px;
 }
-footer a:hover i{
+
+footer a:hover i {
     color: #E07363;
+}
+
+/* Breakpoints */
+@media (max-width: 768px) {
+    footer {
+        padding: 15px;
+    }
+    footer p {
+        margin: 10px 0;
+    }
+    footer a i {
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 10px;
+    }
+    footer p {
+        margin: 5px 0;
+    }
+    footer a i {
+        margin: 0 3px;
+    }
 }

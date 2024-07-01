@@ -8,7 +8,7 @@ body {
 
 main {
     max-width: 1200px;
-    margin: 40px;
+    margin: 40px auto;
     padding: 20px;
     background: #fff;
     border-radius: 8px;
@@ -115,4 +115,98 @@ main {
 .error-message p {
     margin: 0;
     font-size: 16px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    main {
+        margin: 20px 10px;
+        padding: 15px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item-image img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cart-item-details {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .cart-item-details p {
+        font-size: 14px;
+    }
+
+    .total-cost {
+        font-size: 18px;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .payment-method h2 {
+        font-size: 22px;
+    }
+
+    .payment-method label {
+        font-size: 13px;
+    }
+
+    .payment-method input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .payment-method button {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+
+    .error-message p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        margin: 10px 5px;
+        padding: 10px;
+    }
+
+    .cart-item-image img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cart-item-details p {
+        font-size: 12px;
+    }
+
+    .total-cost {
+        font-size: 16px;
+        padding: 8px 0;
+    }
+
+    .payment-method h2 {
+        font-size: 20px;
+    }
+
+    .payment-method input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .payment-method button {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+
+    .error-message p {
+        font-size: 12px;
+    }
 }

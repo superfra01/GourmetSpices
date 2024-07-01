@@ -103,3 +103,47 @@ tr:nth-child(even) {
     margin: 0;
     padding: 0;
 }
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .filter-section, .orders-section {
+        margin: 20px 10px;
+        padding: 15px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    form label,
+    form input[type="date"],
+    form input[type="text"],
+    form button {
+        flex: 1 1 100%;
+    }
+
+    table, th, td {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-section, .orders-section {
+        margin: 10px 5px;
+        padding: 10px;
+    }
+
+    form label,
+    form input[type="date"],
+    form input[type="text"],
+    form button {
+        flex: 1 1 100%;
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    table, th, td {
+        font-size: 12px;
+        padding: 8px;
+    }
+}

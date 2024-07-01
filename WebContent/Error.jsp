@@ -11,12 +11,14 @@
 </head>
 <body>
     <jsp:include page="header.jsp" />
-    <section id="error">
-        <h1>Oops!</h1>
-        <h2>Qualcosa è andato storto</h2>
-        <p>Ci scusiamo per il disagio, un errore inaspettato ha impedito il corretto funzionamento del sito. Perfavore riprova più tardi, nel frattempo prova a tornare alla Homepage.</p>
-        <button onclick="window.location.href='HomePage.jsp'">Ritorna alla Homepage</button>
-    </section>
+    <main>
+        <section id="error">
+            <h1>Oops!</h1>
+            <h2>Qualcosa è andato storto</h2>
+            <p>Ci scusiamo per il disagio, un errore inaspettato ha impedito il corretto funzionamento del sito. Perfavore riprova più tardi, nel frattempo prova a tornare alla Homepage.</p>
+            <button onclick="window.location.href='HomePage.jsp'">Ritorna alla Homepage</button>
+        </section>
+    </main>
     <jsp:include page="footer.jsp" />
 </body>
 </html>

@@ -6,10 +6,11 @@ header {
     align-items: center;
     padding: 10px 20px;
     background-color: #E09777;
+    flex-wrap: wrap;
 }
 
 .logo {
-    max-height: 50px;/*provvsorio*/
+    max-height: 50px; 
 }
 
 nav {
@@ -17,14 +18,17 @@ nav {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-end;
 }
 
-nav ul{
+nav ul {
     display: flex;
     list-style: none;
-    
     margin-left: auto;
     padding: 0;
+    flex-wrap: wrap;
 }
 
 nav li {
@@ -34,7 +38,6 @@ nav li {
 nav a {
     text-decoration: none;
     color: white;
-    /*font-weight: bold;/*da togliere*/
     display: flex;
     align-items: center;
     height: 100%;
@@ -43,6 +46,37 @@ nav a {
 nav a i {
     margin-left: 5px;
 }
+
 nav ul li a.selected {
     font-weight: bold;
+}
+
+/* Breakpoints */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 10px;
+    }
+    .logo {
+        max-height: 40px; 
+    }
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+    }
+    nav li {
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 5px 5px;
+    }
+    .logo {
+        max-height: 30px; 
+    }
+    nav ul {
+        align-items: center;
+    }
 }

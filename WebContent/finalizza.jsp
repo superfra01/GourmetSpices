@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finalizza Pagamento</title>
     <link href="<%= request.getContextPath() %>/css/finalizza.css" rel="stylesheet">
     <script src="<%= request.getContextPath() %>/scripts/checkoutValidation.js"></script>

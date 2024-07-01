@@ -29,6 +29,7 @@ main {
 .login-container a {
     color: white;
 }
+
 .login-container a:hover {
     color: #E07363;
 }
@@ -82,7 +83,33 @@ input[type="password"].error {
     color: red;
     font-weight: bold;
 }
+
 .error-messages ul {
     list-style-type: none;
     padding: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .login-container {
+        width: 80%;
+        padding: 15px;
+    }
+
+    button {
+        padding: 10px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    button {
+        padding: 8px;
+        width: 100%;
+    }
 }

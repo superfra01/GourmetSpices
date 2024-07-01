@@ -1,16 +1,45 @@
 @charset "ISO-8859-1";
 
-body {
-    font-family: Arial, sans-serif;
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #E0D0C1;
-    color: #333; /* Testo principale */
 }
 
-#error button{
-	background-color: #E09777;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E0D0C1;
+    color: #333; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Flex Container for Body Content */
+main {
+    flex: 1; /* Take up remaining space */
+}
+
+#error {
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+}
+
+#error h1 {
+    font-size: 2em;
+}
+
+#error h2 {
+    font-size: 1.5em;
+}
+
+#error p {
+    font-size: 1em;
+}
+
+#error button {
+    background-color: #E09777;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -18,6 +47,45 @@ body {
     font-size: 16px;
 }
 
-#error button:hover{
-	background-color: #E07363;
+#error button:hover {
+    background-color: #E07363;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #error h1 {
+        font-size: 1.5em;
+    }
+
+    #error h2 {
+        font-size: 1.2em;
+    }
+
+    #error p {
+        font-size: 0.9em;
+    }
+
+    #error button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    #error h1 {
+        font-size: 1.2em;
+    }
+
+    #error h2 {
+        font-size: 1em;
+    }
+
+    #error p {
+        font-size: 0.8em;
+    }
+
+    #error button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
 }

@@ -1,30 +1,37 @@
+@charset "ISO-8859-1";
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 5%;
     background-color: #E09777;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow: hidden;
 }
 
 .logo {
     max-height: 50px;
+    flex: 1;
 }
 
 nav {
     display: flex;
-    width: auto;
+    flex: 2;
+    justify-content: flex-end;
 }
 
 nav ul {
     display: flex;
     list-style: none;
-    margin-left: auto;
+    margin: 0;
     padding: 0;
+    overflow: hidden;
+    flex-wrap: nowrap;
 }
 
 nav li {
-    margin: 0 1%;
+    margin: 0 10px;
 }
 
 nav a {
@@ -49,13 +56,12 @@ nav ul li a.selected {
         padding: 10px 3%;
     }
 
-    nav ul {
-        margin-left: 0;
-        justify-content: space-around;
+    .logo {
+        max-height: 40px;
     }
 
     nav li {
-        margin: 0 2%;
+        margin: 0 8px;
     }
 }
 
@@ -66,16 +72,11 @@ nav ul li a.selected {
     }
 
     .logo {
-        max-height: 40px;
-    }
-
-    nav ul {
-        flex-wrap: wrap;
-        justify-content: space-between;
+        max-height: 35px;
     }
 
     nav li {
-        margin: 0 1.5%;
+        margin: 0 5px;
     }
 }
 
@@ -89,12 +90,19 @@ nav ul li a.selected {
         max-height: 30px;
     }
 
+    nav {
+        flex: 1;
+    }
+
     nav ul {
-        flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-around;
     }
 
     nav li {
-        margin: 0 1%;
+        margin: 0 3px;
+    }
+
+    nav a {
+        font-size: 0.9em;
     }
 }

@@ -39,8 +39,8 @@ CREATE TABLE Prodotto (
     prezzo INT NOT NULL,
     valido INT NOT NULL DEFAULT 1,
     nome VARCHAR(50) NOT NULL,
-    descrizione VARCHAR(50) NOT NULL
-    In_Evidenza INT NOT NULL DEFAULT 0;
+    descrizione VARCHAR(50) NOT NULL,
+    In_Evidenza INT NOT NULL DEFAULT 0
 );
 
 -- Creazione della tabella Immagine_Prodotto
@@ -80,15 +80,6 @@ CREATE TABLE Ordine (
     indirizzo VARCHAR(50) NOT NULL,
     FOREIGN KEY (email) REFERENCES Utente(email),
     FOREIGN KEY (NCarta) REFERENCES Metodo_Di_Pagamento(NCarta)
-);
-
--- Creazione della tabella Spedizione
-CREATE TABLE Spedizione (
-    ID_ordine INT NOT NULL,
-    N_spedizione VARCHAR(50) PRIMARY KEY NOT NULL,
-    G_di_arrivo DATE,
-    corriere VARCHAR(50),
-    FOREIGN KEY (ID_ordine) REFERENCES Ordine(ID_ordine)
 );
 
 -- Creazione della tabella Contenente
@@ -136,11 +127,6 @@ VALUES
 ('1234567890123456', 'giulia.fiori@email.com', '2024-06-05', 10.00, 'Via Roma 1'),
 ('9876543210987654', 'antonio.verdi@email.com', '2024-06-05', 7.00, 'Via Milano 2');
 
--- Inserimento delle spedizioni
-INSERT INTO Spedizione (ID_ordine, N_spedizione, G_di_arrivo, corriere)
-VALUES
-(1, 'SPED001', '2024-06-07', 'GLS'),
-(2, 'SPED002', '2024-06-08', 'DHL');
 
 -- Inserimento dei prodotti nei vari ordini (Contenente)
 INSERT INTO Contenente (ID_prodotto, ID_ordine, prezzo_all_acquisto, quantita)

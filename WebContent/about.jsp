@@ -10,7 +10,7 @@
 <body>
     <jsp:include page="header.jsp" />
     
-    <section id="about-hero">
+    <section id="about-hero" style="background: url('<%= request.getContextPath() %>/images/hero.jpg') no-repeat center center/cover;">
         <h2>Chi Siamo</h2>
         <h3>La nostra missione e i nostri valori</h3>
     </section>
@@ -19,8 +19,8 @@
         <div class="about-text">
             <h2>La Nostra Storia</h2>
             <p>
-                Benvenuti su GourmetSpices, dove la qualità e il gusto si incontrano. Siamo un'azienda familiare
-                con una passione per le spezie di alta qualità. Da anni selezioniamo solo i migliori prodotti
+                Benvenuti su GourmetSpices, dove la qualità e il gusto si incontrano. Siamo produttori
+                con la passione per le spezie di alta qualità. Da anni selezioniamo solo i migliori prodotti
                 per portare sulla vostra tavola sapori autentici e ricchi di tradizione.
             </p>
             <h2>I Nostri Valori</h2>

@@ -124,11 +124,6 @@ main {
         padding: 15px;
     }
 
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
     .cart-item-image img {
         width: 80px;
         height: 80px;

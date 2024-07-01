@@ -16,7 +16,7 @@
             <li><a class="selected" href="<%= request.getContextPath() %>/LoadProdotti?mode=home">Home</a></li>
             <li><a href="<%= request.getContextPath() %>/LoadProdotti?mode=shop">Negozio</a></li>
             <li><a href="<%= request.getContextPath() %>/about">About</a></li>
-            <li><a id="contactLink" href="#">Contatti</a></li>
+            <li><a id="contactLink" href="javascript:void(0);">Contatti</a></li>
             <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
             if (user != null) { %>
                 <li><a href="<%= request.getContextPath() %>/carrello"><i class="fa fa-shopping-cart fa-lg"></i></a></li>

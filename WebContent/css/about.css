@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #E0D0C1;
+    color: #333;
+}
+
+#about-hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: url("../images/about-hero.jpg") no-repeat center center/cover;
+    color: white;
+    position: relative;
+}
+
+#about-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.about-text {
+    flex: 1;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.about-text h2 {
+    color: #E07363;
+    margin-bottom: 10px;
+}
+
+.about-text p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    #about-hero {
+        padding: 60px 20px;
+    }
+
+    #about-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-image, .about-text {
+        max-width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    #about-hero {
+        padding: 40px 20px;
+    }
+
+    .about-text h2 {
+        font-size: 24px;
+    }
+
+    .about-text p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #about-hero {
+        padding: 20px 20px;
+    }
+
+    .about-text h2 {
+        font-size: 20px;
+    }
+
+    .about-text p {
+        font-size: 12px;
+    }
+}

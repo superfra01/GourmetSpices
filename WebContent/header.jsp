@@ -15,7 +15,7 @@
         <ul>
             <li><a class="selected" href="<%= request.getContextPath() %>/LoadProdotti?mode=home">Home</a></li>
             <li><a href="<%= request.getContextPath() %>/LoadProdotti?mode=shop">Negozio</a></li>
-            <li><a href="<%= request.getContextPath() %>/about">About</a></li>
+            <li><a href="<%= request.getContextPath() %>/about.jsp">About</a></li>
             <li><a id="contactLink" href="javascript:void(0);">Contatti</a></li>
             <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
             if (user != null) { %>

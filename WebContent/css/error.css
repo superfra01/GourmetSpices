@@ -15,6 +15,10 @@ body {
     flex-direction: column;
 }
 
+header, footer {
+    width: 100%;
+}
+
 /* Flex Container for Body Content */
 main {
     flex: 1; /* Take up remaining space */
@@ -88,4 +92,13 @@ main {
         font-size: 12px;
         padding: 6px 12px;
     }
+}
+
+/* Footer Styles */
+footer {
+    background-color: #E0D0C1;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
 }

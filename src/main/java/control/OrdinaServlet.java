@@ -87,7 +87,6 @@ public class OrdinaServlet extends HttpServlet{
 			ordine.setnCartaIban(request.getParameter("cardNumber"));
 			
 			int idOrdine = ordini.nextId();
-			System.out.println(idOrdine);
 			ordini.doSave(ordine);
 			
 			ordine.setIdOrdine(idOrdine);

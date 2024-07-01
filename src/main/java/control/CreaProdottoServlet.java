@@ -42,7 +42,7 @@ public class CreaProdottoServlet extends HttpServlet{
             prodotto.setDescrizione(request.getParameter("descrizione"));
             float prezzo = Float.parseFloat(request.getParameter("prezzo"));
             prodotto.setPrezzo(prezzo);
-
+            prodotto.setInEvidenza(Integer.parseInt(request.getParameter("evidenza")));    
             int idProdotto = Prodotti.nextId();
             Prodotti.doSave(prodotto);
             request.getSession().setAttribute("idprodottoaggiunto", idProdotto);

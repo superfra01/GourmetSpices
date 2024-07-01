@@ -111,7 +111,7 @@ h1 {
 
 @media (max-width: 768px) {
     .product-item {
-        width: calc(50% - 20px);
+        width: calc(40% - 20px);
     }
 }
 

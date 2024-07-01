@@ -138,9 +138,6 @@ main {
 }
 
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
 
     main {
         margin: 20px 10px;

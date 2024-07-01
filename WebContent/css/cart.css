@@ -134,38 +134,25 @@ main {
 }
 
 @media (max-width: 768px) {
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .cart-item-image,
-    .cart-item-details {
-        width: 100%;
-        text-align: center;
-    }
-
-    .cart-item-image {
-        margin-bottom: 10px;
-    }
-
-    .update-quantity-form {
-        justify-content: center;
+    .main {
+        max-width: 90%;
+        padding: 15px;
     }
 
     .cart-item-details p {
-        font-size: 1em;
+        font-size: 1.1em;
     }
 
     .total-cost {
-        font-size: 1.3em;
+        font-size: 1.4em;
     }
 
     .checkout-button button,
     .empty-button button {
-        font-size: 1em;
+        font-size: 1.1em;
     }
 }
+
 
 @media (max-width: 480px) {
     main {

@@ -1,24 +1,18 @@
-@charset "ISO-8859-1";
-
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 5%;
+    padding: 10px 20px;
     background-color: #E09777;
     flex-wrap: nowrap;
-    overflow: hidden;
 }
 
 .logo {
     max-height: 50px;
-    flex: 1;
 }
 
 nav {
     display: flex;
-    flex: 2;
-    justify-content: flex-end;
 }
 
 nav ul {
@@ -53,7 +47,7 @@ nav ul li a.selected {
 /* Breakpoint per schermi medi */
 @media (max-width: 1024px) {
     header {
-        padding: 10px 3%;
+        padding: 10px 15px;
     }
 
     .logo {
@@ -68,7 +62,7 @@ nav ul li a.selected {
 /* Breakpoint per schermi piccoli */
 @media (max-width: 768px) {
     header {
-        padding: 10px 2%;
+        padding: 10px 10px;
     }
 
     .logo {
@@ -83,15 +77,11 @@ nav ul li a.selected {
 /* Breakpoint per schermi molto piccoli */
 @media (max-width: 480px) {
     header {
-        padding: 10px 1%;
+        padding: 10px 5px;
     }
 
     .logo {
         max-height: 30px;
-    }
-
-    nav {
-        flex: 1;
     }
 
     nav ul {

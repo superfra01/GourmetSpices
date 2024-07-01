@@ -1,31 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" import="model.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" charset="text/html; ISO-8859-1">
-    <link href="${pageContext.request.contextPath}/css/Header.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="<%= request.getContextPath() %>/scripts/contatti.js"></script>
+    <title>About Us - GourmetSpices</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/AboutPage.css">
 </head>
 <body>
-<header>
-    <a href="<%= request.getContextPath() %>/LoadProdotti?mode=home"><img src="<%= request.getContextPath() %>/images/logo.webp" alt="logo" class="logo"></a>
-    <nav class="main-nav">
-        <ul>
-            <li><a class="selected" href="<%= request.getContextPath() %>/LoadProdotti?mode=home">Home</a></li>
-            <li><a href="<%= request.getContextPath() %>/LoadProdotti?mode=shop">Negozio</a></li>
-            <li><a href="<%= request.getContextPath() %>/about.jsp">About</a></li>
-            <li><a id="contactLink" href="javascript:void(0);">Contatti</a></li>
-            <% UserBean user = (UserBean) request.getSession().getAttribute("utente");
-            if (user != null) { %>
-                <li><a href="<%= request.getContextPath() %>/carrello"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
-                <li><a href="<%= request.getContextPath() %>/user.jsp"><i class="fa fa-user fa-lg"></i></a></li>  
-            <% } else { %>
-                <li><a href="<%= request.getContextPath() %>/login.jsp"><i class="fa fa-user fa-lg"></i></a></li>
-            <% } %>
-        </ul>
-    </nav>
-</header>
+    <jsp:include page="header.jsp" />
+    
+    <section id="about-hero" style="background: url('<%= request.getContextPath() %>/images/hero.jpg') no-repeat center center/cover;">
+        <h2>Chi Siamo</h2>
+        <h3>La nostra missione e i nostri valori</h3>
+    </section>
+    
+    <section id="about-content">
+        <div class="about-text">
+            <h2>La Nostra Storia</h2>
+            <p>
+                Benvenuti su GourmetSpices, dove la qualità e il gusto si incontrano. Siamo un'azienda familiare
+                con una passione per le spezie di alta qualità. Da anni selezioniamo solo i migliori prodotti
+                per portare sulla vostra tavola sapori autentici e ricchi di tradizione.
+            </p>
+            <h2>I Nostri Valori</h2>
+            <p>
+                Crediamo nella sostenibilità, nella qualità e nella soddisfazione del cliente. Ogni spezia che
+                trovate nel nostro negozio è stata attentamente selezionata per garantire il massimo della freschezza
+                e del sapore. Lavoriamo direttamente con i produttori per assicurarci che ogni prodotto rispetti
+                i nostri standard elevati.
+            </p>
+            <h2>Il Nostro Impegno</h2>
+            <p>
+                Il nostro impegno è verso di voi, i nostri clienti. Vogliamo offrirvi non solo prodotti eccezionali,
+                ma anche un'esperienza di acquisto unica. La vostra soddisfazione è la nostra priorità.
+            </p>
+        </div>
+        <div class="about-image">
+            <img src="<%= request.getContextPath() %>/images/about.jpg" alt="La nostra azienda">
+        </div>
+    </section>
+    
+    <jsp:include page="footer.jsp" />
 </body>
 </html>

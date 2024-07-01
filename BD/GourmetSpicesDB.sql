@@ -4,6 +4,7 @@ CREATE DATABASE GourmetSpicesDB;
 USE GourmetSpicesDB;
 
 -- Elimina le tabelle se esistono già nell'ordine corretto per rispettare le chiavi esterne
+DROP TABLE IF EXISTS Spedizione;
 DROP TABLE IF EXISTS Contenente;
 DROP TABLE IF EXISTS Carrello;
 DROP TABLE IF EXISTS Contenente_Carrello;
@@ -38,8 +39,8 @@ CREATE TABLE Prodotto (
     prezzo INT NOT NULL,
     valido INT NOT NULL DEFAULT 1,
     nome VARCHAR(50) NOT NULL,
-    descrizione VARCHAR(50) NOT NULL,
-    In_Evidenza INT NOT NULL DEFAULT 0
+    descrizione VARCHAR(50) NOT NULL
+    In_Evidenza INT NOT NULL DEFAULT 0;
 );
 
 -- Creazione della tabella Immagine_Prodotto
@@ -81,6 +82,15 @@ CREATE TABLE Ordine (
     FOREIGN KEY (NCarta) REFERENCES Metodo_Di_Pagamento(NCarta)
 );
 
+-- Creazione della tabella Spedizione
+CREATE TABLE Spedizione (
+    ID_ordine INT NOT NULL,
+    N_spedizione VARCHAR(50) PRIMARY KEY NOT NULL,
+    G_di_arrivo DATE,
+    corriere VARCHAR(50),
+    FOREIGN KEY (ID_ordine) REFERENCES Ordine(ID_ordine)
+);
+
 -- Creazione della tabella Contenente
 CREATE TABLE Contenente (
     ID_prodotto INT NOT NULL,
@@ -104,15 +114,15 @@ VALUES
 ('admin@email.com', 'admin', 'c2FsYXRpbm9IS/2gld3f28WW5kC9phK5hntWSGZ00Oo83HeBwbeW7Q==', 'admin', 'admin', 'ADMIN');
 
 -- Inserimento dei prodotti che sono spezie
-INSERT INTO Prodotto (prezzo, nome, descrizione, In_Evidenza)
+INSERT INTO Prodotto (prezzo, nome, descrizione)
 VALUES
-(3, 'Pepe Nero', 'Pepe nero in grani 100g', 1),
-(6, 'Zenzero', 'Zenzero in polvere 100g', 1),
-(8, 'Cannella', 'Cannella in polvere 40g', 1),
-(9, 'Chiodi di Garofano', 'Chiodi di garofano interi 30g', 0),
-(4, 'Noce Moscata', 'Noce moscata in polvere 30g', 0),
-(5, 'Cumino', 'Cumino in semi 40g', 0),
-(4, 'Coriandolo', 'Coriandolo in polvere 50g', 0);
+(3, 'Pepe Nero', 'Pepe nero in grani'),
+(6, 'Zenzero', 'Zenzero in polvere'),
+(8, 'Cannella', 'Cannella in stecche'),
+(9, 'Chiodi di Garofano', 'Chiodi di garofano interi'),
+(4, 'Noce Moscata', 'Noce moscata in polvere'),
+(5, 'Cumino', 'Cumino in semi'),
+(4, 'Coriandolo', 'Coriandolo in polvere');
 
 -- Inserimento dei metodi di pagamento
 INSERT INTO Metodo_Di_Pagamento (email, NCarta, CVV, data)
@@ -126,7 +136,11 @@ VALUES
 ('1234567890123456', 'giulia.fiori@email.com', '2024-06-05', 10.00, 'Via Roma 1'),
 ('9876543210987654', 'antonio.verdi@email.com', '2024-06-05', 7.00, 'Via Milano 2');
 
-
+-- Inserimento delle spedizioni
+INSERT INTO Spedizione (ID_ordine, N_spedizione, G_di_arrivo, corriere)
+VALUES
+(1, 'SPED001', '2024-06-07', 'GLS'),
+(2, 'SPED002', '2024-06-08', 'DHL');
 
 -- Inserimento dei prodotti nei vari ordini (Contenente)
 INSERT INTO Contenente (ID_prodotto, ID_ordine, prezzo_all_acquisto, quantita)

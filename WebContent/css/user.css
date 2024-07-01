@@ -140,7 +140,7 @@ main {
 @media (max-width: 768px) {
 
     main {
-        margin: 20px 10px;
+        margin: 20px auto;
         padding: 15px;
     }
 
@@ -176,7 +176,7 @@ main {
 
 @media (max-width: 480px) {
     main {
-        margin: 20px 5px;
+        margin: 20px auto;
         padding: 10px;
     }
 

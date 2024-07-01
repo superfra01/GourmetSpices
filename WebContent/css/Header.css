@@ -6,7 +6,6 @@ header {
     align-items: center;
     padding: 10px 20px;
     background-color: #E09777;
-    flex-wrap: wrap;
 }
 
 .logo {
@@ -28,7 +27,6 @@ nav ul {
     list-style: none;
     margin-left: auto;
     padding: 0;
-    flex-wrap: wrap;
 }
 
 nav li {

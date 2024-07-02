@@ -89,7 +89,7 @@
     </div>
     
     <% } else { %>
-        <div class="error-message">
+        <div class="error-message-not-admin">
             <p>You must be an admin in order to view this page.</p>
         </div>
     <% } %>

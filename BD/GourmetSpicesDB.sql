@@ -105,15 +105,15 @@ VALUES
 ('admin@email.com', 'admin', 'c2FsYXRpbm9IS/2gld3f28WW5kC9phK5hntWSGZ00Oo83HeBwbeW7Q==', 'admin', 'admin', 'ADMIN');
 
 -- Inserimento dei prodotti che sono spezie
-INSERT INTO Prodotto (prezzo, nome, descrizione)
+INSERT INTO Prodotto (prezzo, nome, descrizione, In_Evidenza)
 VALUES
-(3, 'Pepe Nero', 'Pepe nero in grani'),
-(6, 'Zenzero', 'Zenzero in polvere'),
-(8, 'Cannella', 'Cannella in stecche'),
-(9, 'Chiodi di Garofano', 'Chiodi di garofano interi'),
-(4, 'Noce Moscata', 'Noce moscata in polvere'),
-(5, 'Cumino', 'Cumino in semi'),
-(4, 'Coriandolo', 'Coriandolo in polvere');
+(3, 'Pepe Nero', 'Pepe nero in polvere (50g)', 1),
+(6, 'Zenzero', 'Zenzero in polvere (50g)', 1),
+(8, 'Cannella', 'Cannella in polvere (50g)', 1),
+(9, 'Chiodi di Garofano', 'Chiodi di garofano in polvere (50g)', 0),
+(4, 'Noce Moscata', 'Noce moscata in polvere (50g)', 0),
+(5, 'Cumino', 'Cumino in semi (50g)', 0),
+(4, 'Coriandolo', 'Coriandolo in polvere (50g)', 0);
 
 -- Inserimento dei metodi di pagamento
 INSERT INTO Metodo_Di_Pagamento (email, NCarta, CVV, data)

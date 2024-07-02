@@ -46,12 +46,19 @@ public class CarrelloServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		UserBean utente = (UserBean) request.getSession().getAttribute("utente");
-		String email = utente.getEmail();
 		
+		RequestDispatcher dispatcherToCart = request.getRequestDispatcher("cart.jsp");
+		if(utente==null) {
+			dispatcherToCart.forward(request, response);
+			return;
+		}
+			
+		String email = utente.getEmail();
+			
 		
 		List<String> errors = new ArrayList<>();
 		
-		RequestDispatcher dispatcherToCart = request.getRequestDispatcher("cart.jsp");
+		
 
 		
 		if(email == null || email.trim().isEmpty()) {

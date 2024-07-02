@@ -70,6 +70,18 @@ form button:hover {
     font-size: 0.9em;
 }
 
+.error-message-not-admin {
+    font-size: 18px;
+    color: #7f8c8d;
+    text-align: center;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    max-width: 400px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;

@@ -1,6 +1,3 @@
-# Creating the content with GitHub markdown formatting for the project description
-
-content = """
 # GourmetSpices - E-Commerce Website
 
 This repository contains the source code for a university project developed as part of the TSW course. **GourmetSpices** is a fully functional e-commerce platform designed for purchasing gourmet spices online. The project was developed based on the professor's specifications and features a robust architecture and user-friendly interface.

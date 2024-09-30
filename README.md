@@ -55,4 +55,4 @@ The project follows the **Model-View-Controller (MVC)** architectural pattern, e
 
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/BrunoNestico/GourmetSpices.git
+   git clone https://github.com/superfra01/GourmetSpices.git

@@ -5,7 +5,8 @@ content = """
 
 This repository contains the source code for a university project developed as part of the TSW course. **GourmetSpices** is a fully functional e-commerce platform designed for purchasing gourmet spices online. The project was developed based on the professor's specifications and features a robust architecture and user-friendly interface.
 ## Main developers
-Developed by @superfra01 and @BrunoNestico
+Developed by [superfra01](https://github.com/superfra01) and [BrunoNestico](https://github.com/BrunoNestico).
+
 
 ## Project Overview
 
